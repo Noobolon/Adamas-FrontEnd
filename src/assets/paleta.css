@@ -3,6 +3,7 @@
     --SubBackground: #7DD7FD;
     --MenuBackground: #7CBEE2;
     
+    --ToolbarColor: #347BA2;
     --CardColor: #347BA2;
     --ButtonColor: #2B6585;
     --TextField: #277DA1;
@@ -11,5 +12,6 @@
     --TagSelectedColor: #9DE373;
   
     --Text: #000000;
+    --Text2: #ffffff;
     --SubText: #D1D1D1;
   }
