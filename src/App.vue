@@ -1,13 +1,16 @@
 <script setup>
-import ToolBar from './components/structure/ToolBar.vue'
+import NavBar from './components/structure/NavBar.vue'
+import HomePage from './components/pages/HomePage.vue'
+import Footer1 from './components/structure/Footer1.vue'
 
 </script>
 
 <template>
-  <ToolBar />
+  <NavBar />
   
-  <h1>aaaaaaaaaaaaaaaaaaaaaa</h1>
+  <HomePage />
 
+  <Footer1 />
 </template>
 
 <style>
