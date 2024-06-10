@@ -1,7 +1,7 @@
 :root{
     --BackgroundColor: #B6EFFC;
-    --SubBackgroundColor: #7DD7FD;
-    --MenuBackgroundColor: #7CBEE2;
+    --MenuColor: #7DD7FD;
+    --SubBackgroundColor: #7CBEE2;
     --ToolbarColor: #347BA2;
     --ButtonColor: #2B6585;
 
@@ -11,7 +11,8 @@
     --TagColor: #FF9090;
     --TagSelectedColor: #9DE373;
   
-    --TextH: #347BA2;
+    --TextHighlight: #2B6585;
+    --TextHighlight2: #347BA2;
     --Text: #000000;
     --Text2: #ffffff;
     --SubText: #D1D1D1;

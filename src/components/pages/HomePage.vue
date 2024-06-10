@@ -1,18 +1,27 @@
 <script>
-    export default{
+    export default {
         name: "HomePage"
     }
 </script>
 
+<script setup>  
+import NavBar from '../structure/NavBar.vue';
+import Footer1 from '../structure/Footer1.vue';
+
+
+</script>
 
 <template>
+    <NavBar />
+
     <main>
-        <div>
+
+        <!-- Introdução ao site -->
+        <div id="Intro">
             <header>
                 <h1>Adamas</h1>
                 <h2>Plataforma de hospedagem de projetos e eventos.</h2>
             </header>
-
         </div>
 
         <article>
@@ -28,22 +37,47 @@
         <article>
             <h2>Veja e avalie projetos de outras pessoas</h2>
             <img src="../../assets/images/screenshots/browse.png">
-
         </article>
     </main>
+
+    <!-- Seção da equipe -->
+    <div id="Equipe">
+        <article>
+            <h2>Equipe</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum voluptatum et aliquam eum voluptatem atque non sint! Quibusdam reprehenderit doloremque ex nam porro earum, similique consectetur fuga assumenda architecto adipisci.</p>
+        </article>
+
+        <ul>
+            <li>
+                <img src="/symbols/DefaultProfile.png" alt="Perfil">
+                <h3>Eduardo<span>/Frontiendo</span></h3>
+            </li>
+            <li>
+                <img src="/symbols/DefaultProfile.png" alt="Perfil">
+                <h3>Felipe<span>/Backiendo</span></h3>
+            </li>
+        </ul>
+
+        <Footer1 />
+    </div>
+
 </template>
 
 
 
 <style scoped>
 
+main{
+    padding: 7%;
+}
+
 /* Header */
 
-div{
-    height: 100vh;
+div #Intro{
+    height: 80vh;
     width: 100%;
 
-    background-size: 100vh;
+    background-size: 50%;
     background-image: url('../../assets/images/diamond.png');
     background-repeat: no-repeat;
 }
@@ -54,12 +88,12 @@ header{
 }
 
 header> h1{
-    color: var(--TextH);
-    font-size: 5.25em;
+    color: var(--TextHighlight);
+    font-size: 7em;
 }
 
 header> h2{
-    font-size: 2.25em;
+    font-size: 3em;
 }
 
 
@@ -70,16 +104,52 @@ article{
 }
 
 article > img{
+    padding: 2%;
     width: 50vw;
     margin-left: 10%;
 }
 
 article > h2{
-    color: var(--TextH);
+    color: var(--TextHighlight);
+    font-size: 3em;
+    margin: 2% 0 0 0 ;
+}
+
+article > p{
     font-size: 2em;
-    margin: 2%;
 }
 
 
+
+/* Equipe */
+
+div #Equipe{
+    padding: 2%;
+    background-color: #88DAEC;
+}
+
+ul{
+    list-style-type: none;
+    padding: 2% 5%;
+}
+
+li{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin-bottom: 2%;
+}
+
+li > img{width: 7.5%; margin-right: 1%;}
+
+li > h3{
+    align-content: center;
+    font-size: 2em;
+}
+
+h3 > span{
+    color: #727272;
+    font-weight: normal;
+}
 
 </style>

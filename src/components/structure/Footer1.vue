@@ -18,7 +18,7 @@
     ul{
         list-style-type: none;
         font-size: 1em;
-        color: var(--TextH);
+        color: var(--TextHighlight2);
 
         padding: 5%;
 
