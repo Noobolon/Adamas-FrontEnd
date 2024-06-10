@@ -7,7 +7,13 @@
 <script setup>  
 import NavBar from '../structure/NavBar.vue';
 import Footer1 from '../structure/Footer1.vue';
+import LinkButton from '../LinkButton.vue';
 
+components: {
+    NavBar,
+    Footer1,
+    LinkButton
+};
 
 </script>
 
@@ -22,6 +28,7 @@ import Footer1 from '../structure/Footer1.vue';
                 <h1>Adamas</h1>
                 <h2>Plataforma de hospedagem de projetos e eventos.</h2>
             </header>
+             <LinkButton textBtn="Testeeee" link="https://youtube.com"/>  
         </div>
 
         <article>

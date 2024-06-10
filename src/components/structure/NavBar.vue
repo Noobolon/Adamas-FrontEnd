@@ -4,9 +4,8 @@ export default {
 }
 </script>
 
-<script setup>
-
-
+<script setup>  
+    
 </script>
 
 <template>
