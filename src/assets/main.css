@@ -3,8 +3,6 @@
 
 
 
-
-
 *{
   margin: 0px;
   font-family: "Inter";
@@ -16,6 +14,23 @@ body{
 
 main{
   padding: 7%;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+  position:fixed;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--SubBackgroundColor); 
+  
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--ButtonColor);
+  border-radius: 20px;
 }
 
 /*Testes*/

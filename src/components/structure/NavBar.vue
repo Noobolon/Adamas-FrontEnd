@@ -91,7 +91,26 @@ li:last-child{border-right: none;}
 
 /* Responsividade */
 
-/* insira código aqui lol */
+@media screen and (max-width: 600px){
+    div, ul, nav{
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+    }
 
+    ul{
+        width: max-content;
+    }
+    li{
+        border-right: none;
+        width: 100%;
+    }
+
+    li:hover{
+        background-color: #275e7b;
+    }
+    li:first-child{border-top: 2px solid var(--Text2);}
+    li:last-child{border-bottom: 2px solid var(--Text2); margin-bottom: 5%;}
+}
 
 </style>
