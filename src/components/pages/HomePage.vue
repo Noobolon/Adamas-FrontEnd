@@ -27,8 +27,10 @@ components: {
             <header>
                 <h1>Adamas</h1>
                 <h2>Plataforma de hospedagem de projetos e eventos.</h2>
+
+                <LinkButton textBtn="Entrar" link="https://youtube.com" />  
             </header>
-             <LinkButton textBtn="Testeeee" link="https://youtube.com"/>  
+             
         </div>
 
         <article>
@@ -74,9 +76,7 @@ components: {
 
 <style scoped>
 
-main{
-    padding: 7%;
-}
+
 
 /* Header */
 
@@ -94,6 +94,8 @@ header{
     width: fit-content;
 }
 
+
+
 header> h1{
     color: var(--TextHighlight);
     font-size: 7em;
@@ -101,9 +103,10 @@ header> h1{
 
 header> h2{
     font-size: 3em;
+    margin-bottom: 3%;
 }
 
-
+ 
 /* Article */
 
 article{

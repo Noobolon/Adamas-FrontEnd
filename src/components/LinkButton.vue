@@ -14,14 +14,16 @@
 
 <style scoped>
 a{
+    font-size: 2em;
     background-color: var(--ButtonColor);
-    padding: 1.5%;
-    border-radius: 25px;
+    padding: 1% 3%;
+    border-radius: 15px;
 
     color: var(--Text2);
-    font-weight: bold;
     text-decoration: none;
 }
+
+a:hover{ background-color: #1f4a60;}
 
 a:visited{color: var(--Text2);}
 

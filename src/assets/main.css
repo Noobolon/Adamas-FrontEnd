@@ -14,7 +14,9 @@ body{
   background-color: var(--BackgroundColor);
 }
 
-
+main{
+  padding: 7%;
+}
 
 /*Testes*/
 
