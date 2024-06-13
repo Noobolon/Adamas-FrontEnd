@@ -7,12 +7,15 @@
 </script>
 
 <template>
-   <a :href='link'>
+    
+   <RouterLink :to="link">
         {{ textBtn }}
-   </a> 
+   </RouterLink> 
+
 </template>
 
 <style scoped>
+
 a{
     font-size: 2em;
     background-color: var(--ButtonColor);

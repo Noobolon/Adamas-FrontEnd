@@ -20,7 +20,7 @@ export default {
         </div>
         
 
-        <div>
+        <div id="User">
             <a href="">
                 <img src="/symbols/Notifications.png" alt="Notificações">
             </a>
@@ -52,7 +52,7 @@ div{
     align-items: center;
 }
 
-div > a {margin: 0px 0px;}
+div > a {margin: 0px 10px;}
 
 a{
     font-size: 1.5em;

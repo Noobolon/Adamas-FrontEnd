@@ -9,11 +9,7 @@ import NavBar from '../structure/NavBar.vue';
 import Footer1 from '../structure/Footer1.vue';
 import LinkButton from '../LinkButton.vue';
 
-components: {
-    NavBar,
-    Footer1,
-    LinkButton
-};
+
 
 </script>
 
@@ -28,7 +24,7 @@ components: {
                 <h1>Adamas</h1>
                 <h2>Plataforma de hospedagem de projetos e eventos.</h2>
 
-                <LinkButton textBtn="Entrar" link="https://youtube.com" />  
+                <LinkButton textBtn="Entrar" link="/tipodeconta" />  
             </header>
              
         </div>
@@ -85,7 +81,7 @@ div #Intro{
     width: 100%;
 
     background-size: 50%;
-    background-image: url('../../assets/images/diamond.png');
+    background-image: url('../../assets/images/SimpleDiamond.png');
     background-repeat: no-repeat;
 }
 
@@ -160,6 +156,21 @@ li > h3{
 h3 > span{
     color: #727272;
     font-weight: normal;
+}
+
+
+
+/* Responsividade */
+
+@media screen and (max-width: 600px){
+    *{
+        font-size: 10px;
+    }
+
+    div #Intro{
+        height: 100%;
+        margin-bottom: 5%;
+    }
 }
 
 </style>
