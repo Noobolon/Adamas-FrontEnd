@@ -5,28 +5,28 @@ export default {
 </script>
 
 <script setup>  
-    
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
     <nav>
         <div>
-            <a href=""><img src="/logos/AdamasWhite.png" alt="Logo"></a>
+            <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
-                <li><a href="">Projetos</a></li>
-                <li><a href="">Eventos</a></li>
-                <li><a href="">Contato</a></li>
+                <li><RouterLink to="">Projetos</RouterLink></li>
+                <li><RouterLink to="">Eventos</RouterLink></li>
+                <li><RouterLink to="">Contato</RouterLink></li>
             </ul>
         </div>
         
 
         <div id="User">
-            <a href="">
+            <RouterLink to="">
                 <img src="/symbols/Notifications.png" alt="Notificações">
-            </a>
-            <a href="">
+            </RouterLink>
+            <RouterLink to="">
                 <img src="/symbols/DefaultProfile.png" alt="Perfil">
-            </a>
+            </RouterLink>
         </div>
 
     </nav>

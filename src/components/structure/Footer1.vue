@@ -21,7 +21,7 @@
         color: var(--TextHighlight2);
 
         padding: 5%;
-
+        
         text-align: center;
         align-content: center;
 

@@ -19,7 +19,7 @@ import LinkButton from '../components/LinkButton.vue'
                 <h1>Adamas</h1>
                 <h2>Plataforma de hospedagem de projetos e eventos.</h2>
 
-                <LinkButton textBtn="Entrar" link="/accounttype" />  
+                <LinkButton text="Entrar" link="/tipo-de-conta" />  
             </header>
              
         </div>

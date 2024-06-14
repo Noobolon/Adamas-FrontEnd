@@ -1,7 +1,7 @@
 <script>
     export default {
         name: "LinkButton",
-        props: ['textBtn', 'link']
+        props: ['text', 'link']
 
     }
 
@@ -10,7 +10,7 @@
 <template>
     
    <RouterLink :to="link">
-        {{ textBtn }}
+        {{ text }}
    </RouterLink> 
 
 </template>
