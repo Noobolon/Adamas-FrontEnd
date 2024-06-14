@@ -4,6 +4,7 @@
         props: ['textBtn', 'link']
 
     }
+
 </script>
 
 <template>
