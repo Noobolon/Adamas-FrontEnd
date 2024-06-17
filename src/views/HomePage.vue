@@ -1,11 +1,20 @@
 <script>
-    export default {
-        name: "HomePage"
-    }
-</script>
+import LinkButton from '@/components/LinkButton.vue';
 
-<script setup>  
-import LinkButton from '../components/LinkButton.vue'
+export default {
+    name: "HomePage",
+
+    components:{
+        LinkButton
+    },
+
+    mounted() {
+        if (this.$path == null) {
+            console.log("sijdfoishfgoprwiehgpoewirhg")
+        }
+    }
+
+}
 
 </script>
 

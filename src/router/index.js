@@ -15,7 +15,14 @@ const router = createRouter({
       path: '/tipo-de-conta',
       name: 'tipo de conta',
       component: AccountType
+    },
+
+    {
+      path: '/register/',
+      name: 'registrar-se como aluno',
+      component: ''
     }
+    
   ]
 })
 
