@@ -2,6 +2,9 @@
 @import './paleta.css';
 
 
+:root{
+  font-size: 16px;
+}
 
 *{
   margin: 0px;

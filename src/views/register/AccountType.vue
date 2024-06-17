@@ -9,7 +9,7 @@ export default {
     <main>
 
         <div>
-            <RouterLink to="/cadastrar/user"> iyouio</RouterLink>
+            <RouterLink to="/cadastrar/usuario">iyouio</RouterLink>
             <RouterLink to="/cadastrar/instituicao"> uiouioiu</RouterLink>
         </div>
         

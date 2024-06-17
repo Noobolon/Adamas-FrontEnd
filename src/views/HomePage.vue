@@ -19,11 +19,10 @@ export default {
         <div id="Intro">
             <header>
                 <h1>Adamas</h1>
-                <h2>Plataforma de hospedagem de projetos e eventos.</h2>
+                <h2>Plataforma de divulgação de projetos e eventos.</h2>
 
-                <LinkButton text="Entrar" link="/tipo-de-conta" />  
+                <LinkButton text="Entrar" link="/tipo-de-conta" />
             </header>
-             
         </div>
 
         <article>
@@ -72,7 +71,7 @@ export default {
 /* Header */
 
 div #Intro{
-    height: 80vh;
+    min-height: 80vh;
     width: 100%;
 
     background-size: 50%;
@@ -85,15 +84,13 @@ header{
     width: fit-content;
 }
 
-
-
 header> h1{
     color: var(--TextHighlight);
-    font-size: 7em;
+    font-size: 7rem;
 }
 
 header> h2{
-    font-size: 3em;
+    font-size: 3rem;
     margin-bottom: 3%;
 }
 
@@ -112,12 +109,12 @@ article > img{
 
 article > h2{
     color: var(--TextHighlight);
-    font-size: 3em;
+    font-size: 3rem;
     margin: 2% 0 0 0 ;
 }
 
 article > p{
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 
@@ -145,7 +142,7 @@ li > img{width: 7.5%; margin-right: 1%;}
 
 li > h3{
     align-content: center;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 h3 > span{
@@ -159,12 +156,54 @@ h3 > span{
 
 @media screen and (max-width: 600px){
     *{
-        font-size: 10px;
+        font-size: 1rem;
     }
 
+
     div #Intro{
+        text-align: center;
         height: 100%;
         margin-bottom: 5%;
+    }
+
+
+    header{padding: 0;}
+    header > h1{
+        font-size: 4rem;
+    }
+    header > h2{
+        font-size: 2rem;
+    }
+
+
+    article{
+        text-align: center;
+        justify-content: center;
+        margin: 0;
+    }
+    article > h2{
+        font-size: 1.75rem;
+    }
+    article > p{
+        font-size: 1rem;
+    }
+    
+
+    div #equipe{text-align: center;}
+    ul{padding: 0; margin: 5% 0;}
+    li{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+    li > img{
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    li > h3 {
+        font-size: 1.5rem;
     }
 }
 
