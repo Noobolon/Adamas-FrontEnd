@@ -71,7 +71,7 @@ export default {
 /* Header */
 
 div #Intro{
-    min-height: 80vh;
+    height: 80vh;
     width: 100%;
 
     background-size: 50%;
@@ -162,7 +162,7 @@ h3 > span{
 
     div #Intro{
         text-align: center;
-        height: 100%;
+        height: fit-content;
         margin-bottom: 5%;
     }
 
@@ -204,6 +204,13 @@ h3 > span{
     }
     li > h3 {
         font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 800px){
+    div #Intro {
+        height: fit-content;
+        margin-bottom: 5%;
     }
 }
 
