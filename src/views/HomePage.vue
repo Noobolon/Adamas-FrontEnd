@@ -6,14 +6,7 @@ export default {
 
     components:{
         LinkButton
-    },
-
-    mounted() {
-        if (this.$path == null) {
-            console.log("sijdfoishfgoprwiehgpoewirhg")
-        }
     }
-
 }
 
 </script>

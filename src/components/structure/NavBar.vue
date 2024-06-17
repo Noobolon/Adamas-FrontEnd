@@ -1,11 +1,27 @@
 <script>
-export default {
-    name: "NavBar"
-}
-</script>
-
-<script setup>  
 import { RouterLink } from 'vue-router';
+
+export default {
+    name: "NavBar",
+
+    data(){
+        return{
+            main_colors: 'var(--ToolbarColor)',
+            home_colors: '#000',
+
+            color: 'var(--ToolbarColor)'
+        }
+    },
+
+    mounted() {
+
+        if (this.$path == null) { // Se o caminho for a home
+            color = this.home_colors
+        } else {
+            color = this.main_colors
+        }
+    }
+}
 </script>
 
 <template>
@@ -38,7 +54,7 @@ import { RouterLink } from 'vue-router';
 
 nav{
     padding: 25px;
-    background-color: var(--ToolbarColor);
+    background-color: v-bind(color);
     color: var(--Text2);
 
     display: flex;
