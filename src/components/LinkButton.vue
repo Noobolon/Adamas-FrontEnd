@@ -29,6 +29,7 @@
 
 a{
     align-content: center;
+    justify-content: center;
     font-size: 2em;
     background-color: var(--ButtonColor);
     padding: 1% 3%;

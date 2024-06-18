@@ -15,7 +15,10 @@ export default {
         <LinkButton 
         text="Usuário" 
         link="/cadastrar/usuario" 
-        icon="/symbols/UserIcon.png" 
+        icon="/symbols/UserIcon.png"
+        
+        width="25%"
+        height="max-content"
         />
 
         <LinkButton 
@@ -24,7 +27,7 @@ export default {
         icon="/symbols/InstIcon.png" 
         
         width="25%"
-        height="75px"
+        height="max-content"
         />
         
     </main>
