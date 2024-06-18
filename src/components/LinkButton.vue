@@ -1,8 +1,7 @@
 <script>
     export default {
         name: "LinkButton",
-        props: ['text', 'link']
-
+        props: ['text', 'link', 'icon']
     }
 
 </script>
@@ -10,6 +9,7 @@
 <template>
     
    <RouterLink :to="link">
+        <img v-if="icon != null" :src="icon" alt="Ícone">
         {{ text }}
    </RouterLink> 
 

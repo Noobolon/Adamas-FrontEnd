@@ -16,9 +16,13 @@ body{
 }
 
 main{
-  padding: 7%;
+
   display: flex;
   flex-direction: column;
+}
+
+a{
+  text-decoration: none;
 }
 
 /* Scrollbar */
@@ -37,18 +41,3 @@ main{
   background: var(--ButtonColor);
   border-radius: 20px;
 }
-
-/*Testes*/
-
-/* @media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-} */

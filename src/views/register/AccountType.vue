@@ -1,24 +1,19 @@
 <script>
+import LinkButton from '@/components/LinkButton.vue';
 import { RouterLink } from 'vue-router';
+
 export default {
-    name: "CreateAccount"
+    name: "CreateAccount",
+    components: {
+        LinkButton
+    }
 }
 </script>
 
 <template>
     <main>
 
-        <ul>
-            <RouterLink to="/cadastrar/usuario"><li>
-                <img src="/logos/AdamasWhite.png" alt="">
-                Usuário
-            </li></RouterLink>
-                
-            <RouterLink to="/cadastrar/instituicao"><li>
-                <img src="/logos/AdamasWhite.png" alt="">   
-                Instituição
-            </li></RouterLink>
-        </ul>
+           
         
     </main>
 </template>
@@ -26,26 +21,28 @@ export default {
 <style scoped>
 
 main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-ul{
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-}
 
-li{
+div{
     width: 100%;
     font-size: 2em;
     background-color: var(--ButtonColor);
-    padding: 5% 10%;
+    padding: 10% 20%;
+    margin: 10% 0;
     border-radius: 15px;
 
     color: var(--Text2);
     text-decoration: none;
     text-align: center
 }
+
+
 
 
 </style>
