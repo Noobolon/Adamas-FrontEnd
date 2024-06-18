@@ -1,8 +1,18 @@
 <script>
     export default {
         name: "LinkButton",
-        props: ['text', 'link', 'icon']
+        props: {
+            text: String, 
+            link: String,
+            icon: String,
+
+            width: String,
+            height: String
+        }
+        
     }
+
+    
 
 </script>
 
@@ -18,10 +28,14 @@
 <style scoped>
 
 a{
+    align-content: center;
     font-size: 2em;
     background-color: var(--ButtonColor);
     padding: 1% 3%;
     border-radius: 15px;
+
+    width: v-bind(width);
+    height: v-bind(height);
 
     color: var(--Text2);
     text-decoration: none;

@@ -15,8 +15,13 @@ const router = createRouter({
     },
     {
       path: '/cadastrar/usuario',
-      name: 'registrar-se como usuário comum',
+      name: 'cadastrar-se como usuário comum',
       component: () => import('../views/register/RegUser.vue')
+    },
+    {
+      path: '/cadastrar/instituicao',
+      name: 'cadastrar-se como instituição',
+      component: () => import('../views/register/RegInstitution.vue')
     }
     
   ]
