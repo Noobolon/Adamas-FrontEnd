@@ -1,21 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomePage from '../views/HomePage.vue'
-import AccountType from '../views/AccountType.vue'
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomePage
+      component: () => import('../views/HomePage.vue')
     },
     {
-      path: '/accounttype',
-      name: 'accounttype',
-      component: AccountType
+      path: '/tipo-de-conta',
+      name: 'tipo de conta',
+      component: () => import('../views/register/AccountType.vue')
+    },
+    {
+      path: '/cadastrar/usuario',
+      name: 'cadastrar-se como usuário comum',
+      component: () => import('../views/register/RegUser.vue')
+    },
+    {
+      path: '/cadastrar/instituicao',
+      name: 'cadastrar-se como instituição',
+      component: () => import('../views/register/RegInstitution.vue')
     }
+    
   ]
 })
 
