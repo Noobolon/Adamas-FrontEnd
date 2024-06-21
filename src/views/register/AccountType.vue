@@ -18,7 +18,7 @@ export default {
         icon="/symbols/UserIcon.png"
         
         width="25%"
-        height="max-content"
+        height=""
         />
 
         <LinkButton 
@@ -39,6 +39,16 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    margin-top: 3%;
 }
 
 </style>
