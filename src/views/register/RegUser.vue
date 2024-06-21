@@ -5,17 +5,33 @@ export default {
 </script>
 
 <template>
-    <form action="">
-        <input type="text" placeholder="Nome" name="name" id="name">
-        <input type="email" placeholder="E-mail" name="email" id="email">
-        <input type="password" placeholder="Senha" name="senha" id="senha">
-        <input type="button" value="Cadastrar">
-    </form>
+    <div>
+        <img src="../../assets/images/PencilDiamond.png" alt="">
+        <form action="">
+            <input type="text" placeholder="Nome" name="name" id="name">
+            <input type="email" placeholder="E-mail" name="email" id="email">
+            <input type="password" placeholder="Senha" name="senha" id="senha">
+            <input type="button" value="Cadastrar">
+        </form>
+    </div>
+    
 </template>
 
 <style scoped>
 
+div{
+    display: flex;
+    padding: 5%;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+img{
+    width: 30%;
+}
+
 form{
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,11 +41,12 @@ form{
 
 input[type="button"]{
     background-color: var(--ButtonColor);
-    padding: 2%;
     border: none;
     border-radius: 15px;
 
-    width: 25%;
+
+    width: max-content;
+    padding: 5% 10%;
     
     font-size: 2rem;
     color: var(--Text2);
@@ -46,10 +63,12 @@ input{
     border: none;
     border-bottom: 4px solid var(--ButtonColor);
 
-    font-size: 2rem;
 
+    caret-color: var(--TextFieldColor);
+    font-size: 2rem;
     margin: 2% 0;
 }
+
 
 input:focus{
     outline: none;

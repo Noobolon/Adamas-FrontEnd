@@ -40,14 +40,6 @@ export default {
 <style scoped>
 
 main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main{
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
