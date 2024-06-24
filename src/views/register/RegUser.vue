@@ -14,6 +14,7 @@ export default {
                 <input type="email" placeholder="E-mail" name="email" id="email">
                 <input type="password" placeholder="Senha" name="senha" id="senha">
                 <input type="button" value="Cadastrar">
+                <p>Já possui uma conta?<br><RouterLink to="/login/usuario">Entrar</RouterLink></p>
             </form>
         </div>
     </main>

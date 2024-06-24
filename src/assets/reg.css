@@ -4,6 +4,8 @@ h1{
     color: var(--TextHighlight);
 }
 
+p{text-align: center;}
+
 div{
     display: flex;
     padding: 5%;

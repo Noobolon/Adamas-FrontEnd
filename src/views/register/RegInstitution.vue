@@ -7,7 +7,7 @@ export default {
 
 <template>
     <main>
-        <h1>Cadastro de Usuário</h1>
+        <h1>Cadastro de Instituição</h1>
         <div>
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
             <form action="">
@@ -16,7 +16,7 @@ export default {
                 <input type="text" placeholder="CNPJ" name="cnpj" id="cnpj">
                 <input type="password" placeholder="Senha" name="senha" id="senha">
                 <input type="button" value="Cadastrar">
-                <label for="button">Já possui uma conta? <RouterLink to="/login/instituicao">Eu não ligo</RouterLink></label>
+                <p>Já possui uma conta?<br><RouterLink to="/login/instituicao">Entrar</RouterLink></p>
             </form>
         </div>
     </main>
