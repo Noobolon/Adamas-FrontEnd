@@ -21,7 +21,13 @@ export default {
                 <h1>Adamas</h1>
                 <h2>Plataforma de divulgação de projetos e eventos.</h2>
 
-                <LinkButton text="Entrar" link="/tipo-de-conta" />
+              
+                
+                    <LinkButton text="Entrar" link="/tipo-de-conta" 
+                    width="25%"
+                    height="max-content"/>
+
+                
             </header>
         </div>
 
@@ -150,7 +156,9 @@ h3 > span{
     font-weight: normal;
 }
 
-
+/* #eu-vou-cometer-genocidio-em-massa{
+    width: 10px;
+} */
 
 /* Responsividade */
 

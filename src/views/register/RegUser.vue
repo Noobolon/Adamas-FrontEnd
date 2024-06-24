@@ -5,29 +5,37 @@ export default {
 </script>
 
 <template>
-    <div>
-        <img src="../../assets/images/PencilDiamond.png" alt="">
-        <form action="">
-            <input type="text" placeholder="Nome" name="name" id="name">
-            <input type="email" placeholder="E-mail" name="email" id="email">
-            <input type="password" placeholder="Senha" name="senha" id="senha">
-            <input type="button" value="Cadastrar">
-        </form>
-    </div>
-    
+    <main>
+        <h1>Cadastro de Usuário</h1>
+        <div>
+            <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
+            <form action="">
+                <input type="text" placeholder="Nome" name="name" id="name">
+                <input type="email" placeholder="E-mail" name="email" id="email">
+                <input type="password" placeholder="Senha" name="senha" id="senha">
+                <input type="button" value="Cadastrar">
+            </form>
+        </div>
+    </main>
 </template>
 
 <style scoped>
+
+h1{
+    font-size: 3rem;
+    text-align: center;
+    color: var(--TextHighlight);
+}
 
 div{
     display: flex;
     padding: 5%;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 img{
-    width: 30%;
+    width: 500px;
 }
 
 form{
@@ -35,7 +43,6 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-
     padding: 5%;
 }
 
@@ -66,7 +73,7 @@ input{
 
     caret-color: var(--TextFieldColor);
     font-size: 2rem;
-    margin: 2% 0;
+    margin: 5% 0;
 }
 
 
