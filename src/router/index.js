@@ -13,6 +13,8 @@ const router = createRouter({
       name: 'tipo de conta',
       component: () => import('../views/register/AccountType.vue')
     },
+
+    // Telas de cadastro
     {
       path: '/cadastrar/usuario',
       name: 'cadastrar-se como usuário comum',
@@ -22,6 +24,16 @@ const router = createRouter({
       path: '/cadastrar/instituicao',
       name: 'cadastrar-se como instituição',
       component: () => import('../views/register/RegInstitution.vue')
+    },
+    {
+      path: '/login/usuario',
+      name: 'login como usuário',
+      component: () => import('../views/register/LogUser.vue')
+    },
+    {
+      path: '/login/instituicao',
+      name: 'login como instituição',
+      component: () => import('../views/register/LogInstitution.vue')
     }
     
   ]

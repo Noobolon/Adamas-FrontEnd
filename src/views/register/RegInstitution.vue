@@ -1,4 +1,5 @@
 <script>
+
 export default {
     name: "RegUser"
 }
@@ -15,77 +16,13 @@ export default {
                 <input type="text" placeholder="CNPJ" name="cnpj" id="cnpj">
                 <input type="password" placeholder="Senha" name="senha" id="senha">
                 <input type="button" value="Cadastrar">
+                <label for="button">Já possui uma conta? <RouterLink to="/login/instituicao">Eu não ligo</RouterLink></label>
             </form>
         </div>
     </main>
 </template>
 
 <style scoped>
-
-h1{
-    font-size: 3rem;
-    text-align: center;
-    color: var(--TextHighlight);
-}
-
-div{
-    display: flex;
-    padding: 5%;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-img{
-    width: 500px;
-    height: 500px;
-}
-
-form{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5%;
-}
-
-input[type="button"]{
-    background-color: var(--ButtonColor);
-    border: none;
-    border-radius: 15px;
-
-
-    width: max-content;
-    padding: 5% 10%;
-    
-    font-size: 2rem;
-    color: var(--Text2);
-    text-align: center;
-}
-
-input[type="button"]:hover{
-    cursor: pointer;
-    background-color: #1f4a60;
-}
-
-input{
-    background-color: #00000000;
-    border: none;
-    border-bottom: 4px solid var(--ButtonColor);
-
-
-    caret-color: var(--TextFieldColor);
-    font-size: 2rem;
-    margin: 5% 0;
-}
-
-
-input:focus{
-    outline: none;
-}
-
-input::placeholder{
-    color: var(--TextFieldColor);
-    font-weight: bold;
-}
+@import url(../../assets/reg.css);
 
 </style>
