@@ -14,20 +14,17 @@ export default {
 <template>
 
     <main>
-        
         <!-- Introdução ao site -->
         <div id="Intro">
             <header>
                 <h1>Adamas</h1>
                 <h2>Plataforma de divulgação de projetos e eventos.</h2>
-
-              
-                
-                    <LinkButton text="Entrar" link="/tipo-de-conta" 
-                    width="25%"
-                    height="max-content"/>
-
-                
+                <LinkButton 
+                text="Entrar"
+                link="/tipo-de-conta" 
+                width="25%"
+                height="max-content"
+                />
             </header>
         </div>
 
@@ -45,34 +42,31 @@ export default {
             <h2>Veja e avalie projetos de outras pessoas</h2>
             <img src="../assets/images/screenshots/browse.png">
         </article>
+
+        
     </main>
 
     <!-- Seção da equipe -->
     <div id="Equipe">
-        <article>
-            <h2>Equipe</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum voluptatum et aliquam eum voluptatem atque non sint! Quibusdam reprehenderit doloremque ex nam porro earum, similique consectetur fuga assumenda architecto adipisci.</p>
-        </article>
+            <article>
+                <h2>Equipe</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum voluptatum et aliquam eum voluptatem atque non sint! Quibusdam reprehenderit doloremque ex nam porro earum, similique consectetur fuga assumenda architecto adipisci.</p>
+            </article>
+            <ul>
+                <li>
+                    <img src="/symbols/DefaultProfile.png" alt="Perfil">
+                    <h3>Eduardo<span>/Frontiendo</span></h3>
+                </li>
+                <li>
+                    <img src="/symbols/DefaultProfile.png" alt="Perfil">
+                    <h3>Felipe<span>/Backiendo</span></h3>
+                </li>
+            </ul>
 
-        <ul>
-            <li>
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
-                <h3>Eduardo<span>/Frontiendo</span></h3>
-            </li>
-            <li>
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
-                <h3>Felipe<span>/Backiendo</span></h3>
-            </li>
-        </ul>
-    </div>
-
+        </div>
 </template>
 
-
-
 <style scoped>
-
-
 
 /* Header */
 
