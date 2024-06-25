@@ -21,6 +21,6 @@ export default {
 </template>
 
 <style scoped>
-@import url(../../assets/reg.css);
+@import url(../../assets/css/registro.css);
 
 </style>
