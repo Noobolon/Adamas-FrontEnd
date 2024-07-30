@@ -3,6 +3,12 @@ import { RouterLink } from 'vue-router';
 
 export default {
     name: "NavBar",
+
+    methods:{
+        scrollDown(){
+            window.scrollTo(100,100);
+        }
+    }
 }
 </script>
 
@@ -11,9 +17,9 @@ export default {
         <div>
             <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
-                <li><RouterLink to="">Projetos</RouterLink></li>
-                <li><RouterLink to="">Eventos</RouterLink></li>
-                <li><RouterLink to="">Contato</RouterLink></li>
+                <li><RouterLink to="/projetos">Projetos</RouterLink></li>
+                <li><RouterLink to="/eventos">Eventos</RouterLink></li>
+                <li><RouterLink to="/" @click="scrollDown">Sobre</RouterLink></li>
             </ul>
         </div>
         

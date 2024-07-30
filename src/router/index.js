@@ -14,6 +14,23 @@ const router = createRouter({
       component: () => import('../views/register/AccountType.vue')
     },
 
+    // Pesquisas 
+    {
+      path: '/projetos',
+      name: 'projetos',
+      component: () => import('../views/search/Projects.vue')
+    },
+    {
+      path: '/eventos',
+      name: 'eventos',
+      component: () => import('../views/search/Events.vue')
+    },
+    {
+      path: '/usuarios',
+      name: 'usuarios',
+      component: () => import('../views/search/Users.vue')
+    },
+
     // Telas de cadastro
     {
       path: '/cadastrar/usuario',

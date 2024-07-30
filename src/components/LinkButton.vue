@@ -27,8 +27,11 @@
 a{
     display: flex;
     flex-direction: row;
-    align-content: center;
+
+    justify-items: center;
     justify-content: center;
+    align-items: center;
+    align-content: center;
 
     background-color: var(--ButtonColor);
     padding: 2% 0;
