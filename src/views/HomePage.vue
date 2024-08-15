@@ -54,12 +54,12 @@ export default {
             </article>
             <ul>
                 <li>
-                    <img src="/symbols/DefaultProfile.png" alt="Perfil">
-                    <h3>Eduardo<span>/Frontiendo</span></h3>
+                    <img src="https://avatars.githubusercontent.com/u/115102100?v=4" alt="Perfil">
+                    <h3>Eduardo<span>/frontiendo</span></h3>
                 </li>
                 <li>
-                    <img src="/symbols/DefaultProfile.png" alt="Perfil">
-                    <h3>Felipe<span>/Backiendo</span></h3>
+                    <img src="https://avatars.githubusercontent.com/u/105937609?v=4" alt="Perfil">
+                    <h3>Felipe<span>/backiendo</span></h3>
                 </li>
             </ul>
 
@@ -118,7 +118,6 @@ article > p{
 }
 
 
-
 /* Equipe */
 
 div #Equipe{
@@ -138,7 +137,7 @@ li{
     margin-bottom: 2%;
 }
 
-li > img{width: 7.5%; margin-right: 1%;}
+li > img{width: 7.5%; margin-right: 1%; border-radius: 100%;}
 
 li > h3{
     align-content: center;
@@ -149,10 +148,6 @@ h3 > span{
     color: #727272;
     font-weight: normal;
 }
-
-/* #eu-vou-cometer-genocidio-em-massa{
-    width: 10px;
-} */
 
 /* Responsividade */
 
