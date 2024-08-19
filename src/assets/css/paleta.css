@@ -1,0 +1,19 @@
+:root{
+    --BackgroundColor: #B6EFFC;
+    --MenuColor: #7DD7FD;
+    --SubBackgroundColor: #7CBEE2;
+    --ToolbarColor: #347BA2;
+    --ButtonColor: #2B6585;
+
+    --CardColor: #347BA2;
+    --TextFieldColor: #277DA1;
+  
+    --TagColor: #FF9090;
+    --TagSelectedColor: #9DE373;
+  
+    --TextHighlight: #2B6585;
+    --TextHighlight2: #347BA2;
+    --Text: #000000;
+    --Text2: #ffffff;
+    --SubText: #D1D1D1;
+  }

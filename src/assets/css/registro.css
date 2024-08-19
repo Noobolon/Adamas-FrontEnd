@@ -1,0 +1,100 @@
+h1{
+    font-size: 3rem;
+    text-align: center;
+    color: var(--TextHighlight);
+}
+
+p{
+    text-align: center;
+    font-weight: bold;
+}
+
+p > a{color:var(--ButtonColor)}
+
+div{
+    display: flex;
+    padding: 5%;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+
+img{
+    width: 450px;
+    height: 450px;
+}
+
+form{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+}
+
+input[type="button"]{
+    background-color: var(--ButtonColor);
+    border: none;
+    border-radius: 15px;
+
+
+    width: max-content;
+    padding: 5% 10%;
+    
+    font-size: 2rem;
+    color: var(--Text2);
+    text-align: center;
+}
+
+input[type="button"]:hover{
+    cursor: pointer;
+    background-color: #1f4a60;
+}
+
+input{
+    background-color: #00000000;
+    border: none;
+    border-bottom: 4px solid var(--ButtonColor);
+
+
+    caret-color: var(--TextFieldColor);
+    font-size: 2rem;
+    margin: 5% 0;
+}
+
+
+input:focus{
+    outline: none;
+}
+
+input::placeholder{
+    color: var(--TextFieldColor);
+    font-weight: bold;
+}
+
+a{
+    text-decoration: underline;
+}
+
+
+/*Responsividade das telas de registro*/
+@media screen and (max-width: 600px){
+
+    h1{
+        font-size: 2rem;
+    }
+
+    div{
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+
+    form > *{
+        font-size: 1.5rem;
+    }
+
+    img{
+        display: none;
+    }
+
+}

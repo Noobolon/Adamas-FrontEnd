@@ -1,5 +1,4 @@
 <script>
-
 export default {
     name: "RegUser"
 }
@@ -7,16 +6,14 @@ export default {
 
 <template>
     <main>
-        <h1>Cadastro de Instituição</h1>
+        <h1>Login de Usuário</h1>
         <div>
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
             <form action="">
-                <input type="text" placeholder="Nome" name="name" id="name">
                 <input type="email" placeholder="E-mail" name="email" id="email">
-                <input type="text" placeholder="CNPJ" name="cnpj" id="cnpj">
                 <input type="password" placeholder="Senha" name="senha" id="senha">
-                <input type="button" value="Cadastrar">
-                <p>Já possui uma conta?<br><RouterLink to="/login/instituicao">Entrar</RouterLink></p>
+                <input type="button" value="Entrar">
+                <p>Não possui uma conta?<br><RouterLink to="/cadastrar/usuario">Cadastrar-se</RouterLink></p>
             </form>
         </div>
     </main>

@@ -8,10 +8,10 @@
     <footer>
         <ul>
             <li>@2024 Adamas</li>
-            <li>Termos</li>
+            <!-- <li>Termos</li>
             <li>Privacidade</li>
             <li>Segurança</li>
-            <li>Cookies</li>
+            <li>Cookies</li> -->
         </ul>
     </footer>
 </template>

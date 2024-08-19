@@ -11,6 +11,10 @@ export default {
 
 <template>
     <main>
+
+        <h1>
+            Qual tipo de conta deseja criar?
+        </h1>
         
         <LinkButton 
         text="Usuário" 
@@ -18,7 +22,7 @@ export default {
         icon="/symbols/UserIcon.png"
         
         width="25%"
-        height="max-content"
+        height=""
         />
 
         <LinkButton 
@@ -36,9 +40,16 @@ export default {
 <style scoped>
 
 main{
-    display: flex;
-    justify-content: center;
     align-items: center;
+}
+
+a{
+    margin: 3% 0;
+}
+
+h1{
+    color: var(--TextHighlight);
+    text-align: center;
 }
 
 </style>

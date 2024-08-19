@@ -13,6 +13,25 @@ const router = createRouter({
       name: 'tipo de conta',
       component: () => import('../views/register/AccountType.vue')
     },
+
+    // Pesquisas 
+    {
+      path: '/projetos',
+      name: 'projetos',
+      component: () => import('../views/search/Projects.vue')
+    },
+    {
+      path: '/eventos',
+      name: 'eventos',
+      component: () => import('../views/search/Events.vue')
+    },
+    {
+      path: '/usuarios',
+      name: 'usuarios',
+      component: () => import('../views/search/Users.vue')
+    },
+
+    // Telas de cadastro
     {
       path: '/cadastrar/usuario',
       name: 'cadastrar-se como usuário comum',
@@ -22,9 +41,23 @@ const router = createRouter({
       path: '/cadastrar/instituicao',
       name: 'cadastrar-se como instituição',
       component: () => import('../views/register/RegInstitution.vue')
+    },
+    {
+      path: '/login/usuario',
+      name: 'login como usuário',
+      component: () => import('../views/register/LogUser.vue')
+    },
+    {
+      path: '/login/instituicao',
+      name: 'login como instituição',
+      component: () => import('../views/register/LogInstitution.vue')
     }
     
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 }
+  },
 })
 
 export default router

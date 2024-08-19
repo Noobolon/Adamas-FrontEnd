@@ -9,18 +9,15 @@
             width: String,
             height: String
         }
-        
     }
-
-    
 
 </script>
 
 <template>
     
    <RouterLink :to="link">
-        <img v-if="icon != null" :src="icon" alt="Ícone">
-        {{ text }}
+            <img v-if="icon != null" :src="icon" alt="Ícone">
+            {{ text }}
    </RouterLink> 
 
 </template>
@@ -28,22 +25,32 @@
 <style scoped>
 
 a{
-    align-content: center;
+    display: flex;
+    flex-direction: row;
+
+    justify-items: center;
     justify-content: center;
-    font-size: 2em;
+    align-items: center;
+    align-content: center;
+
     background-color: var(--ButtonColor);
-    padding: 1% 3%;
+    padding: 2% 0;
     border-radius: 15px;
 
     width: v-bind(width);
     height: v-bind(height);
-
-    color: var(--Text2);
     text-decoration: none;
+    font-size: 2rem;
+    color: var(--Text2);
+    text-align: center;
 }
 
 a:hover{ background-color: #1f4a60;}
 
 a:visited{color: var(--Text2);}
+
+img{
+    margin-right: 2%;
+}
 
 </style>
