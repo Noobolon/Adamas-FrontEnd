@@ -1,6 +1,5 @@
 <script>
 import api from '@/api';
-import axios from 'axios';
 
 export default {
     name: "RegUser",
@@ -17,21 +16,18 @@ export default {
     methods: {
         async regUser(){
 
-            axios.post('localhost:3000/create', {
+            api.post('/create', {
                 name: this.name,
                 nickname: this.nickname,
                 email: this.email,
                 password: this.password
             })
             .then(function (response) {
-                console.log(response);
+                console.log(response.data);
             })
             .catch(function (error) {                    
                 console.log(error);
             });
-
-            //debug
-            console.log(this.name, this.email, this.password)
         }
     }
 
@@ -42,8 +38,6 @@ export default {
     <main>
         <h1>Cadastro de Usuário</h1>
 
-        <!-- debug -->
-        <p>teste: <br>nome: {{ name }} email: {{ email }} senha: {{ password }}</p>
 
         <div>
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
