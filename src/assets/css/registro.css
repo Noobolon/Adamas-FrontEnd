@@ -11,7 +11,7 @@ p{
 
 p > a{color:var(--ButtonColor)}
 
-div{
+div .forms{
     display: flex;
     padding: 5%;
     flex-direction: row;
@@ -72,6 +72,17 @@ input::placeholder{
 }
 
 a{
+    text-decoration: underline;
+}
+
+#back{
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--TextHighlight);
+    text-decoration: none;
+}
+
+#back:hover{
     text-decoration: underline;
 }
 

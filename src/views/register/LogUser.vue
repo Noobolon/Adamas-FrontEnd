@@ -6,8 +6,10 @@ export default {
 
 <template>
     <main>
+
+        <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Login de Usuário</h1>
-        <div>
+        <div class="forms">
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
             <form action="">
                 <input type="email" placeholder="E-mail" name="email" id="email">

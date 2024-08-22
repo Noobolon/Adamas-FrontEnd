@@ -7,15 +7,19 @@ export default {
 
 <template>
     <main>
+
+        <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Cadastro de Instituição</h1>
-        <div>
+        <div class="forms">
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
             <form action="">
-                <input type="text" placeholder="Nome" name="name" id="name">
-                <input type="email" placeholder="E-mail" name="email" id="email">
-                <input type="text" placeholder="CNPJ" name="cnpj" id="cnpj">
-                <input type="password" placeholder="Senha" name="senha" id="senha">
-                <input type="button" value="Cadastrar">
+                <input v-model="name" placeholder="Nome" id="name" type="text" required>
+                <input v-model="email" placeholder="E-mail" id="email" type="email" required>
+                <input v-model="cnpj" placeholder="CNPJ" id="cnpj" type="" required>
+                <input v-model="password" placeholder="Senha" id="password" type="password" required>
+
+                <input type="button" @click="registerUser()" value="Cadastrar">
+
                 <p>Já possui uma conta?<br><RouterLink to="/login/instituicao">Entrar</RouterLink></p>
             </form>
         </div>

@@ -1,5 +1,5 @@
 <script>
-import api from '@/api';
+import { registerUser } from '@/assets/scripts/register.js'
 
 export default {
     name: "RegUser",
@@ -14,21 +14,7 @@ export default {
     },
 
     methods: {
-        async regUser(){
-
-            api.post('/create', {
-                name: this.name,
-                nickname: this.nickname,
-                email: this.email,
-                password: this.password
-            })
-            .then(function (response) {
-                console.log(response.data);
-            })
-            .catch(function (error) {                    
-                console.log(error);
-            });
-        }
+        registerUser
     }
 
 }
@@ -36,18 +22,19 @@ export default {
 
 <template>
     <main>
+
+        <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Cadastro de Usuário</h1>
 
-
-        <div>
+        <div class="forms">
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
             <form @submit.prevent="cadastrar">
-                <input v-model="name" placeholder="Nome" id="name">
-                <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname">
-                <input v-model="email" placeholder="E-mail" id="email">
-                <input v-model="password" placeholder="Senha" id="password">
+                <input v-model="name" placeholder="Nome" id="name" type="text" required>
+                <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" type="text">
+                <input v-model="email" placeholder="E-mail" id="email" type="email">
+                <input v-model="password" placeholder="Senha" id="password" type="password">
 
-                <input type="button" @click="regUser()" value="Cadastrar">
+                <input type="button" @click="registerUser()" value="Cadastrar">
                 <p>Já possui uma conta?<br><RouterLink to="/login/usuario">Entrar</RouterLink></p>
             </form>
         </div>
