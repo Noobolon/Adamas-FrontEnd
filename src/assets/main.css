@@ -16,7 +16,7 @@ body{
 }
 
 main{
-  margin: 7%;
+  margin: none;
   display: flex;
   flex-direction: column;
 }

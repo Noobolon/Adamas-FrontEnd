@@ -13,18 +13,24 @@ p > a{color:var(--ButtonColor)}
 
 div .forms{
     display: flex;
-    padding: 5%;
     flex-direction: row;
+    align-items: center;
     justify-content:space-evenly;
 }
 
-img{
-    width: 450px;
-    height: 450px;
+div .info{
+    transform: translateY(-55px);
+}
+
+div > *{
+    text-align: center;
+}
+
+div > img{
+    width: 200px;
 }
 
 form{
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,10 +82,13 @@ a{
 }
 
 #back{
+    margin-top: 5%;
+    margin-left: 10%;
     font-weight: bold;
     font-size: 1.5rem;
     color: var(--TextHighlight);
     text-decoration: none;
+    width: fit-content;
 }
 
 #back:hover{
@@ -94,10 +103,14 @@ a{
         font-size: 2rem;
     }
 
-    div{
+    div .forms{
         flex-direction: column;
         justify-content: center;
         padding: 0;
+    }
+
+    div .info{
+        transform: translateY(0);
     }
 
     form > *{

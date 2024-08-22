@@ -19,7 +19,6 @@ export default {
             <ul>
                 <li><RouterLink to="/projetos">Projetos</RouterLink></li>
                 <li><RouterLink to="/eventos">Eventos</RouterLink></li>
-                <li><RouterLink to="/" @click="scrollDown">Sobre</RouterLink></li>
             </ul>
         </div>
         
@@ -41,7 +40,7 @@ export default {
 <style scoped>
 
 nav{
-    padding: 25px;
+    padding: 15px;
     background-color: var(--ToolbarColor);
     color: var(--Text2);
 

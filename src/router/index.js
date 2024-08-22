@@ -55,7 +55,7 @@ const router = createRouter({
     
   ],
   scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
+    // voltar ao topo
     return { top: 0 }
   },
 })

@@ -27,7 +27,10 @@ export default {
         <h1>Cadastro de Usuário</h1>
 
         <div class="forms">
-            <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
+            <div class="info">
+                <img src="../../assets/images/diamond.png" alt="Diamante" >
+            </div>
+            
             <form @submit.prevent="cadastrar">
                 <input v-model="name" placeholder="Nome" id="name" type="text" required>
                 <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" type="text">
