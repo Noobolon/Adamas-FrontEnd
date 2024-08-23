@@ -31,7 +31,7 @@ export default {
                 <img src="../../assets/images/diamond.png" alt="Diamante" >
             </div>
             
-            <form @submit.prevent="cadastrar">
+            <form @submit.prevent="registerUser">
                 <input v-model="name" placeholder="Nome" id="name" type="text" required>
                 <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" type="text">
                 <input v-model="email" placeholder="E-mail" id="email" type="email">

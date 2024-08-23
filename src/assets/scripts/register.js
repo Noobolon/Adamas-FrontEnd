@@ -1,5 +1,8 @@
 import api from "@/api";
 
+
+// Funções de registrar usuários e instituições
+
 export async function registerUser(){
     api.post('/create', {
         name: this.name,
@@ -30,3 +33,31 @@ export async function registerInstitution(){
     });
 }
 
+
+// Funções de fazer login com usuários e instituições
+
+export async function loginUser(){
+    api.post('/login', {
+        email: this.email,
+        password: this.password
+    })
+    .then(function (response) {
+        console.log(response.data);
+    })
+    .catch(function (error) {                    
+        console.log(error);
+    });
+}
+
+export async function loginInstitution(){
+    api.post('/login', {
+        email: this.email,
+        password: this.password
+    })
+    .then(function (response) {
+        console.log(response.data);
+    })
+    .catch(function (error) {                    
+        console.log(error);
+    });
+}

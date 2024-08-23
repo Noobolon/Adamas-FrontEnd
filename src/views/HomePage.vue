@@ -68,6 +68,10 @@ export default {
 
 <style scoped>
 
+main{
+    padding: 7%;
+}
+
 /* Header */
 
 div #Intro{

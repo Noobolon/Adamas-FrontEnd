@@ -1,8 +1,23 @@
 <script>
+import { registerInstitution } from '@/assets/scripts/register';
 
 export default {
-    name: "RegUser"
+    name: "RegUser",
+
+    data() {
+        return{
+            name: this.name,
+            cnpj: this.cnpj,
+            email: this.email,
+            password: this.password,
+        }   
+    },
+
+    methods: {
+        registerInstitution
+    }
 }
+
 </script>
 
 <template>
@@ -12,13 +27,14 @@ export default {
         <h1>Cadastro de Instituição</h1>
         <div class="forms">
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
-            <form action="">
+
+            <form @submit.prevent="registerInstitution">
                 <input v-model="name" placeholder="Nome" id="name" type="text" required>
                 <input v-model="email" placeholder="E-mail" id="email" type="email" required>
-                <input v-model="cnpj" placeholder="CNPJ" id="cnpj" type="" required>
+                <input v-model="cnpj" placeholder="CNPJ" id="cnpj" type="text" required>
                 <input v-model="password" placeholder="Senha" id="password" type="password" required>
 
-                <input type="button" @click="registerUser()" value="Cadastrar">
+                <input type="button" @click="registerInstitution()" value="Cadastrar">
 
                 <p>Já possui uma conta?<br><RouterLink to="/login/instituicao">Entrar</RouterLink></p>
             </form>

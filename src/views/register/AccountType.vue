@@ -48,6 +48,7 @@ a{
 }
 
 h1{
+    margin-top: 5%;
     color: var(--TextHighlight);
     text-align: center;
 }
