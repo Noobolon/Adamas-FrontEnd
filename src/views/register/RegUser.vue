@@ -10,7 +10,7 @@ export default {
             nickname: this.nickname,
             email: this.email,
             password: this.password,
-        }   
+        }
     },
 
     methods: {
@@ -34,8 +34,8 @@ export default {
             <form @submit.prevent="registerUser">
                 <input v-model="name" placeholder="Nome" id="name" type="text" required>
                 <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" type="text">
-                <input v-model="email" placeholder="E-mail" id="email" type="email">
-                <input v-model="password" placeholder="Senha" id="password" type="password">
+                <input v-model="email" placeholder="E-mail" id="email" type="email" required>
+                <input v-model="password" placeholder="Senha" id="password" type="password" required>
 
                 <input type="button" @click="registerUser()" value="Cadastrar">
                 <p>Já possui uma conta?<br><RouterLink to="/login/usuario">Entrar</RouterLink></p>

@@ -50,7 +50,7 @@ export async function loginUser(){
 }
 
 export async function loginInstitution(){
-    api.post('/login', {
+    api.post('/login/institution', {
         email: this.email,
         password: this.password
     })

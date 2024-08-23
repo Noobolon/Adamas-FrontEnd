@@ -1,6 +1,20 @@
 <script>
+import { loginUser } from '@/assets/scripts/register';
+
 export default {
     name: "RegUser",
+
+    data(){
+        return{
+            email: this.email,
+            password: this.password
+        }
+    },
+
+    methods: {
+        loginUser
+    }
+
 }
 </script>
 
@@ -10,11 +24,13 @@ export default {
         <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Login de Usuário</h1>
         <div class="forms">
-            <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
-            <form action="">
-                <input type="email" placeholder="E-mail" id="email">
-                <input type="password" placeholder="Senha" id="senha">
-                <input type="button" value="Entrar">
+            <img src="../../assets/images/PencilDiamond.png" alt="Diamante">
+
+            <form @submit.prevent="loginUser">
+                <input v-model="email" placeholder="E-mail" id="email" type="email" required>
+                <input v-model="password" placeholder="Senha" id="senha" type="password" required>
+                <input type="button" @click="loginUser" value="Entrar">
+
                 <p>Não possui uma conta?<br><RouterLink to="/cadastrar/usuario">Cadastrar-se</RouterLink></p>
             </form>
         </div>
