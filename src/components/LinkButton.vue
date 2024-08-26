@@ -45,7 +45,7 @@ a{
     text-align: center;
 }
 
-a:hover{ background-color: #1f4a60;}
+a:hover{ background-color: var(--ButtonHoverColor);}
 
 a:visited{color: var(--Text2);}
 
