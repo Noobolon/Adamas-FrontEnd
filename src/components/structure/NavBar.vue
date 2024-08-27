@@ -4,6 +4,12 @@ import { RouterLink } from 'vue-router';
 export default {
     name: "NavBar",
 
+    data(){
+        return{
+            logged: false
+        }
+    },
+
     methods:{
         scrollDown(){
             window.scrollTo(100,100);
@@ -27,7 +33,10 @@ export default {
             <RouterLink to="">
                 <img src="/symbols/Notifications.png" alt="Notificações">
             </RouterLink>
-            <RouterLink to="">
+            <RouterLink v-if="logged == false" to="/tipo-de-conta">
+                <img src="/symbols/DefaultProfile.png" alt="Perfil">
+            </RouterLink>
+            <RouterLink v-else to="">
                 <img src="/symbols/DefaultProfile.png" alt="Perfil">
             </RouterLink>
         </div>

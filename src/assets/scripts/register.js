@@ -11,7 +11,7 @@ export async function registerUser(){
         password: this.password
     })
     .then(function (response) {
-        console.log(response.data);
+        localStorage.setItem("token", response.data.token)
     })
     .catch(function (error) {                    
         console.log(error);
@@ -26,7 +26,7 @@ export async function registerInstitution(){
         password: this.password
     })
     .then(function (response) {
-        console.log(response.data);
+        localStorage.setItem("token", response.data.token)
     })
     .catch(function (error) {                    
         console.log(error);
@@ -42,7 +42,7 @@ export async function loginUser(){
         password: this.password
     })
     .then(function (response) {
-        console.log(response.data);
+        localStorage.setItem("token", response.data.token)
     })
     .catch(function (error) {                    
         console.log(error);
@@ -55,7 +55,7 @@ export async function loginInstitution(){
         password: this.password
     })
     .then(function (response) {
-        console.log(response.data);
+        localStorage.setItem("token", response.data.token)
     })
     .catch(function (error) {                    
         console.log(error);
