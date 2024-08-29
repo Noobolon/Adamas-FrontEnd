@@ -15,21 +15,24 @@ methods: {
 
 }
 
-
-
-
 </script>
 
 <template>
 
     <main>
 
-        <form>
-            <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
-            <button type="button">
-                <img src="../../assets/images/diamond.png" alt="Send" id="send-button">
-            </button>
-        </form>
+        <div class="srch_container">
+            <form>
+                <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
+                <button type="button">Enviar</button>
+            </form>
+        </div>
+
+        <div class="contnt_container">
+            <button>Projetos</button>
+            <button>Eventos</button>
+            <button>Pessoas</button>
+        </div>
 
     </main>
     
