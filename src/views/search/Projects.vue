@@ -1,18 +1,16 @@
 <script>
+import { RouterLink } from 'vue-router';
+
 
 export default{
-name: "Projects",
-
-data(){
-    return{
-        search_content: this.search_content
-    }
-},
-
-methods: {
-
-}
-
+    name: "Projects",
+    data() {
+        return {
+            search_content: this.search_content
+        };
+    },
+    methods: {},
+    components: { RouterLink }
 }
 
 </script>
@@ -29,9 +27,9 @@ methods: {
         </div>
 
         <div class="contnt_container">
-            <button>Projetos</button>
-            <button>Eventos</button>
-            <button>Pessoas</button>
+            <RouterLink to="" id="selected">Projetos</RouterLink>
+            <RouterLink to="">Eventos</RouterLink>
+            <RouterLink to="">Pessoas</RouterLink>
         </div>
 
     </main>

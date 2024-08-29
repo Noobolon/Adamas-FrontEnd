@@ -9,6 +9,10 @@ main{
 
 /* Container de pesquisas */
 
+.srch_container{
+    margin-bottom: 2%;
+}
+
 .srch_container input[type=text] {
     background-color: var(--MenuColor);
     padding: 6px;
@@ -35,11 +39,33 @@ main{
     background: var(--ButtonHoverColor);
   }
   
-/* Container de tipo de pesquisa */
 
+/* Container de tipo de pesquisa */
 .contnt_container{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: left;
+
+    font-size: 1.25em;
+    width: 40%;
 }
 
+.contnt_container a{
+    padding: 5px 10px;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: var(--ButtonColor);
+    background-color: var(--ButtonColor);
+    margin-right: 10%;
+
+    color: var(--Text2);
+}
+
+.contnt_container a:hover {
+    background-color: var(--ButtonHoverColor);
+}
+
+#selected{
+    background-color: var(--Text2);
+    color: var(--ButtonColor);
+}
