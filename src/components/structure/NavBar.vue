@@ -2,7 +2,7 @@
 import { RouterLink } from 'vue-router';
 
 export default {
-    name: "NavBar",
+    name: "headerBar",
 
     data(){
         return{
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-    <nav>
+    <header>
         <div>
             <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
@@ -41,14 +41,14 @@ export default {
             </RouterLink>
         </div>
 
-    </nav>
+    </header>
 </template>
 
 
 
 <style scoped>
 
-nav{
+header{
     padding: 15px;
     background-color: var(--ToolbarColor);
     color: var(--Text2);
@@ -104,7 +104,7 @@ li:last-child{border-right: none;}
 /* Responsividade */
 
 @media screen and (max-width: 600px){
-    div, ul, nav{
+    div, ul, header{
         align-content: center;
         display: flex;
         flex-direction: column;

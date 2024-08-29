@@ -26,11 +26,16 @@ export default{
             </form>
         </div>
 
-        <div class="contnt_container">
+        <nav class="contnt_container">
             <RouterLink to="" id="selected">Projetos</RouterLink>
             <RouterLink to="">Eventos</RouterLink>
             <RouterLink to="">Pessoas</RouterLink>
-        </div>
+        </nav>
+
+        <!-- container de tags (depois continuo) -->
+        <!-- <aside class="tag_container">
+
+        </aside> -->
 
     </main>
     
