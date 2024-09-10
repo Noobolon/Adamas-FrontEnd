@@ -1,6 +1,3 @@
-:root{
-    --borderradius: 15px;
-}
 
 main{
     padding: 7%;
@@ -18,25 +15,27 @@ main{
     margin-top: 8px;
     font-size: 1.5em;
     width: 40%;
-    border: none;
-    border-radius: var(--borderradius) 0 0 var(--borderradius);
+    border: solid 2px var(--ButtonColor);
+    border-radius: 10px 0px 0px 10px;
 }
 
 .srch_container button {
     padding: 6px;
+    width: 7.5%;
     margin-top: 8px;
     margin-right: 16px;
     color: var(--Text2);
     background: var(--ButtonColor);
     font-size: 1.5em;
-    border: none;
-    border-radius: 0 var(--borderradius) var(--borderradius) 0;
+    border: solid 2px var(--ButtonColor);
+    border-radius: 0 10px 10px 0;
     cursor: pointer;
   }
   
 .srch_container button:hover {
     background: var(--ButtonHoverColor);
   }
+
   
 
 /* Container de tipo de pesquisa */
@@ -50,7 +49,7 @@ main{
 }
 
 .contnt_container a{
-    padding: 5px 10px;
+    padding: 5px 15px;
     border-style: solid;
     border-radius: 15px;
     border-color: var(--ButtonColor);
@@ -71,6 +70,12 @@ main{
 
 
 /* Container de tags */
-/* .tag_container{
+.tag_container{
+    background-color: var(--MenuColor);
+    padding: 3%;
+    border-radius: 10%;
+    width: 30%;
+    float: right;
 
-} */
+    margin: 0 5% 0 5%;
+}

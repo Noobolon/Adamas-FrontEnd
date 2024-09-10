@@ -27,17 +27,21 @@ export default{
         </div>
 
         <nav class="contnt_container">
-            <RouterLink to="" id="selected">Projetos</RouterLink>
-            <RouterLink to="">Eventos</RouterLink>
-            <RouterLink to="">Pessoas</RouterLink>
+            <RouterLink to="/projetos" id="selected">Projetos</RouterLink>
+            <RouterLink to="/eventos">Eventos</RouterLink>
+            <RouterLink to="/pessoas">Pessoas</RouterLink>
         </nav>
 
         <!-- container de tags (depois continuo) -->
-        <!-- <aside class="tag_container">
-
-        </aside> -->
+        
 
     </main>
+
+    <aside class="tag_container">
+        <p>aaa</p>
+        <p>aaa</p>
+        <p>aaa</p>
+    </aside>        
     
 </template>
 
