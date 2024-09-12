@@ -1,32 +1,34 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 main{
+    display: grid;
     padding: 7%;
 }
 
-
 /* Container de pesquisas */
 .srch_container{
+    display: flex;
+    height: 50px;
     margin-bottom: 2%;
 }
 
 .srch_container input[type=text] {
-    background-color: var(--MenuColor);
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 1.5em;
     width: 40%;
+
+    background-color: var(--MenuColor);
+    font-size: 1.5em;
+
     border: solid 2px var(--ButtonColor);
     border-radius: 10px 0px 0px 10px;
 }
 
 .srch_container button {
-    padding: 6px;
-    width: 7.5%;
-    margin-top: 8px;
-    margin-right: 16px;
+    width: 5%;
+   
     color: var(--Text2);
     background: var(--ButtonColor);
     font-size: 1.5em;
+
     border: solid 2px var(--ButtonColor);
     border-radius: 0 10px 10px 0;
     cursor: pointer;
@@ -35,8 +37,6 @@ main{
 .srch_container button:hover {
     background: var(--ButtonHoverColor);
   }
-
-  
 
 /* Container de tipo de pesquisa */
 .contnt_container{
@@ -73,9 +73,16 @@ main{
 .tag_container{
     background-color: var(--MenuColor);
     padding: 3%;
-    border-radius: 10%;
+    border-radius: 10px;
     width: 30%;
-    float: right;
+    margin: 7% 5% 0 5%;
+}
 
-    margin: 0 5% 0 5%;
+.tag_container > p{
+    background-color: var(--TagColor);
+    padding: 5px;
+    margin: 5px;
+    width: 20%;
+
+    border-radius: 100px;
 }

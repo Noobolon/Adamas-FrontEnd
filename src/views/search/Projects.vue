@@ -20,10 +20,8 @@ export default{
     <main>
 
         <div class="srch_container">
-            <form>
-                <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
-                <button type="button">Enviar</button>
-            </form>
+            <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
+            <button type="submit"><i class="fa fa-search"></i></button>
         </div>
 
         <nav class="contnt_container">
@@ -32,16 +30,12 @@ export default{
             <RouterLink to="/pessoas">Pessoas</RouterLink>
         </nav>
 
-        <!-- container de tags (depois continuo) -->
-        
-
+        <aside class="tag_container">
+            <p>aaa</p>
+            <p>aaa</p>
+            <p>aaa</p>
+        </aside>     
     </main>
-
-    <aside class="tag_container">
-        <p>aaa</p>
-        <p>aaa</p>
-        <p>aaa</p>
-    </aside>        
     
 </template>
 
