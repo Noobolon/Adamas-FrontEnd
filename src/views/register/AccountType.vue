@@ -22,7 +22,7 @@ export default {
         icon="/symbols/UserIcon.png"
         
         width="25%"
-        height=""
+        height="max-content"
         />
 
         <LinkButton 

@@ -1,24 +1,25 @@
 <script>
 import { RouterLink } from 'vue-router';
-import ProjectComponent from '../../components/ProjectComponent.vue'
-import api from '@/api';
+import { getProjects } from '@/assets/scripts/projects';
+import ProjectComponent from '../../components/ProjectComponent.vue';
 
 export default{
     name: "Projects",
     data() {
         return {
             search_content: this.search_content,
-            projects_list: null 
+            // projects_list: this.projects_list
+            projeto_exemplo: [{"name": "adamas", "owner": "aluno", "desc": "descrição boa"}]
         };
     },
     methods: {
         
     },
-    components: { RouterLink, ProjectComponent },
+    components: { RouterLink, ProjectComponent},
     
-    mounted(){
-        this.aposkdposakd()
-    }
+    // mounted(){
+    //     this.projects_list = getProjects()
+    // }
 
 }
 
@@ -44,11 +45,13 @@ export default{
             <RouterLink to="/usuarios">Usuários</RouterLink>
         </nav>
         
-        <ul>
+        <!-- <ul>
             <li v-for="projeto in projects_list">
-                <ProjectComponent :projects="projeto"/>
+                <ProjectComponent :project="projeto"/>
             </li>
-        </ul>
+        </ul> -->
+        
+        <ProjectComponent :project="projeto_exemplo" />
           
     </main>
     

@@ -2,7 +2,9 @@
 export default{
     name: 'ProjectComponent',
     props: {
-        project: Object
+        project: {
+            type: Object
+        }
     }
 }
 
@@ -20,4 +22,8 @@ export default{
 </template>
 
 <style>
+
+
+
+
 </style>
