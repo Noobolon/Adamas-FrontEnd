@@ -51,6 +51,14 @@ const router = createRouter({
       path: '/login/instituicao',
       name: 'login como instituição',
       component: () => import('../views/register/LogInstitution.vue')
+    },
+
+
+    // página de debug (será removido na versão final)
+    {
+      path: '/debug',
+      name: 'o debugas',
+      component: () => import('../views/debug.vue')
     }
     
   ],
