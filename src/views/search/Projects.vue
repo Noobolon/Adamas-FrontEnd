@@ -1,14 +1,17 @@
 <script>
 import { RouterLink } from 'vue-router';
-import { getProjects } from '@/assets/scripts/projects';
 import ProjectComponent from '../../components/ProjectComponent.vue';
+import { useProjectStore } from '@/stores/project';
+import { computed } from 'vue';
+
+const project_store = useProjectStore
 
 export default{
     name: "Projects",
     data() {
         return {
             search_content: this.search_content,
-            // projects_list: this.projects_list
+            projects_list:  computed(() => { return project_store.projects; }),
             projeto_exemplo: {"name": "adamas", "owner": "aluno", "desc": "descrição boa"}
         };
     },
@@ -17,9 +20,9 @@ export default{
     },
     components: { RouterLink, ProjectComponent},
     
-    // mounted(){
-    //     this.projects_list = getProjects()
-    // }
+    mounted(){
+        
+    }
 
 }
 
@@ -39,13 +42,9 @@ export default{
             </nav>
 
             <div class="cntnt_container">
-                <!-- <ul>
-                    <li v-for="projeto in projects_list">
-                        <ProjectComponent :project="projeto"/>
-                    </li>
-                </ul> -->
-        
-                <ProjectComponent :project="projeto_exemplo" />
+                <ul v-for="project in this.projects_list">
+                    <ProjectComponent :project="project" />
+                </ul>
             </div>
 
         </div>

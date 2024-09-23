@@ -1,6 +1,5 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import { useUserStore } from './stores/user'
 import NavBar from '../src/components/structure/NavBar.vue'
 import Footer1 from '../src/components/structure/Footer1.vue'
 
