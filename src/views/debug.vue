@@ -1,27 +1,34 @@
 <script>
-import { useUserStore } from '@/stores/user';
+import { useProjectStore } from '@/stores/project';
+
+const projectStore = useProjectStore()
 
 export default{
     name: 'debug',
-
-    setup(){
-        const user = useUserStore()
-        const username = computed(() => useUserStore.name)
-
-        return {
-            username
+    
+    data(){
+        return{
+            projeto_exemplo: {"name": "adamas", "owner": "aluno", "desc": "descrição boa"},
+            projects_list: this.projects_list
         }
-        
     },
+
+    mounted(){
+        
+    }
 }
 
-
- 
 </script>
 
 <template>
-
-<h1>{{ username }}</h1>
-
+    <div v-for="project in projects_list">
+        {{ project.title }}
+    </div>
 
 </template>
+
+<style scoped>
+@import url(..//assets/css/pesquisas.css);
+
+
+</style>

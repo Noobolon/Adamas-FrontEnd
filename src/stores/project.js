@@ -17,11 +17,12 @@ export const useProjectStore = defineStore('counter', {
             try{
                 const dados = await api.get("/project/search")
                 this.projects = dados.data
+                console.log(this.projects)
             }
             catch (error){
                 console.log(error)
             }
-        }
 
+        }
     },
 })
