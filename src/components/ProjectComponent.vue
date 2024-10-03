@@ -1,11 +1,19 @@
 <script>
+import { toRaw } from 'vue';
+
 export default{
     name: 'ProjectComponent',
     props: {
         project: {
             type: Object
         }
-    }
+    },
+
+    data() {
+        return{
+            projectRaw: this.projectRaw
+        }
+    },
 }
 
 

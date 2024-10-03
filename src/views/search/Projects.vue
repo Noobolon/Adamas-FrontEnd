@@ -6,21 +6,31 @@ import { useProjectStore } from '@/stores/project';
 
 export default{
     name: "Projects",
+    components: { RouterLink, ProjectComponent},
+
+
     data() {
         return {
             search_content: this.search_content,
-            // projects_list:  computed(() => { return project_store.projects; }),
+            projects_list: this.projects_list
         };
     },
-    methods: {
-        
-    },
-    components: { RouterLink, ProjectComponent},
     
-    mounted(){
-        
-    }
+    setup() {
+        const projectStore = useProjectStore()
+        return { projectStore }
+    },
 
+    created(){
+        this.projectStore.fetchProjects()
+    },
+
+    mounted(){
+        setTimeout(() => {
+            this.projects_list = this.projectStore.projects
+            console.log("Local list: ", this.projects_list)
+        }, 1000)
+    }
 }
 
 </script>
@@ -38,12 +48,15 @@ export default{
                 <RouterLink to="/usuarios">Usuários</RouterLink>
             </nav>
 
-            <!-- <div class="cntnt_container">
-                <ul v-for="project in this.projects_list">
+            <div class="cntnt_container">
+                <div v-for="project in this.projects_list">
                     <ProjectComponent :project="project" />
-                </ul>
-            </div> -->
+                </div>
+            </div>
 
+            <!-- <div v-for="project in projects_list">
+               {{ project.title }}
+            </div> -->
         </div>
 
         <div class="tag_container">
