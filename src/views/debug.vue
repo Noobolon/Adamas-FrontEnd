@@ -1,8 +1,6 @@
 <script>
 import { useProjectStore } from '@/stores/project';
 
-const projectStore = useProjectStore()
-
 export default{
     name: 'debug',
     
@@ -13,7 +11,20 @@ export default{
         }
     },
 
+    setup() {
+        const projectStore = useProjectStore()
+        return { projectStore }
+    },
+
+    created(){
+        this.projectStore.fetchProjects()
+    },
+
     mounted(){
+        setTimeout(() => {
+            this.projects_list = this.projectStore.projects
+            console.log("Local list: ", this.projects_list)
+        }, 2000)
         
     }
 }
