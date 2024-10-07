@@ -76,6 +76,7 @@ main{
     padding: 3%;
     border-radius: 10px;
     width: 30%;
+    height: fit-content;
     float: right;
     margin: 0 5% 0 5%;
 }

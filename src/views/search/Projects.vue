@@ -26,9 +26,9 @@ export default{
     },
 
     mounted(){
+        // Por algum motivo precisa esperar um pouco antes de atualizar as informações
         setTimeout(() => {
-            this.projects_list = this.projectStore.projects
-            console.log("Local list: ", this.projects_list)
+            this.projects_list = this.projectStore.getProjects
         }, 1000)
     }
 }
@@ -50,13 +50,9 @@ export default{
 
             <div class="cntnt_container">
                 <div v-for="project in this.projects_list">
-                    <ProjectComponent :project="project" />
+                    <ProjectComponent :project="project" :key="project.project_id" />
                 </div>
             </div>
-
-            <!-- <div v-for="project in projects_list">
-               {{ project.title }}
-            </div> -->
         </div>
 
         <div class="tag_container">
