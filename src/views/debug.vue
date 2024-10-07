@@ -23,8 +23,7 @@ export default{
     mounted(){
         setTimeout(() => {
             this.projects_list = this.projectStore.projects
-            console.log("Local list: ", this.projects_list)
-        }, 2000)
+        }, 1000)
         
     }
 }
@@ -33,7 +32,8 @@ export default{
 
 <template>
     <div v-for="project in projects_list">
-        {{ project.title }}
+        <br>
+        {{ project }}
     </div>
 
 </template>
