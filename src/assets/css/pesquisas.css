@@ -81,16 +81,6 @@ main{
     margin: 0 5% 0 5%;
 }
 
-.tag_container > p{
-    background-color: var(--TagColor);
-    padding: 5px;
-    margin: 5px;
-    width: 20%;
-
-    border-radius: 100px;
-}
-
-
  /* IDs */
 
  #selected{

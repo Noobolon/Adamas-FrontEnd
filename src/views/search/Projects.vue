@@ -56,10 +56,9 @@ export default{
         </div>
 
         <div class="tag_container">
-            
-            <p>aaa</p>
-            <p>aaa</p>
-            <p>aaa</p>
+            <p class="cat">AAAAAAAAA</p>
+            <p class="cat">aaaaaaa</p>
+            <p class="cat">aAAAAAAAA Aa a</p>
         </div>   
 
     </main>
@@ -68,6 +67,7 @@ export default{
 
 <style scoped>
 @import url(../../assets/css/pesquisas.css);
+@import url(../../assets/css/categorias.css);
 
 
 </style>

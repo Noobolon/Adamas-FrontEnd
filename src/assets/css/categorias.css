@@ -1,0 +1,17 @@
+.cat_style{padding: 0;}
+
+.cat{
+    display: inline-block;
+    font-size: 1.05rem;
+    font-weight:600;
+    color: var(--Text2);
+    text-align: center;
+
+    background-color: var(--TagColor);
+    padding: 5px 14px;
+    margin: 2% 4px 0 0;
+    min-width: 7.5%;
+    width: fit-content;
+
+    border-radius: 100px;
+}
