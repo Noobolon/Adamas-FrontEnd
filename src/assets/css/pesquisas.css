@@ -73,12 +73,18 @@ main{
 /* Container de tags */
 .tag_container{
     background-color: var(--MenuColor);
-    padding: 3%;
+    padding: 2%;
+    border: solid 2px var(--ButtonColor);
     border-radius: 10px;
     width: 30%;
     height: fit-content;
     float: right;
-    margin: 0 5% 0 5%;
+    margin: 0 5% 0 0;
+}
+
+.tag_container > h2{
+    transform: rotate(360deg); /* muito necessário para o funcionamento do código */
+    margin-bottom: 5%;
 }
 
  /* IDs */

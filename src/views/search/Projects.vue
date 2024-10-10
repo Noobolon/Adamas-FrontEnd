@@ -56,6 +56,7 @@ export default{
         </div>
 
         <div class="tag_container">
+            <h2>Categorias</h2>
             <p class="cat">AAAAAAAAA</p>
             <p class="cat">aaaaaaa</p>
             <p class="cat">aAAAAAAAA Aa a</p>
