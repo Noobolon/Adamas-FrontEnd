@@ -13,6 +13,7 @@ const router = createRouter({
       name: 'tipo de conta',
       component: () => import('../views/register/AccountType.vue')
     },
+    
 
     // Pesquisas 
     {
@@ -30,6 +31,7 @@ const router = createRouter({
       name: 'usuarios',
       component: () => import('../views/search/Users.vue')
     },
+
 
     // Telas de cadastro
     {

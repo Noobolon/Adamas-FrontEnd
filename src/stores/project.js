@@ -19,7 +19,6 @@ export const useProjectStore = defineStore('projects', {
         async fetchProjects(){
             try{
                 const dados = await api.get("/project/search")
-                console.log("Dados: ", dados.data)
                 this.projects = dados.data
             }
             catch (error){
