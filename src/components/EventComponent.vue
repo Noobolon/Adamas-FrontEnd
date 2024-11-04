@@ -23,10 +23,10 @@ export default{
             <h1><RouterLink to="/">{{ event.name }}</RouterLink></h1>
             <p>{{ event.description }}</p>
 
-            <div>
-                <ul class="owners_style">
-                    <p v-for="owner in event.owners" :key="owner.id">{{ owner.name }}</p>
-                </ul>
+            <div class="cntnt_style">
+                <p>{{ event.institution_name }}</p>
+                <p><span>Local: </span>{{ event.address }}</p>
+                <p><span>Data: </span>{{ event.start_date }} até {{ event.end_date }}</p>
             </div>
         
         </div>
@@ -52,13 +52,16 @@ a{color: var(--Text2);}
 
 
 /* Nomes dos integrantes */
-.owners_style {
+.cntnt_style {
+    list-style: none;
     padding: 0%;
     margin: 2% 0 0 0;
-}
-.owners_style p{
     color: var(--SubText);
 }
 
+.cntnt_style span{
+    color: var(--Text2);
+    font-weight: bold;
+}
 
 </style>
