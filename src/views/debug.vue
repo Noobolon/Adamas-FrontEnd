@@ -1,5 +1,6 @@
 <script>
 import { useProjectStore } from '@/stores/project';
+import { useEventStore } from '@/stores/event';
 
 export default{
     name: 'debug',
@@ -7,33 +8,36 @@ export default{
     data(){
         return{
             projeto_exemplo: {"name": "adamas", "owner": "aluno", "desc": "descrição boa"},
-            projects_list: this.projects_list
+            projects_list: this.projects_list,
+            events_list: this.events_list
         }
     },
 
     setup() {
         const projectStore = useProjectStore()
-        return { projectStore }
+        const eventStore = useEventStore()
+        return { projectStore, eventStore }
     },
 
     created(){
         this.projectStore.fetchProjects()
+        this.eventStore.fetchEvents()
     },
 
-    mounted(){
-        setTimeout(() => {
-            this.projects_list = this.projectStore.projects
-        }, 1000)
-        
-    }
 }
 
 </script>
 
 <template>
-    <div v-for="project in projects_list">
+    <div v-for="project in this.projectStore.getProjects">
         <br>
         {{ project }}
+    </div>
+
+
+    <div v-for="event in this.eventStore.getEvents">
+        <br>
+        {{ event }}
     </div>
 
 </template>

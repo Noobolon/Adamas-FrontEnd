@@ -1,4 +1,3 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 main{
     padding: 7%;
@@ -8,7 +7,7 @@ main{
 }
 
 .content{
-    width: 100%;
+    width: 60%;
 }
 
 /* Container de pesquisas */
@@ -20,30 +19,15 @@ main{
 }
 
 .srch_container input[type=text] {
-    width: 375%;
+    width: 100%;
 
     background-color: var(--MenuColor);
     font-size: 1.5em;
 
     border: solid 2px var(--ButtonColor);
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px;
 }
 
-.srch_container button {
-    width: 50%;
-   
-    color: var(--Text2);
-    background: var(--ButtonColor);
-    font-size: 1.5em;
-
-    border: solid 2px var(--ButtonColor);
-    border-radius: 0 10px 10px 0;
-    cursor: pointer;
-  }
-  
-.srch_container button:hover {
-    background: var(--ButtonHoverColor);
-  }
 
 /* Container de tipo de pesquisa */
 .ctgry_container{

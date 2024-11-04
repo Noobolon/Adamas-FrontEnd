@@ -19,8 +19,7 @@ export const useEventStore = defineStore('events', {
         async fetchEvents(){
             try{
                 const dados = await api.get("/event/search")
-                console.log(dados)
-                this.events = dados
+                this.events = dados.data
             }
             catch (error){
                 console.log(error)

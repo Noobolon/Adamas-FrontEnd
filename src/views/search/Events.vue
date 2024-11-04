@@ -10,7 +10,7 @@ export default{
     data() {
         return {
             search_content: this.search_content,
-            event_list: this.event_list
+            events_list: this.events_list
         };
     },
     
@@ -23,12 +23,6 @@ export default{
         this.eventStore.fetchEvents()
     },
 
-    mounted(){
-        // Por algum motivo precisa esperar um pouco antes de atualizar as informações
-        setTimeout(() => {
-            this.events_list = this.eventStore.getEvents
-        }, 1000)
-    }
 }
 
 </script>
@@ -38,7 +32,6 @@ export default{
         <div class="content">
             <div class="srch_container">
                 <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
-                <button type="submit"><i class="fa fa-search"></i></button>
             </div>
             <nav class="ctgry_container">
                 <RouterLink to="/projetos">Projetos</RouterLink>
@@ -47,15 +40,14 @@ export default{
             </nav>
 
             <div class="cntnt_container">
-                <div v-for="event in this.event_list">
-                    <EventComponent :project="event" :key="event.event_id" />
+                <div v-for="event in this.eventStore.getEvents">
+                    <EventComponent :event="event" :key="event.id" />
                 </div>
             </div>
             
         </div>
 
-        <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-
+        
     </main>
     
 </template>

@@ -28,7 +28,6 @@ export default{
                     <p v-for="owner in project.owners" :key="owner.id">{{ owner.name }}</p>
                 </ul>
             </div>
-            
 
             <ul class="cat_style">
                 <p class="cat" v-for="category in project.categories">{{ category.name }}</p>

@@ -24,13 +24,6 @@ export default{
     created(){
         this.projectStore.fetchProjects()
     },
-
-    mounted(){
-        // Por algum motivo precisa esperar um pouco antes de atualizar as informações
-        setTimeout(() => {
-            this.projects_list = this.projectStore.getProjects
-        }, 1000)
-    }
 }
 
 </script>
@@ -40,7 +33,6 @@ export default{
         <div class="content">
             <div class="srch_container">
                 <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
-                <button type="submit"><i class="fa fa-search"></i></button>
             </div>
             <nav class="ctgry_container">
                 <RouterLink to="/projetos" id="selected">Projetos</RouterLink>
@@ -49,7 +41,7 @@ export default{
             </nav>
 
             <div class="cntnt_container">
-                <div v-for="project in this.projects_list">
+                <div v-for="project in this.projectStore.getProjects">
                     <ProjectComponent :project="project" :key="project.project_id" />
                 </div>
             </div>
