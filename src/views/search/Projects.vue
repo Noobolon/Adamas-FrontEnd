@@ -63,4 +63,6 @@ export default{
 @import url(../../assets/css/categorias.css);
 
 
+
+
 </style>

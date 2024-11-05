@@ -33,7 +33,7 @@ export default{
 <template>
     <div class="event_style">
         
-        <div>
+        <div class="event_container">
             <h1><RouterLink to="/">{{ event.name }}</RouterLink></h1>
             <p>{{ event.description }}</p>
 
@@ -57,12 +57,13 @@ a{color: var(--Text2);}
     border: solid 2px var(--ButtonColor);
     border-radius: 10px;
     margin-top: 2%;
-    padding: 2%;
-    width: 75%;
+    width: 100%;
 
     background-color: var(--CardColor);
     color: var(--Text2);
 }
+
+.event_container{margin: 2%;}
 
 
 /* Nomes dos integrantes */

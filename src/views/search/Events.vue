@@ -48,7 +48,7 @@ export default{
         </div>
 
         <div class="img_container">
-            <img class="image" src="https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQsu7yYuRPXNK9eHHSFD2tUYO4stQDb1Ez8vjqGERfs9xqYLLnY_y6lQkPFZa-44cqn" alt="">
+            
         </div>
 
         
@@ -60,14 +60,16 @@ export default{
 @import url(../../assets/css/pesquisas.css);
 
 .img_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    background-image: url("../../assets/images/PencilDiamond.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
 
-.image{
-    width: 25%;
+    padding: 2%;
+    width: 30%;
+    height: 75vh;
+    float: right;
+    margin: 0 5% 0 0;
 }
 
 </style>
