@@ -1,4 +1,6 @@
 <script>
+import { format, compareAsc } from 'date-fns';
+
 
 export default{
     name: 'EventComponent',
@@ -7,10 +9,23 @@ export default{
             type: Object
         }
     },
-
-    data() {
+    
+    setup(){
         
     },
+
+    data() {
+        return{
+            dada: this.dada
+        };
+    },
+
+    mounted(){
+        console.log(format(
+            this.event.start_date,
+            'd LLL k:mm'
+        ))
+    }
 }
 
 
