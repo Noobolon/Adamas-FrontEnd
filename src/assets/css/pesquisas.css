@@ -39,7 +39,7 @@ main{
 }
 
 .ctgry_container a{
-    padding: 5px 7.5%;
+    padding: 5px 8%;
     border: solid 2px var(--ButtonColor);
     border-radius: 20px;
 

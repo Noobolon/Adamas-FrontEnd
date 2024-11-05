@@ -1,6 +1,6 @@
 <script>
-import { format, compareAsc } from 'date-fns';
-
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default{
     name: 'EventComponent',
@@ -9,22 +9,21 @@ export default{
             type: Object
         }
     },
-    
-    setup(){
-        
-    },
 
     data() {
         return{
-            dada: this.dada
+            data_inicial: format(this.event.start_date, "d LLL 'às' k:mm", {locale: ptBR}),
+            data_final: this.data_final
         };
     },
 
     mounted(){
-        console.log(format(
-            this.event.start_date,
-            'd LLL k:mm'
-        ))
+        // Se os dois meses forem iguais, mostrar só a hora
+        if (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL")){
+            this.data_final = format(this.event.end_date, "'às' k:mm", {locale: ptBR})
+        } else{
+            this.data_final = format(this.event.end_date, "d LLL 'às' k:mm", {locale: ptBR})
+        }
     }
 }
 
@@ -41,12 +40,12 @@ export default{
             <div class="cntnt_style">
                 <p>{{ event.institution_name }}</p>
                 <p><span>Local: </span>{{ event.address }}</p>
-                <p><span>Data: </span>{{ event.start_date }} até {{ event.end_date }}</p>
+                <p><span>Data: </span>{{ this.data_inicial }} <span>até</span> {{ this.data_final }}</p>
             </div>
         
         </div>
     </div>
-    
+
     
 </template>
 
