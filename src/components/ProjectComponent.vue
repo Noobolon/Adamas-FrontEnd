@@ -34,10 +34,6 @@ export default{
             </ul>
         </div>
 
-            <!-- <div>
-                <img src="" alt="">
-            </div> -->
-
     </div>
     
     

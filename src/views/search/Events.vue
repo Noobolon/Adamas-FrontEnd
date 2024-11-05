@@ -47,6 +47,10 @@ export default{
             
         </div>
 
+        <div class="img_container">
+            <img class="image" src="https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQsu7yYuRPXNK9eHHSFD2tUYO4stQDb1Ez8vjqGERfs9xqYLLnY_y6lQkPFZa-44cqn" alt="">
+        </div>
+
         
     </main>
     
@@ -55,5 +59,15 @@ export default{
 <style scoped>
 @import url(../../assets/css/pesquisas.css);
 
+.img_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image{
+    width: 25%;
+}
 
 </style>

@@ -32,7 +32,7 @@ export default{
 
 <template>
     <div class="event_style">
-
+        
         <div>
             <h1><RouterLink to="/">{{ event.name }}</RouterLink></h1>
             <p>{{ event.description }}</p>
