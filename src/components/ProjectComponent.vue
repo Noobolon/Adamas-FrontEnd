@@ -1,5 +1,6 @@
 <script>
 
+
 export default{
     name: 'ProjectComponent',
     props: {
@@ -9,8 +10,18 @@ export default{
     },
 
     data() {
-        
+        return{
+            likes_formatados: this.likes_formatados
+        }
     },
+
+    methods: {
+        // NOSSO código
+        formatador(num) {
+            return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+        }
+    },
+    
 }
 
 
@@ -36,13 +47,12 @@ export default{
 
         <div class="project_items">
             <ul>
-                <!-- tenho que esperar o backiendo fazer a parte dele pra atualizar isso aqui  -->
                 <img src="/logos/AdamasWhite.png" alt="Gosteis">
-                <li>10k</li>
+                <li>{{ formatador(project.likes.length) }}</li>
             </ul>
             <ul>
                 <img src="/symbols/CommentIcon.png" alt="Comentários">
-                <li>10</li>
+                <li>{{ project.comments.length }}</li>
             </ul>
             
         </div>  
