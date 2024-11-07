@@ -70,6 +70,24 @@ const router = createRouter({
   },
 })
 
+// router.beforeEach(async (to) => {
+//   // redireciona pra página de login
+//   const publicPages = ['/tipo-de-conta'];
+//   const authRequired = !publicPages.includes(to.path);
+//   const authStore = useAuthStore();
+
+//   if (authRequired && !authStore.user) {
+//       return {
+//           path: '/tipo-de-conta',
+//           query: { returnUrl: to.href }
+//       };
+//   }
+// }); 
+//https://jasonwatmore.com/vue-3-pinia-jwt-authentication-with-refresh-tokens-example-tutorial
+
+
+
+
 export default router
 
 
