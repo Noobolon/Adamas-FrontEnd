@@ -48,11 +48,15 @@ export default{
         <div class="project_items">
             <ul>
                 <img src="/logos/AdamasWhite.png" alt="Gosteis">
-                <li>{{ formatador(project.likes.length) }}</li>
+                <!-- Se tiver likes -->
+                <li v-if="project.likes">{{ formatador(project.likes.length) }}</li>
+                <li v-else>0</li>
             </ul>
             <ul>
                 <img src="/symbols/CommentIcon.png" alt="Comentários">
-                <li>{{ project.comments.length }}</li>
+                <!-- Se tiver comentários -->
+                <li v-if="project.comments">{{ project.comments.length }}</li>
+                <li v-else>0</li>
             </ul>
             
         </div>  
