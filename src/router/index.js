@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// import { useAuthStore } from '@/stores/authentication' 
 
-const router = createRouter({
+
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -61,6 +63,11 @@ const router = createRouter({
       path: '/debug',
       name: 'o debugas',
       component: () => import('../views/debug.vue')
+    },
+
+    { 
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
     
   ],
@@ -70,9 +77,10 @@ const router = createRouter({
   },
 })
 
+
 // router.beforeEach(async (to) => {
 //   // redireciona pra página de login
-//   const publicPages = ['/tipo-de-conta'];
+//   const publicPages = ['/', '/tipo-de-conta', '/cadastrar/usuario', '/login/usuario']; // temporário 
 //   const authRequired = !publicPages.includes(to.path);
 //   const authStore = useAuthStore();
 
@@ -83,7 +91,8 @@ const router = createRouter({
 //       };
 //   }
 // }); 
-//https://jasonwatmore.com/vue-3-pinia-jwt-authentication-with-refresh-tokens-example-tutorial
+//  tutoriwilson
+//  https://jasonwatmore.com/vue-3-pinia-jwt-authentication-with-refresh-tokens-example-tutorial
 
 
 

@@ -1,5 +1,10 @@
 <script>
-import { loginUser } from '@/assets/scripts/register';
+import { useRoute } from 'vue-router';
+import { useAuthStore } from '@/stores';
+
+const route = useRoute();
+const authStore = useAuthStore();
+
 
 export default {
     name: "RegUser",
