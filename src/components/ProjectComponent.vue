@@ -29,19 +29,19 @@ export default{
                 </ul>
             </div>
 
-            <ul class="cat_style">
+            <ul v-if="project.categories" class="cat_style">
                 <p class="cat" v-for="category in project.categories">{{ category.name }}</p>
             </ul>
         </div>
 
         <div class="project_items">
             <ul>
-                <!-- tenho que esperar o backiendo fazer a parte dele pra atualizar isso aqui -->
-                <img src="../assets/images/SimpleDiamond.png" alt="teste">
+                <!-- tenho que esperar o backiendo fazer a parte dele pra atualizar isso aqui  -->
+                <img src="/logos/AdamasWhite.png" alt="Gosteis">
                 <li>10k</li>
             </ul>
             <ul>
-                <img src="../assets/images/SimpleDiamond.png" alt="teste">
+                <img src="/symbols/CommentIcon.png" alt="Comentários">
                 <li>10</li>
             </ul>
             
@@ -71,7 +71,10 @@ a{color: var(--Text2);}
     color: var(--Text2);
 }
 
-.project_container{margin: 2%;}
+.project_container{
+    width: 100%;
+    margin: 2%;
+}
 
 
 /* Likes e comentários */
@@ -92,13 +95,10 @@ a{color: var(--Text2);}
     text-align: center;
 }
 
-.project_items ul > li:first-child{
-    margin-bottom: 2000%;
-}
-
 .project_items img{
     width: 35px;
 }
+
 
 /* Nomes dos integrantes */
 .owners_style {
