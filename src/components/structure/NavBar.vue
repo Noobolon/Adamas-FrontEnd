@@ -1,25 +1,51 @@
 <script>
 import { RouterLink } from 'vue-router';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 export default {
     name: "headerBar",
-
+    setup() {
+        const showMenu = ref(true); 
+        const initMenu = () => {
+        const larguraTela = window.innerWidth;
+        showMenu.value = larguraTela > 600; 
+        };
+        onMounted(() => {
+            initMenu();
+            window.addEventListener('resize', initMenu);
+        });
+        onUnmounted(() => {
+            window.removeEventListener('resize', initMenu);
+        });
+        return {
+            showMenu
+        };
+    },
     data(){
         return{
-            logged: false
+            logged: false,
         }
     },
-
     methods:{
         scrollDown(){
             window.scrollTo(100,100);
-        }
+        },
+
+
     }
+
 }
 </script>
 
 <template>
-    <header>
+    <div class="mobileHeader">
+        <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
+        <button @click="showMenu = !showMenu">
+            <img src="/symbols/menuIcon.svg" alt="menu Icon"  >
+        </button>
+    </div>
+
+    <header v-if="showMenu" >
         <div>
             <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
@@ -58,6 +84,9 @@ header{
     align-items: center;
 }
 
+.mobileHeader{
+    display: none;
+}
 div{
     display: flex;
     justify-content: space-between;
@@ -88,6 +117,7 @@ ul{
     align-items: center;
 }
 
+
 ul li{
     padding: 3px 10%;
     border-bottom: none;
@@ -109,6 +139,32 @@ li:last-child{border-right: none;}
         display: flex;
         flex-direction: column;
     }
+    header > div > a {
+        display: none;
+    }
+    header > div {
+        align-items: start;
+    }
+    .mobileHeader{
+  
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: var(--ToolbarColor);
+
+    }
+
+    button {
+        background: none;
+        border: none;
+    }
+
+   img {
+        padding: 10px;
+        width: 3vh;
+    }
+    
 
     ul{
         width: max-content;
