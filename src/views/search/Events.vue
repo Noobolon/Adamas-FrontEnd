@@ -72,4 +72,9 @@ export default{
     margin: 0 5% 0 0;
 }
 
+@media screen and (max-width: 600px){
+    .img_container{
+        display: none;
+    }
+}
 </style>

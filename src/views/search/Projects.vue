@@ -34,12 +34,23 @@ export default{
             <div class="srch_container">
                 <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
             </div>
+            
+            <div class="tag_container mobile">
+                <h2>Categorias</h2>
+                <div class="categories">
+                    <p class="cat">AAAAAAAAA</p>
+                    <p class="cat">aaaaaaa</p>
+                    <p class="cat">aAAAAAAAA Aa a</p>
+                </div>
+
+            </div>
+            
             <nav class="ctgry_container">
                 <RouterLink to="/projetos" id="selected">Projetos</RouterLink>
                 <RouterLink to="/eventos">Eventos</RouterLink>
                 <RouterLink to="/usuarios">Usuários</RouterLink>
             </nav>
-
+   
             <div class="cntnt_container">
                 <div v-for="project in this.projectStore.getProjects">
                     <ProjectComponent :project="project" :key="project.project_id" />
@@ -49,9 +60,11 @@ export default{
 
         <div class="tag_container">
             <h2>Categorias</h2>
-            <p class="cat">AAAAAAAAA</p>
-            <p class="cat">aaaaaaa</p>
-            <p class="cat">aAAAAAAAA Aa a</p>
+            <div class="categories">
+                    <p class="cat">AAAAAAAAA</p>
+                    <p class="cat">aaaaaaa</p>
+                    <p class="cat">aAAAAAAAA Aa a</p>
+            </div>
         </div>   
 
     </main>
@@ -63,6 +76,22 @@ export default{
 @import url(../../assets/css/categorias.css);
 
 
+.mobile {
+    display: none;
+    width:100%
+}
+
+@media screen and (max-width: 600px){
+
+    .tag_container{
+        display: none;
+    }
+    .mobile{
+        display: block;
+        
+    }
 
 
+
+}
 </style>

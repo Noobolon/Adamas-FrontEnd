@@ -22,7 +22,6 @@ main{
 
     background-color: var(--MenuColor);
     font-size: 1.5em;
-
     border: solid 2px var(--ButtonColor);
     border-radius: 10px;
 }
@@ -56,18 +55,16 @@ main{
 /* Container de tags */
 .tag_container{
     background-color: var(--MenuColor);
-    padding: 2%;
     border: solid 2px var(--ButtonColor);
     border-radius: 10px;
     width: 30%;
     height: fit-content;
-    float: right;
-    margin: 0 5% 0 0;
+    padding: 0;
 }
 
 .tag_container > h2{
     transform: rotate(360deg); /* muito necessário para o funcionamento do código */
-    margin-bottom: 5%;
+    margin: 2%;
 }
 
 
@@ -75,4 +72,24 @@ main{
  #selected{
     background-color: var(--Text2);
     color: var(--ButtonColor);
+}
+
+@media screen and (max-width: 600px){
+
+    .content{
+        width: 100%;
+    }
+    .ctgry_container{
+     margin-top: 10px;
+     flex-direction: row;
+     justify-content: space-between;
+
+    }
+    .ctgry_container a{
+     padding: 1%;
+     width: 30%;
+     text-align: center;
+    }
+
+
 }

@@ -3,10 +3,10 @@ import LinkButton from '@/components/LinkButton.vue';
 
 export default {
     name: "HomePage",
-
+    
     components:{
         LinkButton
-    }
+    },
 }
 
 </script>
@@ -14,7 +14,6 @@ export default {
 <template>
 
     <main>
-        <!-- Introdução ao site -->
         <div id="Intro">
             <header>
                 <h1>Adamas</h1>
@@ -22,7 +21,6 @@ export default {
                 <LinkButton 
                 text="Entrar"
                 link="/tipo-de-conta" 
-                width="25%"
                 height="max-content"
                 />
             </header>
@@ -153,6 +151,10 @@ h3 > span{
     font-weight: normal;
 }
 
+
+a{
+        width: 25%;
+}
 /* Responsividade */
 
 @media screen and (max-width: 600px){
@@ -160,6 +162,11 @@ h3 > span{
         font-size: 1rem;
     }
 
+    a{
+        margin-top: 5vh;
+        padding: 10px;
+        font-size: 1.5rem;
+    }
 
     div #Intro{
         text-align: center;
@@ -167,13 +174,12 @@ h3 > span{
         margin-bottom: 5%;
     }
 
-
     header{padding: 0;}
     header > h1{
-        font-size: 4rem;
+        font-size: 3rem;
     }
     header > h2{
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
 
@@ -181,6 +187,10 @@ h3 > span{
         text-align: center;
         justify-content: center;
         margin: 0;
+    }
+    article > img {
+        margin: 0;
+        width: 90%;
     }
     article > h2{
         font-size: 1.75rem;
@@ -190,16 +200,14 @@ h3 > span{
     }
     
 
-    div #equipe{text-align: center;}
-    ul{padding: 0; margin: 5% 0;}
+    ul{padding: 0; margin: 10% 0;}
     li{
         display: flex;
-        flex-direction: column;
-        text-align: center;
-        justify-content: center;
+        align-items: center;
+        justify-content: start;
     }
     li > img{
-        margin: auto;
+
         width: 50px;
         height: 50px;
     }
