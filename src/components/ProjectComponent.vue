@@ -80,7 +80,6 @@ a{color: var(--Text2);}
     border-radius: 10px;
     margin-top: 2%;
     width: 100%;
-
     background-color: var(--CardColor);
     color: var(--Text2);
 }
