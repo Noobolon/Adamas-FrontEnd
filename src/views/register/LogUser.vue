@@ -1,9 +1,8 @@
 <script>
 import { useRoute } from 'vue-router';
-import { useAuthStore } from '@/stores';
+import { useAuthStore } from '@/stores/authentication';
 
-const route = useRoute();
-const authStore = useAuthStore();
+
 
 
 export default {
@@ -16,8 +15,18 @@ export default {
         }
     },
 
+    setup(){
+        const authStore = useAuthStore();
+        return { authStore }
+    },
+
     methods: {
-        loginUser
+        // loginUser,
+
+        onSubmit() {
+            console.log(this.email, this.password)
+            this.authStore.loginUser(this.email, this.password)
+        }
     }
 
 }
@@ -31,10 +40,10 @@ export default {
         <div class="forms">
             <img src="../../assets/images/PencilDiamond.png" alt="Diamante">
 
-            <form @submit.prevent="loginUser">
+            <form @submit.prevent="onSubmit">
                 <input v-model="email" placeholder="E-mail" id="email" type="email" required>
                 <input v-model="password" placeholder="Senha" id="senha" type="password" required>
-                <input type="button" @click="loginUser" value="Entrar">
+                <input type="submit" @submit="onSubmit" value="Entrar">
 
                 <p>Não possui uma conta?<br><RouterLink to="/cadastrar/usuario">Cadastrar-se</RouterLink></p>
             </form>
