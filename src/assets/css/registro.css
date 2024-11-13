@@ -37,7 +37,7 @@ form{
     padding: 5%;
 }
 
-input[type="button"]{
+input[type="button"], input[type="submit"]{
     background-color: var(--ButtonColor);
     border: none;
     border-radius: 15px;
@@ -51,7 +51,7 @@ input[type="button"]{
     text-align: center;
 }
 
-input[type="button"]:hover{
+input[type="button"]:hover, input[type="submit"]:hover{
     cursor: pointer;
     background-color: #1f4a60;
 }

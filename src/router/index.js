@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import { useAuthStore } from '@/stores/authentication' 
+import { useAuthStore } from '@/stores/authentication.js' 
 
 
 export const router = createRouter({
@@ -65,13 +65,14 @@ export const router = createRouter({
     },
 
 
-    // página de debug (será removido na versão final)
+    // Página de debug (será removido na versão final)
     {
       path: '/debug',
       name: 'o debugas',
       component: () => import('../views/debug.vue')
     },
 
+    // Redireciona páginas não-existentes pra home 
     { 
       path: '/:pathMatch(.*)*',
       redirect: '/'
@@ -98,8 +99,6 @@ export const router = createRouter({
 //       };
 //   }
 // }); 
-//  tutoriwilson
-//  https://jasonwatmore.com/vue-3-pinia-jwt-authentication-with-refresh-tokens-example-tutorial
 
 
 
