@@ -3,34 +3,32 @@ import { router } from '@/router';
 
 import api from '@/api';
 
-export const useAuthStore = defineStore({
-    id: 'auth',
-    state: () => ({
-        user: null,
-        refresh: null
-    }),
+export const useAuthStore = defineStore('auth', {
+    state() {
+        return{
+            token: localStorage.getItem('token'),
+        }       
+    },
 
     actions: {
         async loginUser(email, password) {
-            api.post('/login', email, password)
-            .then(function (response) {
-                if (response){
-                    console.log(response)
-                    router.push('/')
-                    console.log("deu certo")
-                }
-            })
-            .catch(function (error) {                    
-                console.log(error);
-            });
+            try{
+                const data = (await api.post('/login', {email: email, password: password}))
+                console.log(data.data)
+                router.push('/') // retorna pra home
 
-            // // atualiza o pinia
-            // this.user = user
+                // atualiza o pinia
+                this.token = data.data
 
-            // coloca dados no local storage pra deixar o usuário logado caso ele reinicie a página
-            // localStorage.setItem('user', JSON.stringify(user))
-        
+                // coloca dados no local storage pra deixar o usuário logado caso ele reinicie a página
+                localStorage.setItem('token', data.data)
+
+            } 
+            catch (error){
+                console.log(error)
+            }
             
+                   
         },
         logout() {
             this.user = null;

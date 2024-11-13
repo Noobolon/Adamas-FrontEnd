@@ -1,8 +1,6 @@
-<script>
-import { useRoute } from 'vue-router';
+<script>    
 import { useAuthStore } from '@/stores/authentication';
-
-
+import { storeToRefs } from 'pinia';
 
 
 export default {
@@ -17,7 +15,8 @@ export default {
 
     setup(){
         const authStore = useAuthStore();
-        return { authStore }
+        const user = storeToRefs(authStore) 
+        return { authStore, user }
     },
 
     methods: {
