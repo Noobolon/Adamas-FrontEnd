@@ -1,48 +1,43 @@
-// import { defineStore } from 'pinia';
-// import api from '@/api';
+import { defineStore } from 'pinia';
+import { router } from '@/router';
 
-// const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
+import api from '@/api';
 
-// export const useAuthStore = defineStore({
-//     id: 'auth',
-//     state: () => ({
-//         user: null,
-//         refreshTokenTimeout: null
-//     }),
+export const useAuthStore = defineStore('auth', {
+    state() {
+        return{
+            token: "",
+        }       
+    },
 
-    
-//     actions: {
-        
-//         async login(username, password) {
-//             this.user = await api.post(`${baseUrl}/authenticate`, { username, password }, { credentials: 'include' });
-//             this.startRefreshTokenTimer();
-//         },
+    getters:{
+        getToken(state){
+            return state.token
+        }
+    },
 
-//         logout() {
-//             api.post(`${baseUrl}/revoke-token`, {}, { credentials: 'include' });
-//             this.stopRefreshTokenTimer();
-//             this.user = null;
-//             router.push('/login');
-//         },
+    actions: {
+        async loginUser(email, password) {
+            try{
+                const data = await api.post('/login', {email: email, password: password})
+                router.push('/') // retorna pra home
 
-//         async refreshToken() {
-//             this.user = await api.post(`${baseUrl}/refresh-token`, {}, { credentials: 'include' });
-//             this.startRefreshTokenTimer();
-//         },
+                // atualiza o pinia
+                this.token = data.data.token
+,
+                // coloca dados no local storage pra deixar o usuário logado caso ele reinicie a página
+                localStorage.setItem("token", data.data.token)
+            } 
+            catch (error){
+                console.log(error)
+            }
+        },
+        logout() {
+            this.user = null;
+            localStorage.removeItem('token');
+            router.push('/tipo-de-conta');
+        }
+    }
+});
 
-//         startRefreshTokenTimer() {
-//             // parse json object from base64 encoded jwt token
-//             const jwtBase64 = this.user.jwtToken.split('.')[1];
-//             const jwtToken = JSON.parse(atob(jwtBase64));
-    
-//             // set a timeout to refresh the token a minute before it expires
-//             const expires = new Date(jwtToken.exp * 1000);
-//             const timeout = expires.getTime() - Date.now() - (60 * 1000);
-//             this.refreshTokenTimeout = setTimeout(this.refreshToken, timeout);
-//         },    
-
-//         stopRefreshTokenTimer() {
-//             clearTimeout(this.refreshTokenTimeout);
-//         }
-//     }
-// });
+// https://stackblitz.com/edit/vue-3-pinia-jwt-authentication-tutorial-and-example?file=src%2Fstores%2Fauth.store.js
