@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 
 
 export default {
-    name: "RegUser",
+    name: "LogUser",
 
     data(){
         return{
@@ -15,18 +15,16 @@ export default {
 
     setup(){
         const authStore = useAuthStore();
-        const user = storeToRefs(authStore) 
-        return { authStore, user }
+        return { authStore }
     },
 
     methods: {
-        // loginUser,
-
         onSubmit() {
             console.log(this.email, this.password)
             this.authStore.loginUser(this.email, this.password)
         }
-    }
+    },
+
 
 }
 </script>
@@ -51,6 +49,6 @@ export default {
 </template>
 
 <style scoped>
-@import url(../../assets/css/registro.css);
+@import url(@/assets/css/registro.css);
 
 </style>
