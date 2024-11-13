@@ -74,6 +74,14 @@ main{
     color: var(--ButtonColor);
 }
 
+@media screen and (max-width: 900px){
+    .content{
+        width: 60%;
+    }
+    .ctgry_container a{
+        padding: 5px 3%;
+    }
+}
 @media screen and (max-width: 600px){
 
     .content{

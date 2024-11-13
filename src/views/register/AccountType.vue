@@ -20,18 +20,12 @@ export default {
         text="Usuário" 
         link="/cadastrar/usuario" 
         icon="/symbols/UserIcon.png"
-        
-        width="25%"
-        height="max-content"
         />
 
         <LinkButton 
         text="Instituição" 
         link="/cadastrar/instituicao" 
         icon="/symbols/InstIcon.png" 
-        
-        width="25%"
-        height="max-content"
         />
         
     </main>
@@ -45,6 +39,8 @@ main{
 
 a{
     margin: 3% 0;
+    width: 25%;
+    height: max-content;
 }
 
 h1{
@@ -52,5 +48,11 @@ h1{
     color: var(--TextHighlight);
     text-align: center;
 }
+@media screen and (max-width: 600px){
+    a{
+        width: 50%;
+        font-size: 1.5rem;
+    }
 
+}
 </style>
