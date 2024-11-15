@@ -6,7 +6,7 @@ import api from '@/api';
 export const useAuthStore = defineStore('auth', {
     state() {
         return{
-            token: "",
+            token: localStorage.getItem("token"),
         }       
     },
 
@@ -19,21 +19,62 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async loginUser(email, password) {
             try{
-                const data = await api.post('/login', {email: email, password: password})
-                router.push('/') // retorna pra home
+                const data = await api.post('/login',
+                    {
+                    email: email,
+                    password: password
+                    }
+                )
+                // router.push('/') // retorna pra home
 
                 // atualiza o pinia
                 this.token = data.data.token
-,
+
                 // coloca dados no local storage pra deixar o usuário logado caso ele reinicie a página
                 localStorage.setItem("token", data.data.token)
-            } 
-            catch (error){
+
+            } catch (error) {
                 console.log(error)
             }
         },
+
+        async regUser(username, nickname, email, password) {
+            try{
+                if (nickname){ // se o usuário digitou um apelido
+                    const data = await api.post('/create', 
+                        {   
+                            name: username,
+                            nickname: nickname,
+                            email: email,
+                            password: password,
+                        }
+                    )
+                    this.token = data.data.token
+                    localStorage.setItem("token", data.data.token)
+
+                } else {
+                    const data = await api.post('/create', 
+                        {   
+                            name: username,
+                            nickname: null,
+                            email: email,
+                            password: password,
+                        }
+                    )
+                    this.token = data.data.token
+                    localStorage.setItem("token", data.data.token)
+                }
+
+                // router.push('/')
+                
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+
         logout() {
-            this.user = null;
+            this.token = null;
             localStorage.removeItem('token');
             router.push('/tipo-de-conta');
         }

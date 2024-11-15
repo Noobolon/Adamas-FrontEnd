@@ -48,7 +48,7 @@ export default {
     </main>
 </template>
 
-<style scoped>
+<style scoped>  
 @import url(@/assets/css/registro.css);
 
 </style>

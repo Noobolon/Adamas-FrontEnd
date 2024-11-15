@@ -1,22 +1,24 @@
 <script>
 import { useProjectStore } from '@/stores/project';
 import { useEventStore } from '@/stores/event';
+import { useAuthStore } from '@/stores/authentication';
 
 export default{
     name: 'debug',
     
     data(){
         return{
-            projeto_exemplo: {"name": "adamas", "owner": "aluno", "desc": "descrição boa"},
             projects_list: this.projects_list,
-            events_list: this.events_list
+            events_list: this.events_list,
+            oi: localStorage.getItem("token")
         }
     },
 
     setup() {
         const projectStore = useProjectStore()
         const eventStore = useEventStore()
-        return { projectStore, eventStore }
+        const authStore = useAuthStore()
+        return { projectStore, eventStore, authStore }
     },
 
     created(){
@@ -29,6 +31,11 @@ export default{
 </script>
 
 <template>
+
+    <p> <b>token do localstorage: </b> {{ oi }}</p>
+    <p> <b>token do pinia: </b> {{ authStore.getToken }}</p>
+
+
     <div v-for="project in this.projectStore.getProjects">
         <br>
         {{ project }}
