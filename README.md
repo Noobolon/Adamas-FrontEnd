@@ -4,7 +4,7 @@
 ### Setup:
 
 ```sh
-git clone https://github.com/Noobolon/Adamas-FrontEnd.git
+git clone https://github.com/Adamas-Projects/Adamas-FrontEnd.git
 ```
 ```
 cd Adamas-FrontEnd
