@@ -16,6 +16,13 @@ export const router = createRouter({
       component: () => import('../views/register/AccountType.vue')
     },
 
+    {
+      path: '/criar-projeto',
+      name: 'criar projeto',
+      component: () => import('../views/CreateProject.vue')
+    },
+
+
     // Usuário (temporário, depois provavelmente será colocado em um lugar próprio)
     {
       path: '/user',
