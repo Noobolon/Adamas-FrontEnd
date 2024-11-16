@@ -1,6 +1,7 @@
 <script>
 import api from '@/api';
 import { useAuthStore } from '@/stores/authentication';
+import { createProject } from '@/assets/scripts/project_scripts';
 
 
 export default{
@@ -24,23 +25,8 @@ export default{
     },
 
     methods: {
-        async createProject(token){
-            try {
-                await api.post("/project",{
-                    title: this.title,
-                    description: this.description,
-                    content: this.content
-                })
-                .then(function (response){
-                    console.log(response)
-                })
-                
-            } catch (error) {
-                console.log(error)
-            }
-
-        }
-
+        createProject,
+        // addTag
     },
 
     created(){
@@ -57,13 +43,13 @@ export default{
 <main>
 
     <form @submit.prevent="createProject(this.user_token)">
-        <input id="title" placeholder="Título do projeto" type="text" required>
+        <input id="title" v-model="title" placeholder="Título do projeto" type="text" required>
 
         <!-- aqui ficarão as tags -->
-         <div class="tags">
-            <button id="add_tag_button" v-if="tags.length <= 3"></button>
+         <!-- <div class="tags">
+            <button @click="addTag(this.user_token, 1, 'ti')" id="add_tag_button" v-if="tags.length <= 3"></button>
             <div>tags blablabla</div>
-         </div>
+         </div> -->
 
         <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" required>
 
