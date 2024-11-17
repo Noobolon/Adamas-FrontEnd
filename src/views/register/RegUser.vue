@@ -44,7 +44,7 @@ export default {
                 <input v-model="email" placeholder="E-mail" id="email" type="email" required>
                 <input v-model="password" placeholder="Senha" id="password" type="password" required>
 
-                <input type="submit" @submit="onSubmit" value="Cadastrar-se">
+                <input type="submit" value="Cadastrar-se">
 
                 <p>Já possui uma conta?<br><RouterLink to="/login/usuario">Entrar</RouterLink></p>
             </form>

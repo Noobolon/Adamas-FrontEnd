@@ -25,6 +25,7 @@ export default{
         this.projectStore.fetchProjects()
         this.eventStore.fetchEvents()
     },
+    
 
 }
 
@@ -34,6 +35,9 @@ export default{
 
     <p> <b>token do localstorage: </b> {{ oi }}</p>
     <p> <b>token do pinia: </b> {{ authStore.getToken }}</p>
+    <p> <b>tipo de conta: </b> {{ authStore.getAccType }} </p>
+
+    <button @click="this.authStore.logout()">sair</button>
 
 
     <div v-for="project in this.projectStore.getProjects">
@@ -52,5 +56,8 @@ export default{
 <style scoped>
 @import url(..//assets/css/pesquisas.css);
 
+p{
+    margin: 2%;
+}
 
 </style>

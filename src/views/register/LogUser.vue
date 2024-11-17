@@ -1,7 +1,5 @@
 <script>    
 import { useAuthStore } from '@/stores/authentication';
-import { storeToRefs } from 'pinia';
-
 
 export default {
     name: "LogUser",
@@ -24,9 +22,8 @@ export default {
             this.authStore.loginUser(this.email, this.password)
         }
     },
-
-
 }
+
 </script>
 
 <template>

@@ -7,12 +7,17 @@ export const useAuthStore = defineStore('auth', {
     state() {
         return{
             token: localStorage.getItem("token"),
+            acc_type: localStorage.getItem("acc_type"),
         }       
     },
 
     getters:{
         getToken(state){
             return state.token
+        },
+
+        getAccType(state){
+            return state.acc_type
         }
     },
 
@@ -25,13 +30,17 @@ export const useAuthStore = defineStore('auth', {
                     password: password
                     }
                 )
-                // router.push('/') // retorna pra home
+                // retorna pra home
+                router.push('/') 
 
                 // atualiza o pinia
                 this.token = data.data.token
-
                 // coloca dados no local storage pra deixar o usuário logado caso ele reinicie a página
                 localStorage.setItem("token", data.data.token)
+
+                // faz o mesmo pra especificação de tipo de usuário
+                this.acc_type = "common"
+                localStorage.setItem("acc_type", "common")
 
             } catch (error) {
                 console.log(error)
@@ -65,7 +74,54 @@ export const useAuthStore = defineStore('auth', {
                     localStorage.setItem("token", data.data.token)
                 }
 
-                // router.push('/')
+                this.acc_type = "common"
+                localStorage.setItem("acc_type", "common")
+                router.push('/')
+                
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        async loginInstitution(email, password) {
+            try{
+                const data = await api.post('/login/institution',
+                    {
+                    email: email,
+                    password: password
+                    }
+                )
+
+                router.push('/') 
+                
+                this.token = data.data.token
+                localStorage.setItem("token", data.data.token)
+
+                this.acc_type = "institution"
+                localStorage.setItem("acc_type", "institution")
+
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        async regInstitution(username, cnpj, email, password) {
+            try{
+                const data = await api.post('/create/institution ', 
+                    {
+                        name: username,
+                        cnpj: cnpj,
+                        email: email,
+                        password: password,
+                    }
+                )
+            
+                this.token = data.data.token
+                localStorage.setItem("token", data.data.token)
+
+                this.acc_type = "institution"
+                localStorage.setItem("acc_type", "institution")
+                router.push('/')
                 
             } catch (error) {
                 console.log(error)
@@ -73,10 +129,12 @@ export const useAuthStore = defineStore('auth', {
         },
 
 
+
         logout() {
             this.token = null;
             localStorage.removeItem('token');
-            router.push('/tipo-de-conta');
+            localStorage.removeItem('acc_type');
+            router.push('/');
         }
     }
 });
