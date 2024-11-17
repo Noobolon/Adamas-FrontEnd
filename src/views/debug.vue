@@ -26,7 +26,6 @@ export default{
         this.eventStore.fetchEvents()
     },
     
-
 }
 
 </script>
@@ -39,12 +38,10 @@ export default{
 
     <button @click="this.authStore.logout()">sair</button>
 
-
     <div v-for="project in this.projectStore.getProjects">
         <br>
         {{ project }}
     </div>
-
 
     <div v-for="event in this.eventStore.getEvents">
         <br>

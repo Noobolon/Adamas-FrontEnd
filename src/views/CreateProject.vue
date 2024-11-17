@@ -1,5 +1,4 @@
 <script>
-import api from '@/api';
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
 
@@ -72,7 +71,7 @@ export default{
 
 </template>
 
-<style>
+<style scoped>
 @import url(@/assets/css/categorias.css);
 
 main{

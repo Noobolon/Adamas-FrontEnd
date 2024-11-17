@@ -35,7 +35,7 @@ export default {
         <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Cadastro de Instituição</h1>
         <div class="forms">
-            <img src="../../assets/images/PencilDiamond.png" alt="Diamante" >
+            <img src="@/assets/images/PencilDiamond.png" alt="Diamante" >
 
             <form @submit.prevent="onSubmit">
                 <input v-model="name" placeholder="Nome" id="name" type="text" required>

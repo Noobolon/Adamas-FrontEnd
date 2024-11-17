@@ -18,11 +18,8 @@ export default {
             <header>
                 <h1>Adamas</h1>
                 <h2>Plataforma de divulgação de projetos e eventos.</h2>
-                <LinkButton 
-                text="Entrar"
-                link="/tipo-de-conta" 
-                height="max-content"
-                />
+                <LinkButton link="/tipo-de-conta" height="max-content">Entrar</LinkButton>
+                > 
             </header>
         </div>
 
