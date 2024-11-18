@@ -30,7 +30,6 @@ export default{
 
     created(){
         this.user_token = this.authStore.getToken
-        console.log(this.user_token) // deletar depois
     }
     
 }

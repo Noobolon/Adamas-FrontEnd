@@ -17,7 +17,7 @@ export default {
         </h1>
         
         <LinkButton link="/cadastrar/usuario" icon="/symbols/UserIcon.png" width="25%" height="max-content">Usuário</LinkButton>
-        <LinkButton text="Instituição" link="/cadastrar/instituicao" icon="/symbols/InstIcon.png" width="25%" height="max-content">Instituição</LinkButton>
+        <LinkButton link="/cadastrar/instituicao" icon="/symbols/InstIcon.png" width="25%" height="max-content">Instituição</LinkButton>
         
     </main>
 </template>
