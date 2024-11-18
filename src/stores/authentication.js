@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { router } from '@/router';
+import { jwtDecode } from 'jwt-decode';
 
 import api from '@/api';
 
@@ -18,7 +19,24 @@ export const useAuthStore = defineStore('auth', {
 
         getAccType(state){
             return state.acc_type
-        }
+        },
+
+        getUser(state){
+            try {
+                if (state.token){
+                    return jwtDecode(state.token)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        checkToken(){
+            const timeNow = Math.floor(Date.now() / 1000)
+            return this.getUser.exp < timeNow
+            
+        },
+     
     },
 
     actions: {

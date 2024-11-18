@@ -32,6 +32,10 @@ export default{
 
 <template>
 
+    <p><b>usuário: </b>{{ authStore.getUser }}</p>
+    <p v-if="authStore.getUser">expira em: {{ authStore.getUser.exp }}</p>
+    <p v-if="authStore.checkToken">expirou</p>
+
     <p> <b>token do localstorage: </b> {{ oi }}</p>
     <p> <b>token do pinia: </b> {{ authStore.getToken }}</p>
     <p> <b>tipo de conta: </b> {{ authStore.getAccType }} </p>
