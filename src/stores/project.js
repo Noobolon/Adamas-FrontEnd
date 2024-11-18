@@ -25,6 +25,8 @@ export const useProjectStore = defineStore('projects', {
                 console.log(error)
             }
 
-        }
+        },
+        
+        
     },
 })

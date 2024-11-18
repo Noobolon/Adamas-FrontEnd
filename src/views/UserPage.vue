@@ -1,24 +1,43 @@
 <script>
 import ProjectComponent from '@/components/ProjectComponent.vue';
 import { useProjectStore } from '@/stores/project';
-import { storeToRefs } from 'pinia'
+import api from '@/api'
 
 export default {
     name: "UserPage",
-    components: { ProjectComponent},
+    components: { ProjectComponent },
 
     data(){
-
+        return{
+            user_projects: {}
+        }
     },
+
+    
 
     setup() {
         const projectStore = useProjectStore()
-        const { getProjectFromUserID } = storeToRefs(projectStore)
-        return { projectStore, getProjectFromUserID }
+        return { projectStore }
     },
 
     methods: {
+        async getProjectsFromUserID(userID) {
+            try {
+                const response = await api.get(`project/user/${userID}`)
+                .then(function (response) {
+                    const dados = response.data;
+                    var user_projects = dados
+                });
 
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    },
+
+    mounted(){
+        this.getProjectsFromUserID(1)
+        
     }
 
 }
@@ -48,7 +67,7 @@ export default {
 
     <main>
         <div class="cntnt_container">
-            <div v-for="project in this.projectStore.getProjectFromUserID(1)">
+            <div v-for="project in this.user_projects">
                 <ProjectComponent :project="project" :key="project.project_id" />
             </div>
         </div>
