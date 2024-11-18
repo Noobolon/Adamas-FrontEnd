@@ -30,8 +30,6 @@ export const useAuthStore = defineStore('auth', {
                     password: password
                     }
                 )
-                // retorna pra home
-                router.push('/') 
 
                 // atualiza o pinia
                 this.token = data.data.token
@@ -41,6 +39,11 @@ export const useAuthStore = defineStore('auth', {
                 // faz o mesmo pra especificação de tipo de usuário
                 this.acc_type = "common"
                 localStorage.setItem("acc_type", "common")
+
+                // retorna pra home
+                await router.push('/') 
+                location.reload()
+
 
             } catch (error) {
                 console.log(error)
@@ -76,8 +79,10 @@ export const useAuthStore = defineStore('auth', {
 
                 this.acc_type = "common"
                 localStorage.setItem("acc_type", "common")
-                router.push('/')
-                
+
+                await router.push('/') 
+                location.reload()
+
             } catch (error) {
                 console.log(error)
             }
@@ -91,14 +96,15 @@ export const useAuthStore = defineStore('auth', {
                     password: password
                     }
                 )
-
-                router.push('/') 
                 
                 this.token = data.data.token
                 localStorage.setItem("token", data.data.token)
 
                 this.acc_type = "institution"
                 localStorage.setItem("acc_type", "institution")
+
+                await router.push('/') 
+                location.reload()
 
             } catch (error) {
                 console.log(error)
@@ -121,7 +127,10 @@ export const useAuthStore = defineStore('auth', {
 
                 this.acc_type = "institution"
                 localStorage.setItem("acc_type", "institution")
-                router.push('/')
+
+                await router.push('/') 
+                location.reload()
+
                 
             } catch (error) {
                 console.log(error)
@@ -130,11 +139,12 @@ export const useAuthStore = defineStore('auth', {
 
 
 
-        logout() {
+        async logout() {
             this.token = null;
             localStorage.removeItem('token');
             localStorage.removeItem('acc_type');
-            router.push('/');
+            await router.push('/');
+            location.reload();
         }
     }
 });
