@@ -28,7 +28,7 @@ export default{
 
             excButtons: ['mermaid', 'katex', 'pageFullscreen', 'fullscreen', 'htmlPreview', 'catalog', 'github', 'save', 'prettier', 'previewOnly', 'task'],
 
-            tags: []
+            selected_tags: []
         }
         
     },
@@ -36,10 +36,11 @@ export default{
     methods: {
         createProject,
 
-        tagToArray(tagID){
-            this.tags.push(tagID)
-        },
-
+        criarProjeto(){
+            var tagID_array = this.selected_tags
+            tagID_array
+            createProject(this.user_token, this.title, )
+        }
         
     },
 
@@ -60,21 +61,21 @@ export default{
 
 <main>
 
-    <form @submit.prevent="createProject(this.user_token)">
+    <form @submit.prevent="criarProjeto()">
         <input id="title" v-model="title" placeholder="Título do projeto" type="text" required>
 
 
         <div class="tags">
-            <button id="add_tag_button" @click="modalOpen = true" v-if="tags.length <= 3" type="button"></button>
+            <button id="add_tag_button" @click="modalOpen = true" v-if="selected_tags.length < 3" type="button"></button>
 
             <!-- Modal de tags -->
             <Teleport to="body">
-                <TagModal :show="modalOpen" @close="modalOpen = false" :addedTags="this.tags">
+                <TagModal :show="modalOpen" @close="modalOpen = false" :addedTags="this.selected_tags">
                 </TagModal>
             </Teleport>
 
             
-            <div v-for="tag in tags" class="cat">{{ tag }}</div>
+            <div v-for="tag in selected_tags" class="cat">{{ tag.cat_name }}</div>
         </div> 
 
         <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" required>
@@ -100,9 +101,11 @@ export default{
 @import url(@/assets/css/categorias.css);
 
 main{
-    padding: 7%;
+    padding: 7% 0 0 0;
     display: flex;
     flex-direction: row;
+    margin: auto;
+    width: 90vw;
 }
 
 form{
