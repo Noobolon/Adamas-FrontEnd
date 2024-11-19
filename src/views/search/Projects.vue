@@ -11,14 +11,10 @@ export default{
 
     data() {
         return {
+            projectStore: useProjectStore(),
             search_content: this.search_content,
             projects_list: this.projects_list
         };
-    },
-    
-    setup() {
-        const projectStore = useProjectStore()
-        return { projectStore }
     },
 
     created(){

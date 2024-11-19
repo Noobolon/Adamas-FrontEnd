@@ -1,6 +1,9 @@
 <script>
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
+// import { ref } from 'vue'
+// import { VMarkdownEditor } from 'vue3-markdown'
+// import 'vue3-markdown/dist/style.css'
 import TagModal from '@/components/TagModal.vue';
 
 
@@ -13,6 +16,8 @@ export default{
 
     data(){
         return{
+            authStore: useAuthStore(),
+            
             user_token: undefined,
             title: this.title,
             description: this.description,
@@ -26,8 +31,11 @@ export default{
     },
 
     setup() {
-        const authStore = useAuthStore()
-        return { authStore }
+        const handleUpload = (file) => {
+            console.log(file)
+            return 'https://i.postimg.cc/52qCzTVw/pngwing-com.png'
+        }
+        return { handleUpload }
     },
 
     methods: {

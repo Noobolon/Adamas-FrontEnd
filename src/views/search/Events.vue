@@ -9,14 +9,10 @@ export default{
 
     data() {
         return {
+            eventStore: useEventStore(),
             search_content: this.search_content,
             events_list: this.events_list
         };
-    },
-    
-    setup() {
-        const eventStore = useEventStore()
-        return { eventStore }
     },
 
     created(){

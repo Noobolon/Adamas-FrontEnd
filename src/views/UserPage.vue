@@ -9,15 +9,9 @@ export default {
 
     data(){
         return{
+            projectStore: useProjectStore(),
             user_projects: {}
         }
-    },
-
-    
-
-    setup() {
-        const projectStore = useProjectStore()
-        return { projectStore }
     },
 
     methods: {
