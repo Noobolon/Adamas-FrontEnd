@@ -10,10 +10,11 @@ export default{
   },
 
   mounted() {
-    console.log(this.$path)
+    
   }
   
-}
+};
+
 
 </script>
 

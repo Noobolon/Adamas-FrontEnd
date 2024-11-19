@@ -11,27 +11,33 @@ p{
 
 p > a{color:var(--ButtonColor)}
 
-div{
+div .forms{
     display: flex;
-    padding: 5%;
     flex-direction: row;
+    align-items: center;
     justify-content:space-evenly;
 }
 
-img{
-    width: 450px;
-    height: 450px;
+div .info{
+    transform: translateY(-55px);
+}
+
+div > *{
+    text-align: center;
+}
+
+div > img{
+    width: 200px;
 }
 
 form{
-
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 5%;
 }
 
-input[type="button"]{
+input[type="button"], input[type="submit"]{
     background-color: var(--ButtonColor);
     border: none;
     border-radius: 15px;
@@ -45,7 +51,7 @@ input[type="button"]{
     text-align: center;
 }
 
-input[type="button"]:hover{
+input[type="button"]:hover, input[type="submit"]:hover{
     cursor: pointer;
     background-color: #1f4a60;
 }
@@ -75,6 +81,20 @@ a{
     text-decoration: underline;
 }
 
+#back{
+    margin-top: 5%;
+    margin-left: 10%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--TextHighlight);
+    text-decoration: none;
+    width: fit-content;
+}
+
+#back:hover{
+    text-decoration: underline;
+}
+
 
 /*Responsividade das telas de registro*/
 @media screen and (max-width: 600px){
@@ -83,10 +103,14 @@ a{
         font-size: 2rem;
     }
 
-    div{
+    div .forms{
         flex-direction: column;
         justify-content: center;
         padding: 0;
+    }
+
+    div .info{
+        transform: translateY(0);
     }
 
     form > *{

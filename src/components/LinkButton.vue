@@ -2,7 +2,6 @@
     export default {
         name: "LinkButton",
         props: {
-            text: String, 
             link: String,
             icon: String,
 
@@ -17,7 +16,7 @@
     
    <RouterLink :to="link">
             <img v-if="icon != null" :src="icon" alt="Ícone">
-            {{ text }}
+            <slot></slot>
    </RouterLink> 
 
 </template>
@@ -45,7 +44,7 @@ a{
     text-align: center;
 }
 
-a:hover{ background-color: #1f4a60;}
+a:hover{ background-color: var(--ButtonHoverColor);}
 
 a:visited{color: var(--Text2);}
 

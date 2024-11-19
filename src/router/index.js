@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/authentication.js' 
 
-const router = createRouter({
+
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -13,6 +15,21 @@ const router = createRouter({
       name: 'tipo de conta',
       component: () => import('../views/register/AccountType.vue')
     },
+
+    {
+      path: '/criar-projeto',
+      name: 'criar projeto',
+      component: () => import('../views/CreateProject.vue')
+    },
+
+
+    // Usuário (temporário, depois provavelmente será colocado em um lugar próprio)
+    {
+      path: '/user',
+      name: 'usuário',
+      component: () => import('../views/UserPage.vue')
+    },
+    
 
     // Pesquisas 
     {
@@ -30,6 +47,7 @@ const router = createRouter({
       name: 'usuarios',
       component: () => import('../views/search/Users.vue')
     },
+
 
     // Telas de cadastro
     {
@@ -51,20 +69,47 @@ const router = createRouter({
       path: '/login/instituicao',
       name: 'login como instituição',
       component: () => import('../views/register/LogInstitution.vue')
+    },
+
+
+    // Página de debug (será removido na versão final)
+    {
+      path: '/debug',
+      name: 'o debugas',
+      component: () => import('../views/debug.vue')
+    },
+
+    // Redireciona páginas não-existentes pra home 
+    { 
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
     
   ],
   scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
+    // voltar ao topo
     return { top: 0 }
   },
 })
 
+
+// router.beforeEach(async (to) => {
+//   // redireciona pra página de login
+//   const publicPages = ['/', '/tipo-de-conta', '/cadastrar/usuario', '/login/usuario']; // temporário 
+//   const authRequired = !publicPages.includes(to.path);
+//   const authStore = useAuthStore();
+
+//   if (authRequired && !authStore.user) {
+//       return {
+//           path: '/tipo-de-conta',
+//           query: { returnUrl: to.href }
+//       };
+//   }
+// }); 
+
+
+
+
 export default router
 
 
-
-// route level code-splitting
-// this generates a separate chunk (About.[hash].js) for this route
-// which is lazy-loaded when the route is visited.
-  // component: () => import('../components/pages/CreateAccount.vue')
