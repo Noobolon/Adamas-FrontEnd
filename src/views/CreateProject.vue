@@ -1,10 +1,15 @@
 <script>
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
+import TagModal from '@/components/TagModal.vue';
 
 
 export default{
     name: "CreateProject",
+
+    components:{
+        TagModal
+    },
 
     data(){
         return{
@@ -12,6 +17,8 @@ export default{
             title: this.title,
             description: this.description,
             content: this.content,
+
+            modalOpen: false,
 
             tags: []
         }
@@ -25,7 +32,10 @@ export default{
 
     methods: {
         createProject,
-        // addTag
+
+        tagToArray(tagID){
+            this.tags.push(tagID)
+        }
     },
 
     created(){
@@ -43,29 +53,35 @@ export default{
     <form @submit.prevent="createProject(this.user_token)">
         <input id="title" v-model="title" placeholder="Título do projeto" type="text" required>
 
-        <!-- aqui ficarão as tags -->
-         <!-- <div class="tags">
-            <button @click="addTag(this.user_token, 1, 'ti')" id="add_tag_button" v-if="tags.length <= 3"></button>
-            <div>tags blablabla</div>
-         </div> -->
+
+        <div class="tags">
+            <button id="add_tag_button" @click="modalOpen = true" v-if="tags.length <= 3" type="button"></button>
+
+            <!-- Modal de tags -->
+            <Teleport to="body">
+                <TagModal :show="modalOpen" @close="modalOpen = false">
+                </TagModal>
+            </Teleport>
+
+            
+            <div v-for="tag in tags" class="cat">{{ tag }}</div>
+        </div> 
 
         <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" required>
 
         <div class="content">
+            <h1>Conteúdo do projeto:</h1>
             
-            <!-- placeholder pro editor de markdown que adiconarei depois (se possível) -->
-            <textarea v-model="content" rows="10" cols="10"></textarea>
+            <!-- placeholder pro editor de markdown que adiconarei depois (se eu conseguir) -->
+            <textarea v-model="content" rows="15" cols="10"></textarea>
 
+            <div id="buttons">
+                <button type="reset">Limpar</button>
+                <button type="submit">Criar</button>
+            </div>  
         </div>
-
-        <div id="buttons">
-            <button type="reset">Limpar</button>
-            <button type="submit">Criar</button>
-        </div>  
         
     </form>
-
-
 </main>
 
 </template>
@@ -112,8 +128,23 @@ input::placeholder{
 
 textarea{
     width: 100%;
+    padding: 0;
+    resize: vertical;
 }
 
+.content{
+    background-color: var(--MenuColor);
+    border: 2px solid var(--ButtonColor);
+    border-radius: 25px;
+    padding: 4%;
+}
+.content h1{
+    margin: 0px;
+    color: var(--TextHighlight);
+}
+.content > *{
+    margin: 4% 0 0 0;
+}
 
 .tags{
     display: flex;
@@ -125,6 +156,9 @@ textarea{
 .tags > *{
     margin-right: 2%;
 }
+
+
+/* Botões */
 
 #add_tag_button{
     background-image: url(/symbols/AddIcon.svg);
@@ -145,23 +179,26 @@ textarea{
 /* Botões de limpar e enviar */
 
 #buttons{
-    margin-top: 2%;
     display: flex;
     justify-content: space-between;
 }
 
 #buttons button{
     background-color: var(--ButtonColor);
-    border: none;
+    border: 2px solid var(--ButtonColor);
     border-radius: 25px;
 
-
-    width: 30%;
+    width: 35%;
     padding: 1% 0;
     
     font-size: 2rem;
     color: var(--Text2);
     text-align: center;
+}
+
+#buttons button:hover{
+    cursor: pointer;
+    background-color: var(--ButtonHoverColor);
 }
 
 
