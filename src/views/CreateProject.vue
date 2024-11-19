@@ -1,16 +1,17 @@
 <script>
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
-// import { ref } from 'vue'
-// import { VMarkdownEditor } from 'vue3-markdown'
-// import 'vue3-markdown/dist/style.css'
 import TagModal from '@/components/TagModal.vue';
+import PT_BR from '@vavt/cm-extension/dist/locale/pt-BR';
+import { MdEditor } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 
 
 export default{
     name: "CreateProject",
 
     components:{
+        MdEditor,
         TagModal
     },
 
@@ -81,7 +82,8 @@ export default{
             <h1>Conteúdo do projeto:</h1>
             
             <!-- placeholder pro editor de markdown que adiconarei depois (se eu conseguir) -->
-            <textarea v-model="content" rows="15" cols="10"></textarea>
+            <!-- <textarea v-model="content" rows="15" cols="10"></textarea> -->
+            <MdEditor v-model="content" toolbarsExclude="[]"/>
 
             <div id="buttons">
                 <button type="reset">Limpar</button>
