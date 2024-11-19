@@ -32,9 +32,10 @@ export const useAuthStore = defineStore('auth', {
         },
 
         checkToken(){
-            const timeNow = Math.floor(Date.now() / 1000)
-            return this.getUser.exp < timeNow
-            
+            if (this.getUser){
+                const timeNow = Math.floor(Date.now() / 1000)
+                return this.getUser.exp < timeNow
+            }
         },
      
     },
