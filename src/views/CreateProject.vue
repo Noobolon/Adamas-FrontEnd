@@ -26,7 +26,7 @@ export default{
 
             modalOpen: false,
 
-            excButtons: ['mermaid', 'katex', 'revoke', 'pageFullscreen', 'fullscreen', 'htmlPreview', 'catalog', 'github', 'save', 'prettier', 'previewOnly'],
+            excButtons: ['mermaid', 'katex', 'pageFullscreen', 'fullscreen', 'htmlPreview', 'catalog', 'github', 'save', 'prettier', 'previewOnly', 'task'],
 
             tags: []
         }
@@ -69,7 +69,7 @@ export default{
 
             <!-- Modal de tags -->
             <Teleport to="body">
-                <TagModal :show="modalOpen" @close="modalOpen = false">
+                <TagModal :show="modalOpen" @close="modalOpen = false" :addedTags="this.tags">
                 </TagModal>
             </Teleport>
 
@@ -82,7 +82,7 @@ export default{
         <div class="content">
             <h1>Conteúdo do projeto:</h1>
             
-            <MdEditor v-model="content" language="pt-BR" 
+            <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
             :toolbarsExclude="this.excButtons" />
 
             <div id="buttons">

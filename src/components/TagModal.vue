@@ -1,8 +1,33 @@
 <script>
+
+
 export default {
   props: {
-    show: Boolean
+    show: Boolean,
+    addedTags: Array
+  },
+
+  data(){
+    return{
+      all_tags: [
+        {cat_name:"Saúde", cat_id: 1},
+        {cat_name: "Agricultura", cat_id: 2},
+        {cat_name: "Ferramenta", cat_id: 3},
+        {cat_name: "Música", cat_id: 4},
+        {cat_name: "TI", cat_id: 5},
+        {cat_name: "Marketing", cat_id: 6},
+        {cat_name: "Mecânica", cat_id: 7}
+      ]
+    }
+  },
+
+  methods:{
+    clickTag(tag_name){
+      this.addedTags.push(tag_name)
+    }
+    
   }
+
 }
 </script>
 
@@ -13,9 +38,12 @@ export default {
     <div v-if="show" class="modal-mask">
       <div class="container">
         <h2>Selecione uma tag:</h2>
-
         
-        <button @click="$emit('close')">Compreensível, tenha um bom dia.</button> 
+        <ul>
+          <li class="cat" v-for="tag in all_tags" @click="clickTag(tag.cat_name)">{{ tag.cat_name }}</li>
+        </ul>
+
+        <button @click="$emit('close')">Tenha um MAL dia.</button> 
       </div>
         
     </div>
@@ -25,6 +53,17 @@ export default {
 
 
 <style scoped>
+@import url(@/assets/css/categorias.css);
+
+ul{
+  padding: 0px;
+  margin: 2% 0 0 0;
+}
+
+li{
+  cursor: pointer;
+  margin: 0px 2% 2% 0;
+}
 
 .modal-mask {
   position: fixed;
@@ -38,7 +77,8 @@ export default {
 }
 
 .container {
-  width: 35%;
+  width: 25%;
+  height: 50%;
   margin: auto;
   padding: 2%;
   background-color: var(--CardColor);
