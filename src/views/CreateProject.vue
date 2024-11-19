@@ -2,8 +2,8 @@
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
 import TagModal from '@/components/TagModal.vue';
-import PT_BR from '@vavt/cm-extension/dist/locale/pt-BR';
-import { MdEditor } from 'md-editor-v3';
+import PT_BR    from '@vavt/cm-extension/dist/locale/pt-BR';
+import { MdEditor, config } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 
 
@@ -26,17 +26,11 @@ export default{
 
             modalOpen: false,
 
+            excButtons: ['mermaid', 'katex', 'revoke', 'pageFullscreen', 'fullscreen', 'htmlPreview', 'catalog', 'github', 'save', 'prettier', 'previewOnly'],
+
             tags: []
         }
         
-    },
-
-    setup() {
-        const handleUpload = (file) => {
-            console.log(file)
-            return 'https://i.postimg.cc/52qCzTVw/pngwing-com.png'
-        }
-        return { handleUpload }
     },
 
     methods: {
@@ -44,11 +38,18 @@ export default{
 
         tagToArray(tagID){
             this.tags.push(tagID)
-        }
+        },
+
+        
     },
 
     created(){
         this.user_token = this.authStore.getToken
+        config({
+            editorConfig:{
+                languageUserDefined: {'pt-BR': PT_BR}
+            }
+        })
     }
     
 }
@@ -81,9 +82,8 @@ export default{
         <div class="content">
             <h1>Conteúdo do projeto:</h1>
             
-            <!-- placeholder pro editor de markdown que adiconarei depois (se eu conseguir) -->
-            <!-- <textarea v-model="content" rows="15" cols="10"></textarea> -->
-            <MdEditor v-model="content" toolbarsExclude="[]"/>
+            <MdEditor v-model="content" language="pt-BR" 
+            :toolbarsExclude="this.excButtons" />
 
             <div id="buttons">
                 <button type="reset">Limpar</button>
