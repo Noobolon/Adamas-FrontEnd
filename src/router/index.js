@@ -93,19 +93,18 @@ export const router = createRouter({
 })
 
 
-// router.beforeEach(async (to) => {
-//   // redireciona pra página de login
-//   const publicPages = ['/', '/tipo-de-conta', '/cadastrar/usuario', '/login/usuario']; // temporário 
-//   const authRequired = !publicPages.includes(to.path);
-//   const authStore = useAuthStore();
+router.beforeEach(async (to) => {
+  const privatePages = ['/criar-projeto'];
+  const authRequired = privatePages.includes(to.path);
+  const authStore = useAuthStore();
 
-//   if (authRequired && !authStore.user) {
-//       return {
-//           path: '/tipo-de-conta',
-//           query: { returnUrl: to.href }
-//       };
-//   }
-// }); 
+  if (authRequired && !authStore.token && !authStore.checkTok && to.path !== '/tipo-de-conta') {
+      return {
+          path: '/tipo-de-conta',
+          query: { returnUrl: to.href }
+      };
+  }
+}); 
 
 
 
