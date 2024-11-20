@@ -98,7 +98,7 @@ router.beforeEach(async (to) => {
   const authRequired = privatePages.includes(to.path);
   const authStore = useAuthStore();
 
-  if (authRequired && !authStore.token && !authStore.checkTok && to.path !== '/tipo-de-conta') {
+  if (authRequired && !authStore.token && !authStore.checkToken && to.path !== '/tipo-de-conta') {
       return {
           path: '/tipo-de-conta',
           query: { returnUrl: to.href }
