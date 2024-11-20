@@ -38,6 +38,8 @@ export default{
         createProject,
 
         criarProjeto(){
+            /* Função para pegar apenas os IDs da array dos selecionados;
+            a API aceita apenas os IDs das categorias. */ 
             let tagID_array = this.selected_tags.map(tag => tag.cat_id); 
             createProject(
                 this.user_token,
@@ -47,9 +49,20 @@ export default{
                 this.description,
                 this.content
             )
-            router.push("/projetos")
+            router.push("/projetos") // Temporário, levará para a página do projeto futuramente
+        },
+
+        clearAll(){
+            this.title = "",
+            this.selected_tags = [],
+            this.description = "",
+            this.content = ""
+        },
+
+        removeTag(tag){
+            var index = this.selected_tags.indexOf(tag)
+            this.selected_tags.splice(index, 1)
         }
-        
     },
 
     created(){
@@ -59,7 +72,7 @@ export default{
                 languageUserDefined: {'pt-BR': PT_BR}
             }
         })
-    }
+    },
     
 }
 
@@ -74,29 +87,27 @@ export default{
 
 
         <div class="tags">
-            <button id="add_tag_button" @click="modalOpen = true" v-if="selected_tags.length < 3" type="button"></button>
-
             <!-- Modal de tags -->
             <Teleport to="body">
                 <TagModal :show="modalOpen" @close="modalOpen = false" :addedTags="this.selected_tags">
                 </TagModal>
             </Teleport>
 
-            
-            <div v-for="tag in selected_tags" class="cat">{{ tag.cat_name }}</div>
+            <div v-for="tag in selected_tags" class="cat" @click="removeTag(tag)" >{{ tag.cat_name }}</div>
+            <button id="add_tag_button" @click="modalOpen = true" v-if="selected_tags.length < 3" type="button"></button>
         </div> 
 
         <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" required>
 
         <div class="content">
             <h1>Conteúdo do projeto:</h1>
-            
+
             <!-- Editor de markdown md-editor-v3 -->
             <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
             :toolbarsExclude="this.excButtons" />
 
             <div id="buttons">
-                <button type="reset">Limpar</button>
+                <button type="reset" @click="clearAll()">Limpar</button>
                 <button type="submit">Criar</button>
             </div>  
         </div>
@@ -147,12 +158,12 @@ input::placeholder{
     color: var(--TextFieldColor);
 }
 
-
 textarea{
     width: 100%;
     padding: 0;
     resize: vertical;
 }
+
 
 .content{
     background-color: var(--MenuColor);
@@ -164,20 +175,17 @@ textarea{
     margin: 0px;
     color: var(--TextHighlight);
 }
-.content > *{
-    margin: 4% 0 0 0;
-}
+.content > *{margin: 4% 0 0 0;}
 
 .tags{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: left;
     align-items: center;
 }
+.tags > *{margin-right: 2%;}
 
-.tags > *{
-    margin-right: 2%;
-}
+.cat{cursor: pointer;}
 
 
 /* Botões */
