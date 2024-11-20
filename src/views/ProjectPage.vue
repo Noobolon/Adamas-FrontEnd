@@ -1,5 +1,6 @@
 <script>
 import api from '@/api';
+import { getProjectFromID } from '@/assets/scripts/project_scripts';
 import { useAuthStore } from '@/stores/authentication';
 import { marked } from 'marked';
 
@@ -10,6 +11,7 @@ export default{
     data(){
         return{
             authStore: useAuthStore(),
+            p_id: this.$route.params.id,
             project: null,
             formatted_content: null,
         }
@@ -27,18 +29,15 @@ export default{
         }
     },
 
-    async created(){
-
-        // temporário até eu conseguir pegar os dados de um projeto normalmente
-        try {
-            const response = await api.get("/project/13");
-            this.project = response.data;
-            console.log(this.project);
-        } catch (error) {
-            console.log(error)
-        }
-
-
+    created(){
+        getProjectFromID(this.p_id)
+        .then(project => {
+            this.project = project; // Atribui o projeto carregado
+        })
+        .catch(error => {
+            console.error("Erro ao buscar projeto:", error);
+        });
+        
     }
 }
 
@@ -159,13 +158,13 @@ h2{
 
     padding: 4%;
     width: 100%;
-    min-height: 125%;       
+    min-height: 50%;       
 }
 .wrapper {
   width: 100%;
 }
 
-.formatted > *{
+.formatted *{
     max-width: 100%;
     height: auto;
     display: block;

@@ -31,7 +31,7 @@ export default{
     <div class="project_style">
 
         <div class="project_container">
-            <h1><RouterLink to="/">{{ project.title }}</RouterLink></h1>
+            <h1><RouterLink :to="`/projeto/${project.project_id}`">{{ project.title }}</RouterLink></h1>
             <p>{{ project.description }}</p>
 
             <div>

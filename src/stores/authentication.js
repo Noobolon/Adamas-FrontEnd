@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('auth', {
         },
 
         checkToken(){
-            if (this.getUser){
+            if (this.token != null){
                 const timeNow = Math.floor(Date.now() / 1000)
                 return this.getUser.exp < timeNow
             }
@@ -41,6 +41,13 @@ export const useAuthStore = defineStore('auth', {
     },
 
     actions: {
+        clearUserData() {
+            this.token = null;
+            this.acc_type = null;
+            localStorage.removeItem("token");
+            localStorage.removeItem("acc_type");
+        },
+
         async loginUser(email, password) {
             try{
                 const data = await api.post('/login',
@@ -160,6 +167,7 @@ export const useAuthStore = defineStore('auth', {
 
         async logout() {
             this.token = null;
+            this.acc_type = null;
             localStorage.removeItem('token');
             localStorage.removeItem('acc_type');
             await router.push('/');

@@ -10,6 +10,7 @@ export const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue')
     },
+    
     {
       path: '/tipo-de-conta',
       name: 'tipo de conta',
@@ -22,13 +23,13 @@ export const router = createRouter({
       component: () => import('../views/CreateProject.vue')
     },
 
-
-    // temporário, depois provavelmente serão colocados em um lugar próprio
     {
-      path: '/projeto',
+      path: '/projeto/:id',
       name: 'projeto',
       component: () => import('../views/ProjectPage.vue')
     },
+
+    // temporário, depois provavelmente serão colocados em um lugar próprio
 
     {
       path: '/user', // negligenciarei por enquanto

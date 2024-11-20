@@ -20,3 +20,12 @@ export async function createProject(token, titulo, categorias, descricao, conteu
         console.log(error)
     }
 }
+
+export async function getProjectFromID(projectID){
+    try {
+        const response = await api.get(`/project/${projectID}`);
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
