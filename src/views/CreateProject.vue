@@ -5,6 +5,7 @@ import TagModal from '@/components/TagModal.vue';
 import PT_BR    from '@vavt/cm-extension/dist/locale/pt-BR';
 import { MdEditor, config } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
+import router from '@/router';
 
 
 export default{
@@ -37,9 +38,16 @@ export default{
         createProject,
 
         criarProjeto(){
-            var tagID_array = this.selected_tags
-            tagID_array
-            createProject(this.user_token, this.title, )
+            let tagID_array = this.selected_tags.map(tag => tag.cat_id); 
+            createProject(
+                this.user_token,
+
+                this.title,
+                tagID_array,
+                this.description,
+                this.content
+            )
+            router.push("/projetos")
         }
         
     },
@@ -83,6 +91,7 @@ export default{
         <div class="content">
             <h1>Conteúdo do projeto:</h1>
             
+            <!-- Editor de markdown md-editor-v3 -->
             <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
             :toolbarsExclude="this.excButtons" />
 

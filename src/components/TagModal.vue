@@ -26,11 +26,14 @@
     methods:{
       clickTag(tag){
         if (this.addedTags.length < 3){
-          this.addedTags.push(tag)
+          if (!this.addedTags.includes(tag)){
+            this.addedTags.push(tag)
+          } else {
+            alert("Tag já adicionada!") // Provavelmente os alerts serão trocados futuramente
+          }
         } else{
-          alert("Máximo de tags atingido!")
+          alert("Máximo de categorias atingido!")
         }
-        
       }
       
     }
@@ -44,19 +47,18 @@
     <Transition name="modal">
       <div v-if="show" class="modal-mask">
         <div class="container">
-          <h2>Selecione uma tag:</h2>
-          
-          <ul>
-            <li 
-            class="cat"
-            v-for="tag in all_tags"
-            @click="clickTag(tag)"
-            v-if="">
-              {{ tag.cat_name }}
-            </li>
-          </ul>
-
-          <button @click="$emit('close')">Tenha um MAL dia.</button> 
+          <div>
+            <h2>Selecione até 3 categorias:</h2>
+            <ul>
+              <li 
+              class="cat"
+              v-for="tag in all_tags"
+              @click="clickTag(tag)">
+                {{ tag.cat_name }}
+              </li>
+           </ul>
+          </div>
+          <button @click="$emit('close')">Fechar</button> 
         </div>
           
       </div>
@@ -68,6 +70,10 @@
   <style scoped>
   @import url(@/assets/css/categorias.css);
 
+  h2{
+    margin-bottom: 4%;
+  }
+
   ul{
     padding: 0px;
     margin: 2% 0 0 0;
@@ -77,6 +83,24 @@
     cursor: pointer;
     margin: 0px 2% 2% 0;
   }
+
+  button{
+    background-color: var(--ButtonColor);
+    border: 2px solid var(--ButtonColor);
+    border-radius: 25px;
+
+    width: 35%;
+    padding: 1% 0;
+    
+    font-size: 1.5rem;
+    color: var(--Text2);
+    text-align: center;
+  }
+
+  button:hover{
+    cursor: pointer;
+    background-color: var(--ButtonHoverColor);
+}
 
   .modal-mask {
     position: fixed;
@@ -90,8 +114,12 @@
   }
 
   .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     width: 25%;
-    height: 50%;
+    height: 35%;
     margin: auto;
     padding: 2%;
     background-color: var(--CardColor);
@@ -100,10 +128,6 @@
     border: 2px solid var(--ButtonColor);
     border-radius: 25px;
     transition: all 0.3s ease;
-  }
-
-  button{
-    margin: auto;
   }
 
 
