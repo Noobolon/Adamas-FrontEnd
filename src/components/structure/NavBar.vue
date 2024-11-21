@@ -207,7 +207,7 @@ li:last-child{border-right: none;}
 
    img {
         padding: 10px;
-        width: 3vh;
+        width: 5vw;
     }
     
 
