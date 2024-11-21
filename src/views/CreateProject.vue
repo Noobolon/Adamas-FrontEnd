@@ -107,7 +107,7 @@ export default{
 
             <!-- Editor de markdown md-editor-v3 -->
             <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
-            :toolbarsExclude="this.excButtons" />
+            :toolbarsExclude="this.excButtons"/>
 
             <div id="buttons">
                 <button type="reset" @click="clearAll()">Limpar</button>
@@ -269,7 +269,23 @@ textarea{
     border-radius: 25px;
 }
 
+@media screen and (max-width: 600px){
 
+    form{
+        width: 100%;
+        
+    }
+
+    #title{
+        font-size: 25px;
+        background-size: 30px;
+    }
+
+    #desc{
+        font-size: 25px;
+        padding: 2%;
+    }
+}
 
 
 </style>

@@ -57,7 +57,7 @@ export default {
 
     <nav v-if="showMenu" >
         <div>
-            <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
+            <RouterLink to="/" id="returnHomeB"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
                 <li><RouterLink to="/projetos">Projetos</RouterLink></li>
                 <li><RouterLink to="/eventos">Eventos</RouterLink></li>
@@ -69,6 +69,7 @@ export default {
             <p id="username" v-if="user">
                 {{ user.name }}
             </p>
+
 
             <button type="button" id="logout" v-if="accType != null" @click="this.authStore.logout()">
                 <img src="/symbols/LogoutIcon.svg" alt="Sair">
@@ -181,15 +182,32 @@ li:last-child{border-right: none;}
 }
 
 @media screen and (max-width: 600px){
-    div, ul, nav{
-        align-content: center;
+
+
+    header{
         display: flex;
-        flex-direction: column;
+        align-items: start;
+        flex-direction: column-reverse;
     }
-    nav > div > a {
+    ul{
+        flex-direction: column;
+        justify-items: end;
+    }
+    #User{
+        display: block;
+    }
+
+    /* header > div > a {
+        display: none;
+    } */
+    #returnHomeB{
         display: none;
     }
-    nav > div {
+    #logoutB{
+        display: none;
+    }
+
+    header > div {
         align-items: start;
     }
     .mobileNav{
@@ -224,8 +242,7 @@ li:last-child{border-right: none;}
     li:hover{
         background-color: #275e7b;
     }
-    li:first-child{border-top: 2px solid var(--Text2);}
-    li:last-child{border-bottom: 2px solid var(--Text2); margin-bottom: 5%;}
+
 }
 
 </style>
