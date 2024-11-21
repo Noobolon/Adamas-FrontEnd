@@ -4,7 +4,7 @@ import api from "@/api"
 // Função de criar projeto
 export async function createProject(token, titulo, categorias, descricao, conteudo ){
     try {
-        await api.post("/project",
+        const new_project = await api.post("/project",
             {
                 title: titulo,
                 categories_add: categorias,
@@ -15,6 +15,7 @@ export async function createProject(token, titulo, categorias, descricao, conteu
                 headers: {Authorization: `Bearer ${token}`}
             }
         )
+        return new_project.data
         
     } catch (error) {
         console.log(error)

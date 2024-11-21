@@ -37,7 +37,7 @@ export default{
     methods: {
         createProject,
 
-        criarProjeto(){
+        async criarProjeto(){
             /* Função para pegar apenas os IDs da array dos selecionados;
             a API aceita apenas os IDs das categorias. */ 
             let tagID_array = this.selected_tags.map(tag => tag.cat_id); 
@@ -49,7 +49,10 @@ export default{
                 this.description,
                 this.content
             )
-            router.push("/projetos") // Temporário, levará para a página do projeto futuramente
+            .then(project => {
+                router.push(`/projeto/${project.project_id}`)
+                console.log("Projeto criado com sucesso!")
+            })
         },
 
         clearAll(){
