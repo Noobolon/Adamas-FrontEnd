@@ -71,6 +71,10 @@ export default{
 
 a{color: var(--Text2);}
 
+.cat{
+    margin-right: 2%;
+}
+
 .project_style{
     display: flex;
     flex-direction: row ;

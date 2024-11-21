@@ -1,5 +1,4 @@
 <script>
-import api from '@/api';
 import { getProjectFromID } from '@/assets/scripts/project_scripts';
 import { useAuthStore } from '@/stores/authentication';
 import { marked } from 'marked';
@@ -61,7 +60,11 @@ export default{
             </div>
 
             <div class="items_info">
-                <div class="project_tags"><p class="cat" v-for="tag in this.project.categories">{{ tag.name }}</p></div>
+                <div class="project_tags">
+                    <p class="cat" v-for="tag in this.project.categories">
+                        {{ tag.name }}
+                    </p>
+                </div>
 
                 <div class="project_items">
                     <ul>
@@ -100,20 +103,21 @@ export default{
     
 </main>
 
-
-
 </template>
+
 
 <style scoped>
 @import url(@/assets/css/categorias.css);
 
 main{
-    display: flex;
+    display: flexbox;
     flex-direction: row;
     justify-content: center;
     
-    margin: auto;
     padding: 0% 7% 7% 7%;
+}
+main > *{
+    margin: 0 4% 0 0;
 }
 
 ul{
@@ -130,7 +134,9 @@ h2{
     font-size: 2rem;
 }
 
+
 .content{
+    align-items: flex-start;
     width: 50%;
 }
 
@@ -146,6 +152,7 @@ h2{
     font-size: 1.5rem;
 }
 
+
 /* Informações do projeto */
 
 .project_info{
@@ -154,8 +161,7 @@ h2{
     justify-content: space-between;
     
     color: var(--Text2);
-    background-color: var(--ButtonColor);
-
+    background-color: var(--ButtonColor); 
     padding: 4%;
     width: 100%;
     min-height: 50%;       

@@ -19,7 +19,7 @@ export default {
                 <h1>Adamas</h1>
                 <h2>Plataforma de divulgação de projetos e eventos.</h2>
                 <LinkButton link="/tipo-de-conta" height="max-content">Entrar</LinkButton>
-                > 
+                
             </header>
         </div>
 
@@ -50,11 +50,11 @@ export default {
             <ul>
                 <li>
                     <img src="https://avatars.githubusercontent.com/u/115102100?v=4" alt="Perfil">
-                    <h3>Eduardo<span>/frontiendo</span></h3>
+                    <h3>Eduardo<span>/Front-end</span></h3>
                 </li>
                 <li>
                     <img src="https://avatars.githubusercontent.com/u/105937609?v=4" alt="Perfil">
-                    <h3>Felipe<span>/backiendo</span></h3>
+                    <h3>Felipe<span>/Back-end</span></h3>
                 </li>
             </ul>
 
