@@ -47,3 +47,37 @@ export async function commentOnProject(token, projectID, comment){
         console.log(error)
     }
 }
+
+export async function likeProject(token, projectID) {
+    try {
+        const response = await api.post("/project/like",
+            {
+                project_id: projectID
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function deslikeProject(token, projectID) {
+    try {
+        const response = await api.delete("/project/like",
+            {
+                project_id: projectID
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
