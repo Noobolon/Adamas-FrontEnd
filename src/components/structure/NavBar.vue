@@ -56,7 +56,7 @@ export default {
     </div>
 
     <nav v-if="showMenu" >
-        <div>
+        <div id="buttonsNavigator">
             <RouterLink to="/" id="returnHomeB"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
                 <li><RouterLink to="/projetos">Projetos</RouterLink></li>
@@ -80,6 +80,7 @@ export default {
             <RouterLink v-if="accType == 'institution'" to="/">
                 <img class="profile" src="/symbols/user/WhiteInst.png" alt="Perfil">
             </RouterLink>
+
 
             <RouterLink v-if="accType == null" to="/tipo-de-conta">
                 <p>Entrar</p>
@@ -115,7 +116,6 @@ nav > *{
 
 a{
     font-size: 1.75rem;
-
     text-decoration: none;
     text-align: center;
     color: var(--Text2);
@@ -183,8 +183,11 @@ li:last-child{border-right: none;}
 
 @media screen and (max-width: 600px){
 
-
-    header{
+    #buttonsNavigator > *{
+        width: 100%;
+    }
+    nav{
+        width: 100%;
         display: flex;
         align-items: start;
         flex-direction: column-reverse;
@@ -193,17 +196,23 @@ li:last-child{border-right: none;}
         flex-direction: column;
         justify-items: end;
     }
-    #User{
-        display: block;
+    #user {
+        flex-direction: row-reverse;
+        display: flex;
+        padding: 0
+
     }
 
-    /* header > div > a {
-        display: none;
-    } */
+    #user > a > img{
+        width: 12vw;
+    }
+    #username{
+        margin-left: 20px
+    }
     #returnHomeB{
         display: none;
     }
-    #logoutB{
+    #logout{
         display: none;
     }
 
