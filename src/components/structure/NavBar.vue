@@ -55,7 +55,7 @@ export default {
 
     <header v-if="showMenu" >
         <div>
-            <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
+            <RouterLink to="/" id="returnHomeB"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
                 <li><RouterLink to="/projetos">Projetos</RouterLink></li>
                 <li><RouterLink to="/eventos">Eventos</RouterLink></li>
@@ -64,7 +64,7 @@ export default {
         
 
         <div id="User">
-            <a v-if="logged != null" @click="this.authStore.logout()"><img src="/symbols/LogoutIcon.svg" alt=""></a>
+            <a v-if="logged != null" @click="this.authStore.logout()" id="logoutB"><img src="/symbols/LogoutIcon.svg" alt=""></a>
 
             <RouterLink v-if="logged == 'common'" to="/">
                 <img src="/symbols/DefaultProfile.png" alt="Perfil">
@@ -144,14 +144,29 @@ li:last-child{border-right: none;}
 /* Responsividade */
 
 @media screen and (max-width: 600px){
-    div, ul, header{
-        align-content: center;
+
+    header{
         display: flex;
-        flex-direction: column;
+        align-items: start;
+        flex-direction: column-reverse;
     }
-    header > div > a {
+    ul{
+        flex-direction: column;
+        justify-items: end;
+    }
+    #User{
+        display: block;
+    }
+    /* header > div > a {
+        display: none;
+    } */
+    #returnHomeB{
         display: none;
     }
+    #logoutB{
+        display: none;
+    }
+
     header > div {
         align-items: start;
     }
@@ -187,8 +202,7 @@ li:last-child{border-right: none;}
     li:hover{
         background-color: #275e7b;
     }
-    li:first-child{border-top: 2px solid var(--Text2);}
-    li:last-child{border-bottom: 2px solid var(--Text2); margin-bottom: 5%;}
+
 }
 
 </style>

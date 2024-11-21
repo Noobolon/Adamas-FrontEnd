@@ -112,12 +112,11 @@
     display: flex;
     transition: opacity 0.3s ease;
   }
-
+  
   .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     width: 25%;
     height: 35%;
     margin: auto;
@@ -147,4 +146,12 @@
     transform: scale(1.1);
   }
 
+  @media screen and (max-width: 600px){
+    .container{
+      padding: 3%;
+      width: 100%;
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+  }
   </style>
