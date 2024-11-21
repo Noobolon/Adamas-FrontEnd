@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useAuthStore } from '@/stores/authentication';
 
 export default {
-    name: "headerBar",
+    name: "navBar",
     setup() {
         // authStore
         const authStore = useAuthStore();
@@ -28,9 +28,11 @@ export default {
             showMenu, authStore
         };
     },
+
     data(){
         return{
-            logged: this.authStore.getAccType
+            user: this.authStore.getUser,
+            accType: this.authStore.getAccType
         }
     },
 
@@ -46,14 +48,14 @@ export default {
 </script>
 
 <template>
-    <div class="mobileHeader">
+    <div class="mobileNav">
         <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
         <button @click="showMenu = !showMenu">
             <img src="/symbols/menuIcon.svg" alt="menu Icon" >
         </button>
     </div>
 
-    <header v-if="showMenu" >
+    <nav v-if="showMenu" >
         <div>
             <RouterLink to="/" id="returnHomeB"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
@@ -63,29 +65,36 @@ export default {
         </div>
         
 
-        <div id="User">
-            <a v-if="logged != null" @click="this.authStore.logout()" id="logoutB"><img src="/symbols/LogoutIcon.svg" alt=""></a>
+        <div id="user">
+            <p id="username" v-if="user">
+                {{ user.name }}
+            </p>
 
-            <RouterLink v-if="logged == 'common'" to="/">
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
+
+            <button type="button" id="logout" v-if="accType != null" @click="this.authStore.logout()">
+                <img src="/symbols/LogoutIcon.svg" alt="Sair">
+            </button>
+            <RouterLink v-if="accType == 'common'" to="/">
+                <img class="profile" src="/symbols/user/WhiteCommon.png" alt="Perfil">
             </RouterLink>
-            <RouterLink v-if="logged == 'institution'" to="/">
-                <img src="/symbols/InstIcon.png" alt="Perfil">
+            <RouterLink v-if="accType == 'institution'" to="/">
+                <img class="profile" src="/symbols/user/WhiteInst.png" alt="Perfil">
             </RouterLink>
-            <RouterLink v-if="logged == null" to="/tipo-de-conta">
+
+            <RouterLink v-if="accType == null" to="/tipo-de-conta">
                 <p>Entrar</p>
             </RouterLink>
         </div>
 
-    </header>
+    </nav>
 </template>
 
 
 
 <style scoped>
 
-header{
-    padding: 15px;
+nav{
+    width: 100%;
     background-color: var(--ToolbarColor);
     color: var(--Text2);
 
@@ -94,16 +103,15 @@ header{
     align-items: center;
 }
 
-.mobileHeader{
-    display: none;
-}
-div{
+nav > div{
+    width: 35%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-div > a {margin: 0px 10px;}
+nav > *{
+    margin: 1.25%;
+}
 
 a{
     font-size: 1.75rem;
@@ -114,6 +122,13 @@ a{
 }
 a::after{
     color: var(--Text2);
+}
+
+img{
+    padding: none;
+}
+.profile{
+    width: 100%;
 }
 
 /* Botões */
@@ -141,9 +156,33 @@ li:first-child{padding-left: 12%;}
 li:last-child{border-right: none;}
 
 
+#logout{
+    background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+#username{
+    width: 25%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#user{
+    justify-content: flex-end;
+}
+
+
 /* Responsividade */
 
+.mobileNav{
+    display: none;
+}
+
 @media screen and (max-width: 600px){
+
 
     header{
         display: flex;
@@ -157,6 +196,7 @@ li:last-child{border-right: none;}
     #User{
         display: block;
     }
+
     /* header > div > a {
         display: none;
     } */
@@ -170,7 +210,7 @@ li:last-child{border-right: none;}
     header > div {
         align-items: start;
     }
-    .mobileHeader{
+    .mobileNav{
   
         width: 100%;
         display: flex;

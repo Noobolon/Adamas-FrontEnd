@@ -16,12 +16,9 @@ export default {
             Qual tipo de conta deseja criar?
         </h1>
         
-        <LinkButton link="/cadastrar/usuario" icon="/symbols/UserIcon.png" width="25%" height="max-content">Usuário</LinkButton>
-        <LinkButton link="/cadastrar/instituicao" icon="/symbols/InstIcon.png" width="25%" height="max-content">Instituição</LinkButton>
+        <LinkButton link="/cadastrar/usuario" icon="/symbols/user/WhiteCommon.png" width="25%" height="max-content">Usuário</LinkButton>
+        <LinkButton link="/cadastrar/instituicao" icon="/symbols/user/WhiteInst.png" width="25%" height="max-content">Instituição</LinkButton>
 
-      
-
-        
     </main>
 </template>
 
