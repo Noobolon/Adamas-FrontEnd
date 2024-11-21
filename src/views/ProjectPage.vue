@@ -1,5 +1,5 @@
 <script>
-import { getProjectFromID } from '@/assets/scripts/project_scripts';
+import { getProjectFromID, commentOnProject } from '@/assets/scripts/project_scripts';
 import { useAuthStore } from '@/stores/authentication';
 import { marked } from 'marked';
 
@@ -10,9 +10,12 @@ export default{
     data(){
         return{
             authStore: useAuthStore(),
+            token: null,
+            user: null,
+
             p_id: this.$route.params.id,
+            comment: this.comment,
             project: null,
-            formatted_content: null,
         }
     },
 
@@ -25,6 +28,14 @@ export default{
     methods:{
         formatador(num) {
             return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+        },
+
+        comentar(){
+            commentOnProject(
+                this.token,
+                this.project.project_id,
+                this.comment
+            )
         }
     },
 
@@ -37,6 +48,9 @@ export default{
             console.error("Erro ao buscar projeto:", error);
         });
         
+        this.user = this.authStore.getUser
+        this.token = this.authStore.getToken
+
     }
 }
 
@@ -69,13 +83,12 @@ export default{
                 <div class="project_items">
                     <ul>
                         <img src="/logos/AdamasWhite.png" alt="Gosteis">
-                        <!-- Se tiver likes -->
                         <li v-if="project.likes">{{ formatador(project.likes.length) }}</li>
                         <li v-else>0</li>
                     </ul>
                     <ul>
                         <img src="/symbols/CommentIcon.png" alt="Comentários">
-                        <!-- Se tiver comentários -->
+
                         <li v-if="project.comments">{{ project.comments.length }}</li>
                         <li v-else>0</li>
                     </ul>
@@ -87,8 +100,26 @@ export default{
         
         <!-- Incompleto -->
         <section class="comment_section">
+
+            <form id="add_comment" @submit="comentar()">
+                <input v-model="comment" type="text" name="Texto">
+                <button type="submit">Enviar</button>
+            </form>
+
             <div v-for="comment in this.project.comments">
-                {{ comment }}
+                <div id="user">
+                    <img src="/symbols/user/BlackCommon.svg" alt="Foto de usuário">
+                    <p>
+                        {{ comment.user_name }}
+                    </p>
+                </div>
+
+                <div id="comment_content">
+                    <p>
+                        {{ comment.comment }}
+                    </p>
+                </div>
+                
             </div>
         </section>
 
@@ -157,6 +188,7 @@ h2{
 
 .cat{margin: 4% 2% 0 0}
 
+
 /* Informações do projeto */
 
 .project_info{
@@ -168,7 +200,7 @@ h2{
     background-color: var(--ButtonColor); 
     padding: 4%;
     width: 100%;
-    min-height: 50%;       
+    min-height: 25%;       
 }
 .wrapper {
   width: 100%;
@@ -207,11 +239,61 @@ h2{
     min-width: 75%;
 }
 
-.comment_section{
-    background-color: #fff;
-    padding: 2%;
-    width: 90%;
+
+/* Comentários */
+
+#add_comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 4% 0;
+}
+#add_comment input[type="text"]{
+    width: 50%;
 }
 
+.comment_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: #fff;
+    width: 100%;
+    padding: 4%;
+}
+
+.comment_section div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    text-align: center;
+}
+#user img{
+    width: 40%;
+}
+#user p{
+    margin-top: 4%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#comment_content{
+    width: 75%;
+    display: flex;
+    align-items: center;
+}
+#comment_content p{
+    width: 100%;
+    text-align: center;
+}
 
 </style>

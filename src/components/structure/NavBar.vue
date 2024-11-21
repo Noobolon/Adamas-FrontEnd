@@ -74,10 +74,10 @@ export default {
                 <img src="/symbols/LogoutIcon.svg" alt="Sair">
             </button>
             <RouterLink v-if="accType == 'common'" to="/">
-                <img class="profile" src="/symbols/DefaultProfile.png" alt="Perfil">
+                <img class="profile" src="/symbols/user/WhiteCommon.png" alt="Perfil">
             </RouterLink>
             <RouterLink v-if="accType == 'institution'" to="/">
-                <img class="profile" src="/symbols/InstIcon.png" alt="Perfil">
+                <img class="profile" src="/symbols/user/WhiteInst.png" alt="Perfil">
             </RouterLink>
 
             <RouterLink v-if="accType == null" to="/tipo-de-conta">
@@ -159,11 +159,13 @@ li:last-child{border-right: none;}
     background-color: #00000000;
     border: none;
     cursor: pointer;
+    margin-right: 2%;
 }
 
 #username{
     width: 25%;
     font-weight: bold;
+    font-size: 1.5rem;
     text-align: center;
 }
 

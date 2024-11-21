@@ -30,3 +30,20 @@ export async function getProjectFromID(projectID){
         console.log(error)
     }
 }
+
+export async function commentOnProject(token, projectID, comment){
+    try {
+        const response = await api.post(`/project/${projectID}/comment`,
+            {
+                comment: comment
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        ).then(new_comment =>{console.log(new_comment)})
+        return response
+        
+    } catch (error) {
+        console.log(error)
+    }
+}

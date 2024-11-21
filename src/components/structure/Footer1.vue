@@ -17,18 +17,28 @@
 </template>
 
 <style scoped>
-    ul{
-        list-style-type: none;
-        font-size: 1rem;
-        color: var(--TextHighlight2);
 
-        padding: 5%;
+footer{
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+    width: 100%;
+    margin-top: 10%;
+}
+
+ul{
+    width: 100%;
+    list-style-type: none;
+    font-size: 1rem;
+    color: var(--TextHighlight2);
+
+    padding: 5%;
         
-        text-align: center;
-        align-content: center;
+    text-align: center;
+    align-content: center;
 
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 </style>
