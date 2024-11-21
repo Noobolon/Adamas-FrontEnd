@@ -106,7 +106,7 @@ export default{
                 <button type="submit">Enviar</button>
             </form>
 
-            <div v-for="comment in this.project.comments">
+            <div class="comment" v-for="comment in this.project.comments">
                 <div id="user">
                     <img src="/symbols/user/BlackCommon.svg" alt="Foto de usuário">
                     <p>
@@ -242,14 +242,19 @@ h2{
 
 /* Comentários */
 
+.comment{
+    margin-top: 6%;
+}
+
 #add_comment{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0 0 4% 0;
 }
 #add_comment input[type="text"]{
     width: 50%;
+    border: 2px solid var(--ButtonColor);
+    border-radius: 25px;
 }
 
 .comment_section{
@@ -277,7 +282,7 @@ h2{
     text-align: center;
 }
 #user img{
-    width: 40%;
+    width: 30%;
 }
 #user p{
     margin-top: 4%;
@@ -287,13 +292,20 @@ h2{
 }
 
 #comment_content{
+    border-left: 4px solid var(--ButtonColor);
+
     width: 75%;
+    min-height: 100%;
+    height: fit-content;
+    word-break:break-all;
+
     display: flex;
     align-items: center;
 }
 #comment_content p{
     width: 100%;
-    text-align: center;
+    text-align: justify;
+    margin-left: 4%;
 }
 
 </style>
