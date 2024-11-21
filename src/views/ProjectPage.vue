@@ -136,7 +136,9 @@ h2{
 
 
 .content{
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
     width: 50%;
 }
 
@@ -146,12 +148,14 @@ h2{
     padding: 2%;
     border-radius: 0px 25px 25px 0px;
     min-width: 15%;
+    height: fit-content;
 }
 .owners h2{color: var(--TextHighlight2);}
 .owners_style > *{
     font-size: 1.5rem;
 }
 
+.cat{margin: 4% 2% 0 0}
 
 /* Informações do projeto */
 
