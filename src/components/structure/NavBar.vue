@@ -186,6 +186,15 @@ li:last-child{border-right: none;}
     #buttonsNavigator > *{
         width: 100%;
     }
+    #buttonsNavigator{
+        width: 100%;
+    }
+    #buttonsNavigator > ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly
+    }
     nav{
         width: 100%;
         display: flex;
