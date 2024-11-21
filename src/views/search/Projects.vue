@@ -11,14 +11,10 @@ export default{
 
     data() {
         return {
+            projectStore: useProjectStore(),
             search_content: this.search_content,
             projects_list: this.projects_list
         };
-    },
-    
-    setup() {
-        const projectStore = useProjectStore()
-        return { projectStore }
     },
 
     created(){
@@ -38,7 +34,7 @@ export default{
             <div class="tag_container mobile">
                 <h2>Categorias</h2>
                 <div class="categories">
-                    <p class="cat">AAAAAAAAA</p>
+                    <p class="cat"></p>
                     <p class="cat">aaaaaaa</p>
                     <p class="cat">aAAAAAAAA Aa a</p>
                 </div>
@@ -80,6 +76,11 @@ export default{
     display: none;
     width:100%
 }
+
+.tag_container{
+    padding: 2%;
+}
+
 
 @media screen and (max-width: 600px){
 

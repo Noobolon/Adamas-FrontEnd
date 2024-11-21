@@ -1,5 +1,5 @@
 <script>
-import { registerUser } from '@/assets/scripts/register.js'
+import { useAuthStore } from '@/stores/authentication';
 
 export default {
     name: "RegUser",
@@ -13,9 +13,16 @@ export default {
         }
     },
 
+    setup(){
+        const authStore = useAuthStore();
+        return { authStore }
+    },
+
     methods: {
-        registerUser
-    }
+        onSubmit() {
+            this.authStore.regUser(this.name, this.nickname, this.email, this.password)
+        }
+    },
 
 }
 </script>
@@ -28,16 +35,17 @@ export default {
 
         <div class="forms">
             <div class="info">
-                <img src="../../assets/images/diamond.png" alt="Diamante" >
+                <img src="@/assets/images/diamond.png" alt="Diamante" >
             </div>
             
-            <form @submit.prevent="registerUser">
+            <form @submit.prevent="onSubmit">
                 <input v-model="name" placeholder="Nome" id="name" type="text" required>
                 <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" type="text">
                 <input v-model="email" placeholder="E-mail" id="email" type="email" required>
                 <input v-model="password" placeholder="Senha" id="password" type="password" required>
 
-                <input type="button" @click="registerUser()" value="Cadastrar">
+                <input type="submit" value="Cadastrar-se">
+
                 <p>Já possui uma conta?<br><RouterLink to="/login/usuario">Entrar</RouterLink></p>
             </form>
         </div>

@@ -10,15 +10,29 @@ export const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue')
     },
+    
     {
       path: '/tipo-de-conta',
       name: 'tipo de conta',
       component: () => import('../views/register/AccountType.vue')
     },
 
-    // Usuário (temporário, depois provavelmente será colocado em um lugar próprio)
     {
-      path: '/user',
+      path: '/criar-projeto',
+      name: 'criar projeto',
+      component: () => import('../views/CreateProject.vue')
+    },
+
+    {
+      path: '/projeto/:id',
+      name: 'projeto',
+      component: () => import('../views/ProjectPage.vue')
+    },
+
+    // temporário, depois provavelmente serão colocados em um lugar próprio
+
+    {
+      path: '/user', // negligenciarei por enquanto
       name: 'usuário',
       component: () => import('../views/UserPage.vue')
     },
@@ -86,19 +100,18 @@ export const router = createRouter({
 })
 
 
-// router.beforeEach(async (to) => {
-//   // redireciona pra página de login
-//   const publicPages = ['/', '/tipo-de-conta', '/cadastrar/usuario', '/login/usuario']; // temporário 
-//   const authRequired = !publicPages.includes(to.path);
-//   const authStore = useAuthStore();
+router.beforeEach(async (to) => {
+  const privatePages = ['/criar-projeto'];
+  const authRequired = privatePages.includes(to.path);
+  const authStore = useAuthStore();
 
-//   if (authRequired && !authStore.user) {
-//       return {
-//           path: '/tipo-de-conta',
-//           query: { returnUrl: to.href }
-//       };
-//   }
-// }); 
+  if (authRequired && !authStore.token && !authStore.checkToken && to.path !== '/tipo-de-conta') {
+      return {
+          path: '/tipo-de-conta',
+          query: { returnUrl: to.href }
+      };
+  }
+}); 
 
 
 

@@ -1,10 +1,15 @@
 <script>
 import { RouterLink } from 'vue-router';
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useAuthStore } from '@/stores/authentication';
 
 export default {
     name: "headerBar",
     setup() {
+        // authStore
+        const authStore = useAuthStore();
+        
+        // Responsividade
         const showMenu = ref(true); 
         const initMenu = () => {
         const larguraTela = window.innerWidth;
@@ -17,15 +22,18 @@ export default {
         onUnmounted(() => {
             window.removeEventListener('resize', initMenu);
         });
+
+
         return {
-            showMenu
+            showMenu, authStore
         };
     },
     data(){
         return{
-            logged: false,
+            logged: this.authStore.getAccType
         }
     },
+
     methods:{
         scrollDown(){
             window.scrollTo(100,100);
@@ -41,7 +49,7 @@ export default {
     <div class="mobileHeader">
         <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
         <button @click="showMenu = !showMenu">
-            <img src="/symbols/menuIcon.svg" alt="menu Icon"  >
+            <img src="/symbols/menuIcon.svg" alt="menu Icon" >
         </button>
     </div>
 
@@ -56,14 +64,16 @@ export default {
         
 
         <div id="User">
-            <RouterLink to="">
-                <img src="/symbols/Notifications.png" alt="Notificações">
-            </RouterLink>
-            <RouterLink v-if="logged == false" to="/tipo-de-conta">
+            <a v-if="logged != null" @click="this.authStore.logout()"><img src="/symbols/LogoutIcon.svg" alt=""></a>
+
+            <RouterLink v-if="logged == 'common'" to="/">
                 <img src="/symbols/DefaultProfile.png" alt="Perfil">
             </RouterLink>
-            <RouterLink v-else to="">
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
+            <RouterLink v-if="logged == 'institution'" to="/">
+                <img src="/symbols/InstIcon.png" alt="Perfil">
+            </RouterLink>
+            <RouterLink v-if="logged == null" to="/tipo-de-conta">
+                <p>Entrar</p>
             </RouterLink>
         </div>
 

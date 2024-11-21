@@ -1,7 +1,5 @@
 <script>    
 import { useAuthStore } from '@/stores/authentication';
-import { storeToRefs } from 'pinia';
-
 
 export default {
     name: "LogUser",
@@ -24,9 +22,8 @@ export default {
             this.authStore.loginUser(this.email, this.password)
         }
     },
-
-
 }
+
 </script>
 
 <template>
@@ -35,7 +32,7 @@ export default {
         <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Login de Usuário</h1>
         <div class="forms">
-            <img src="../../assets/images/PencilDiamond.png" alt="Diamante">
+            <img src="@/assets/images/PencilDiamond.png" alt="Diamante">
 
             <form @submit.prevent="onSubmit">
                 <input v-model="email" placeholder="E-mail" id="email" type="email" required>
@@ -48,7 +45,7 @@ export default {
     </main>
 </template>
 
-<style scoped>
+<style scoped>  
 @import url(@/assets/css/registro.css);
 
 </style>

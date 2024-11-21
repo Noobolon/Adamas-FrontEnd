@@ -1,13 +1,18 @@
-import api from "@/api";
+// import api from "@/api";
 
-export async function getProjectFromUserID(userID){
-    api.post(`/project/user/${userID}`, {
+// export async function getProjectsFromUserID(userID){
 
-    })
-    .then(function (response) {
-        return response
-    })
-    .catch(function (error) {                    
-        console.log(error);
-    });
-}
+//     try {
+//         await api.get(`project/user/${userID}`)
+//         .then(response => {
+//             return response.data
+//         })  
+        
+        
+//     } catch (error) {
+//         console.log(error)
+//     }
+
+    
+    
+// }
