@@ -341,12 +341,17 @@ h2{
 }
 
 #user{
+    border-right: 4px solid var(--ButtonColor);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 20%;
     text-align: center;
+}
+
+#user > * {
+    margin: 20px;
 }
 #user img{
     width: 30%;
@@ -359,7 +364,6 @@ h2{
 }
 
 #comment_content{
-    border-left: 4px solid var(--ButtonColor);
 
     width: 80%;
     min-height: 100%;
@@ -396,10 +400,6 @@ h2{
         width: 100%;
         flex-direction: column;
     }
-    /* .project_info{
-
-        padding: 0;
-    } */
 
     .content > * {
         padding: 0;
@@ -427,6 +427,7 @@ h2{
     }
 
     .project_tags{
+        width: 20%;
         margin: 10px;
     }
     .project_items{
@@ -439,9 +440,14 @@ h2{
     }
 
     #comment_container{
+
         margin: 10px
     }
 
+    .comment { 
+        display: flex; 
+        align-items: center;
+    }
     .comment > p {
         padding: 10px;
     }
