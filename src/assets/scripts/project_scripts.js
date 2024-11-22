@@ -58,6 +58,7 @@ export async function likeProject(token, projectID) {
                 headers: {Authorization: `Bearer ${token}`}
             }
         )
+        location.reload()
         return response
         
     } catch (error) {
@@ -65,7 +66,7 @@ export async function likeProject(token, projectID) {
     }
 }
 
-export async function deslikeProject(token, projectID) {
+export async function unlikeProject(token, projectID) {
     try {
         const response = await api.delete("/project/like",
             {
@@ -75,6 +76,7 @@ export async function deslikeProject(token, projectID) {
                 headers: {Authorization: `Bearer ${token}`}
             }
         )
+        location.reload()
         return response
         
     } catch (error) {

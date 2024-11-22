@@ -1,5 +1,5 @@
 <script>
-import { getProjectFromID, commentOnProject, likeProject, deslikeProject } from '@/assets/scripts/project_scripts';
+import { getProjectFromID, commentOnProject, likeProject, unlikeProject } from '@/assets/scripts/project_scripts';
 import { useAuthStore } from '@/stores/authentication';
 import { marked } from 'marked';
 
@@ -37,32 +37,42 @@ export default{
                 this.comment
             )
         },
-        
-        checkLikes(){
-            var project_likes = Array.from(this.project.likes)
-            console.log(project_likes)
-            project_likes.includes(uid)
+
+        hasUserLiked(){
+            if (this.project.likes){
+                let like_array = this.project.likes.map(like => like.user_id)
+                var isTrue = like_array.includes(this.user.id)
+                return isTrue
+            }
         },
 
-        likeToggle(){
-            var uid = this.user.id
-            
+        async likeToggle(){
+            const uid = this.user.id
+            const p_id = this.project.project_id
 
-            
-            console.log(project_likes, checkLikes)
+            if (this.project.likes){
 
-            if (checkLikes){
-                deslikeProject(
+                let like_array = this.project.likes.map(like => like.user_id); // coloca todos os likes em uma array
+                if (like_array.includes(uid)){ // se o ID to usuário estiver na array, remover like
+                    
+                    await unlikeProject(
+                        this.token,
+                        p_id
+                    )
+
+                } else {
+                    await likeProject(
+                        this.token,
+                        p_id
+                    )
+                }
+            } else { // caso não tenha nenhum like
+                await likeProject(
                     this.token,
-                    this.project.project_id
+                    p_id
                 )
-            } else {
-                likeProject(
-                    this.token,
-                    this.project.project_id
-                )
+                
             }
-            
             
         }
 
@@ -79,7 +89,6 @@ export default{
         
         this.user = this.authStore.getUser
         this.token = this.authStore.getToken
-
     }
 }
 
@@ -111,8 +120,8 @@ export default{
 
                 <div class="project_items">
                     <ul @click="likeToggle">
-                        <img v-if="checkLikes" src="/logos/HollowDiamond.svg" alt="Likes">
-                        <img v-else src="/logos/AdamasWhite.png" alt="Likes">
+                        <img v-if="hasUserLiked()" src="/logos/AdamasWhite.png" alt="Likes">
+                        <img v-else src="/logos/HollowDiamond.svg" alt="Likes">
                        
                         <li v-if="project.likes">{{ formatador(project.likes.length) }}</li>
                         <li v-else>0</li>
