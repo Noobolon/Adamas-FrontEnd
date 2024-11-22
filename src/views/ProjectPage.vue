@@ -101,7 +101,6 @@ export default{
 <main v-if="project">
 
     <div class="content">
-
         <section class="project_info">
             <div class="wrapper">
                 <header>
@@ -147,6 +146,7 @@ export default{
                 <button type="submit">Enviar</button>
             </form>
 
+
             <div id="comment_container">
                 <article class="comment" v-for="comment in this.project.comments">
                     <div id="user">
@@ -185,7 +185,7 @@ export default{
 @import url(@/assets/css/categorias.css);
 
 main{
-    display: flexbox;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     
@@ -247,7 +247,7 @@ h2{
     min-height: 35vh;
 }
 .wrapper {
-  width: 100%;
+    max-width: 96%;
 }
 
 .formatted *{
@@ -257,6 +257,9 @@ h2{
     margin: 0 auto;
 }
 
+.formatted > p {
+    text-align: justify;
+}
 .items_info{
     display: flex;
     flex-direction: row;
@@ -370,6 +373,79 @@ h2{
     width: 100%;
     text-align: justify;
     margin-left: 4%;
+}
+
+@media screen and (max-width: 800px){
+    .content{
+        width: 80%;
+    }
+    .owners{
+        margin: 10px;
+    }
+
+    .project_items{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 600px){
+
+    main{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        flex-direction: column;
+    }
+    /* .project_info{
+
+        padding: 0;
+    } */
+
+    .content > * {
+        padding: 0;
+    }
+    .content{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .owners{
+        margin-top: 20px;
+        width: 80%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .project_info > h1 {
+        font-size: 10px;
+    }
+    .owners > * {
+        margin: 10px;
+    }
+
+    .wrapper{
+        margin: 10px;
+    }
+
+    .project_tags{
+        margin: 10px;
+    }
+    .project_items{
+        margin: 10px;
+    }
+    #add_comment{
+        margin: 10px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #comment_container{
+        margin: 10px
+    }
+
+    .comment > p {
+        padding: 10px;
+    }
+
 }
 
 </style>
