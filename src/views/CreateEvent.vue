@@ -1,6 +1,8 @@
 <script>
+import { createEvent } from '@/assets/scripts/event_scripts';
 import RoomModal from '@/components/RoomModal.vue';
 import { useAuthStore } from '@/stores/authentication';
+import { format } from 'date-fns';
 
 
 
@@ -32,7 +34,32 @@ export default{
         getCurrentDate(){
             let curDate = new Date()
             return curDate.toISOString()
-        }   
+        },
+
+        dateFormatter(date){
+            const formattedDate = format(date, 'yyyy-MM-dd hh:mm')
+            return formattedDate
+        },
+
+        async criarEvento(){
+            console.log(
+                this.dateFormatter(this.start_date),
+                this.dateFormatter(this.end_date)
+            )
+
+            createEvent(
+                this.user_token,
+                
+                this.name,
+                this.address,
+                this.description,
+                this.dateFormatter(this.start_date),
+                this.dateFormatter(this.end_date)
+                
+            ).then(newEvent => {
+                console.log(newEvent)
+            })
+        }
 
     },
 
@@ -59,31 +86,26 @@ export default{
                 <input id="address" v-model="address" placeholder="Local do evento" type="text" required>
 
                 <div id="datetimes">
-
                     <input
                     type="datetime-local"
                     name="Data Inicial" 
                     id="startDate"
+                    v-model="start_date"
+                    v-on:change="console.log(this.start_date)"
                     >
 
                     <input
                     type="datetime-local"
                     name="Data Final"
                     id="endDate"
+                    v-model="end_date"
                     >
-
                 </div>
 
                 <textarea id="desc" v-model="description" placeholder="Descrição do evento" type="text" required rows="12">
                 </textarea>
 
             </fieldset>
-
-            <div class="buttons">
-                <button @click="modalOpen = true" type="button">
-                    Adicionar sala
-                </button>
-            </div>  
 
             <Teleport to="body">
                 <RoomModal
@@ -92,9 +114,17 @@ export default{
                 :roomArray="this.rooms"/>
             </Teleport>
 
-            <fieldset class="rooms">
-
-            </fieldset>
+            <!-- <fieldset v-show="editing" class="rooms">
+                <div class="buttons">
+                    <button @click="modalOpen = true" type="button" id="add_room">
+                        Adicionar sala
+                    </button>
+                </div>
+                <div class="added_room" v-if="this.rooms.length != 0" v-for="room in this.rooms">
+                    <h1>{{ room.room_name }}</h1>
+                    <p><b>Quantidade de projetos:</b> {{ room.room_capacity }}</p>
+                </div>
+            </fieldset> -->
 
             <div class="buttons">
                 <button type="reset">Limpar</button>
@@ -130,6 +160,22 @@ export default{
 }
 .event_content *{
     margin-bottom: 4%;
+}
+
+
+/* Salas */
+
+#add_room{
+    width: 25%;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    margin-left: 4%;
+}
+
+.added_room{
+    background-color: var(--SubBackgroundColor);
+    border: 4px solid var(--ButtonColor);
+    padding: 2%;
 }
 
 

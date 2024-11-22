@@ -12,7 +12,7 @@ export default{
 
     data() {
         return{
-            data_inicial: format(this.event.start_date, "d LLL 'às' k:mm", {locale: ptBR}),
+            data_inicial: format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR}),
             data_final: this.data_final
         };
     },
@@ -20,9 +20,9 @@ export default{
     mounted(){
         // Se os dois meses forem iguais, mostrar só a hora
         if (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL")){
-            this.data_final = format(this.event.end_date, "'às' k:mm", {locale: ptBR})
+            this.data_final = format(this.event.end_date, "'às' HH:mm", {locale: ptBR})
         } else {
-            this.data_final = format(this.event.end_date, "d LLL 'às' k:mm", {locale: ptBR})
+            this.data_final = format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
         }
     }
 }

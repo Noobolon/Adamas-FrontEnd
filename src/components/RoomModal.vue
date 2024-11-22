@@ -13,6 +13,14 @@ export default{
             room_name: this.room_name,
             room_capacity: this.room_capacity
         }
+    },
+
+    methods:{
+        addRoom(){
+            this.roomArray.push(
+                
+            )
+        }
     }
 
 
@@ -42,7 +50,7 @@ export default{
 
                         <button @click.prevent="
                         console.log('ue'); $emit('close')
-                        ">
+                        ">  
                             Adicionar
                         </button>
                     </div>
