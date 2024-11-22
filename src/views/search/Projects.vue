@@ -26,29 +26,55 @@ export default{
     methods: {
         
         clickTag(tag){
-            if (!this.selected_tags.includes(tag)){
+            if (!this.selected_tags.includes(tag)){ // caso não tenha a tag, adicione-a
                 this.selected_tags.push(tag)
-            } else {
+            } else { // caso tenha, remova-a
                 var index = this.selected_tags.indexOf(tag)
                 this.selected_tags.splice(index, 1)
             }
             console.log(this.selected_tags)
+        },
+
+        updateSearch(search){
+            const searchContent = search ? search.toLowerCase() : ""; // vê se o conteúdo pesquisado está vazio
+
+            this.search_results = this.projectStore.projects.filter(
+                project => project.title.toLowerCase().includes(searchContent)
+            )
+            
+            let selectedID_array = this.selected_tags.map(tag => tag.cat_id) // IDs das tags selecionadas
+
+            if (selectedID_array && selectedID_array.length != 0){ // se existe e tem alguma coisa
+                this.search_results = this.search_results.filter(
+                    project => {
+                        if (Array.isArray(project.categories)) { // verifica se existe e se há categorias
+                            let projectID_array = project.categories.map(category => category.id); // IDs das tags dos projetos
+                            return projectID_array.some(id => selectedID_array.includes(id))
+                        }
+                        return false // tira objetos sem categorias
+                    }
+                )
+            }
         }
 
     },
 
     watch: {
-        search_content(newSearch){
-            this.search_results = this.projectStore.projects.filter(
-                project => project.title.toLowerCase().includes(newSearch.toLowerCase())
-            )
-            // Filtro de categorias (incompleto)
-            // this.search_results = this.search_results.filter(
-            //     project => project.categories.includes(this.selected_tags)
-            // )
-        }
-    },
 
+        search_content(newSearch){
+            this.updateSearch(newSearch)
+            
+        },
+
+        selected_tags: {
+            handler(newTags) {
+                // Atualiza os resultados sempre que as tags selecionadas mudarem
+                this.updateSearch(this.search_content);
+            },
+            deep: true // Necessário se `selected_tags` for um array de objetos
+        }
+        
+    },
 
     async created(){
         await this.projectStore.fetchProjects()
