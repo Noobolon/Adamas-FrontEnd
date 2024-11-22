@@ -70,11 +70,16 @@ export async function unlikeProject(token, projectID) {
     try {
         const response = await api.delete("/project/like",
             {
-                project_id: projectID
+                data: {
+                    project_id: projectID
+                }, 
+                headers: { 
+                    Authorization: `Bearer ${token}`
+                }
             },
-            {
-                headers: {Authorization: `Bearer ${token}`}
-            }
+
+
+
         )
         location.reload()
         return response
