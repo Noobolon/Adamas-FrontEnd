@@ -19,7 +19,7 @@ export default{
 
     mounted(){
         // Se os dois meses forem iguais, mostrar só a hora
-        if (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL")){
+        if ( (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL")) && ( format(this.event.end_date, "d") == format(this.event.start_date, "d") )){
             this.data_final = format(this.event.end_date, "'às' HH:mm", {locale: ptBR})
         } else {
             this.data_final = format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
