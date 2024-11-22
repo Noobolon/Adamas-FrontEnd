@@ -12,13 +12,30 @@ export default{
     data() {
         return {
             projectStore: useProjectStore(),
+            projects_list: this.projects_list,
             search_content: this.search_content,
-            projects_list: this.projects_list
+
+            search_results: this.search_results
         };
     },
+    
+    methods: {
 
-    created(){
-        this.projectStore.fetchProjects()
+    },
+
+    watch: {
+        search_content(newSearch){
+            this.search_results = this.projectStore.projects.filter(
+                project => project.title.toLowerCase().includes(newSearch.toLowerCase())
+            )
+        }
+    },
+
+
+    async created(){
+        await this.projectStore.fetchProjects()
+        this.search_results =this.projectStore.getProjects
+        
     },
 }
 
@@ -27,9 +44,9 @@ export default{
 <template>
     <main>
         <div class="content">
-            <div class="srch_container">
+            <form onkeyup="" class="srch_container" >
                 <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
-            </div>
+            </form>
             
             <div class="tag_container mobile">
                 <h2>Categorias</h2>
@@ -48,7 +65,7 @@ export default{
             </nav>
    
             <div class="cntnt_container">
-                <div v-for="project in this.projectStore.getProjects">
+                <div v-for="project in this.search_results">
                     <ProjectComponent :project="project" :key="project.project_id" />
                 </div>
             </div>

@@ -40,9 +40,11 @@ export default{
 
         hasUserLiked(){
             if (this.project.likes){
-                let like_array = this.project.likes.map(like => like.user_id)
-                var isTrue = like_array.includes(this.user.id)
-                return isTrue
+                if (this.user){
+                    let like_array = this.project.likes.map(like => like.user_id)
+                    var isTrue = like_array.includes(this.user.id)
+                    return isTrue
+                }
             }
         },
 
