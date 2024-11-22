@@ -13,7 +13,6 @@ export default{
     data() {
         return {
             projectStore: useProjectStore(),
-            projects_list: this.projects_list,
 
             search_content: this.search_content,
             search_results: this.search_results,
@@ -63,7 +62,6 @@ export default{
 
         search_content(newSearch){
             this.updateSearch(newSearch)
-            
         },
 
         selected_tags: {

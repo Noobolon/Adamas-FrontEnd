@@ -10,13 +10,33 @@ export default{
     data() {
         return {
             eventStore: useEventStore(),
+
             search_content: this.search_content,
-            events_list: this.events_list
+            search_results: this.search_results,
         };
     },
 
-    created(){
-        this.eventStore.fetchEvents()
+    methods: {
+
+        updateSearch(search){
+            const searchContent = search ? search.toLowerCase() : "";
+
+            this.search_results = this.eventStore.events.filter(
+                event => event.name.toLowerCase().includes(searchContent)
+            )
+        }
+
+    },
+
+    watch:{
+        search_content(newSearch){
+            this.updateSearch(newSearch)
+        }
+    },
+
+    async created(){
+        await this.eventStore.fetchEvents()
+        this.search_results = this.eventStore.getEvents
     },
 
 }
@@ -27,7 +47,7 @@ export default{
     <main>
         <div class="content">
             <div class="srch_container">
-                <input type="text" placeholder="Pesquisar projetos..." v-model="search_content">
+                <input type="text" placeholder="Pesquisar eventos..." v-model="search_content">
             </div>
             <nav class="ctgry_container">
                 <RouterLink to="/projetos">Projetos</RouterLink>
@@ -36,7 +56,7 @@ export default{
             </nav>
 
             <div class="cntnt_container">
-                <div v-for="event in this.eventStore.getEvents">
+                <div v-for="event in this.search_results">
                     <EventComponent :event="event" :key="event.id" />
                 </div>
             </div>

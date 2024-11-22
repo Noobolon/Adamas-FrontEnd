@@ -45,7 +45,7 @@ export default {
     <div id="Equipe">
             <article>
                 <h2>Equipe</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum voluptatum et aliquam eum voluptatem atque non sint! Quibusdam reprehenderit doloremque ex nam porro earum, similique consectetur fuga assumenda architecto adipisci.</p>
+                <p>Nós visamos abordar a dificuldade ao organizar projetos e eventos digitalmente em instituições escolares e temos como objetivo desenvolver um site para compartilhar projetos de alunos e eventos em instituições. Atualmente, estamos com o desenvolvimento parcialmente pronto. </p>
             </article>
             <ul>
                 <li>
