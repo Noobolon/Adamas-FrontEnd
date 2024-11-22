@@ -277,6 +277,10 @@ h2{
     list-style: none;
     text-align: center;
 }
+.project_items ul > *:hover{
+    cursor: pointer;
+}
+
 .project_items img{width: 35px;}
 
 .project_tags{

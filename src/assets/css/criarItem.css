@@ -80,12 +80,12 @@ fieldset{
 
 /* Botões de limpar e enviar */
 
-#buttons{
+.buttons{
     display: flex;
     justify-content: space-between;
 }
 
-#buttons button{
+.buttons button{
     background-color: var(--ButtonColor);
     border: 2px solid var(--ButtonColor);
     border-radius: 25px;
@@ -98,7 +98,7 @@ fieldset{
     text-align: center;
 }
 
-#buttons button:hover{
+.buttons button:hover{
     cursor: pointer;
     background-color: var(--ButtonHoverColor);
 }

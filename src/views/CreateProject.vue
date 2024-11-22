@@ -109,7 +109,7 @@ export default{
             <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
             :toolbarsExclude="this.excButtons"/>
 
-            <div id="buttons">
+            <div class="buttons">
                 <button type="reset" @click="clearAll()">Limpar</button>
                 <button type="submit">Criar</button>
             </div>  

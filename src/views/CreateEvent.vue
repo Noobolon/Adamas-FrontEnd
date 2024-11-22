@@ -1,15 +1,21 @@
 <script>
+import RoomModal from '@/components/RoomModal.vue';
 import { useAuthStore } from '@/stores/authentication';
 
 
 
 export default{
     name: "CreateProject",
+
+    components:{
+        RoomModal
+    },
     
     data(){
         return{
             authStore: useAuthStore(),
 
+            user_token: this.user_token,
             name: this.event,
             address: this.address,
             description: this.description,
@@ -17,7 +23,8 @@ export default{
             start_date: this.start_date,
             end_date: this.end_date,
 
-            rooms: []
+            rooms: [],
+            modalOpen: false
         }
     },
 
@@ -30,6 +37,7 @@ export default{
     },
 
     created(){
+        this.user_token = this.authStore.getToken
         console.log(this.curDate)
     }
 
@@ -71,13 +79,24 @@ export default{
 
             </fieldset>
 
-            <button type="button">Adicionar sala</button>
+            <div class="buttons">
+                <button @click="modalOpen = true" type="button">
+                    Adicionar sala
+                </button>
+            </div>  
+
+            <Teleport to="body">
+                <RoomModal
+                :show="modalOpen"
+                @close="modalOpen = false"
+                :roomArray="this.rooms"/>
+            </Teleport>
 
             <fieldset class="rooms">
 
             </fieldset>
 
-            <div id="buttons">
+            <div class="buttons">
                 <button type="reset">Limpar</button>
                 <button type="submit">Criar</button>
             </div>  
