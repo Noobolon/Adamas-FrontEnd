@@ -35,7 +35,7 @@ export default {
 
         <div class="forms">
             <div class="info">
-                <img src="@/assets/images/diamond.png" alt="Diamante" >
+                <img src="@/assets/images/PencilDiamond.png" alt="Diamante" >
             </div>
             
             <form @submit.prevent="onSubmit">
