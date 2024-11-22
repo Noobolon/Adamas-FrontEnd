@@ -132,8 +132,8 @@ export default{
 </template>
 
 <style scoped>
-@import url(../../assets/css/pesquisas.css);
-@import url(../../assets/css/categorias.css);
+@import url(@/assets/css/pesquisas.css);
+@import url(@/assets/css/categorias.css);
 
 
 .tag_container .cat{

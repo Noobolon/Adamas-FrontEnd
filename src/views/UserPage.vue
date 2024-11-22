@@ -2,6 +2,7 @@
 import ProjectComponent from '@/components/ProjectComponent.vue';
 import { useProjectStore } from '@/stores/project';
 import api from '@/api'
+import { getProjectsFromUserID } from '@/assets/scripts/project_scripts';
 
 export default {
     name: "UserPage",
@@ -10,27 +11,24 @@ export default {
     data(){
         return{
             projectStore: useProjectStore(),
+
+            u_id: this.$route.params,
             user_projects: {}
         }
     },
 
     methods: {
-        async getProjectsFromUserID(userID) {
-            try {
-                const response = await api.get(`project/user/${userID}`)
-                .then(function (response) {
-                    const dados = response.data;
-                    var user_projects = dados
-                });
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
+        
     },
 
-    mounted(){
-        this.getProjectsFromUserID(1)
+    created(){
+        getProjectsFromUserID(1)
+        .then(projects => {
+            this.user_projects = projects
+        })
+        .catch(error => {
+            console.error(error)
+        })
         
     }
 
@@ -46,7 +44,7 @@ export default {
 </div>
 
 <div class="container">
-    <aside class="user_container">
+    <div class="user_container">
         <img src="/symbols/UserIcon.png" alt="Usuário">
         <h1>Usuário</h1>
         <ul>
@@ -57,14 +55,17 @@ export default {
             <li>???</li>
             <li>Sair</li>
         </ul>
-    </aside>
+    </div>
 
     <main>
         <div class="cntnt_container">
-            <div v-for="project in this.user_projects">
-                <ProjectComponent :project="project" :key="project.project_id" />
-            </div>
+            <ProjectComponent
+            v-for="project in this.user_projects"
+            :project="project"
+            :key="project.project_id" />
+
         </div>
+        
     </main>
 
 </div>
@@ -76,6 +77,10 @@ export default {
 @import url(@/assets/css/pesquisas.css);
 @import url(@/assets/css/categorias.css);
 
+main{
+    display: flex;
+    justify-content: center;
+}
 
 #banner{
     min-width: 100%;
@@ -90,9 +95,14 @@ export default {
 }
 
 .user_container{
-    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
 }
 
-
+.cntnt_container{
+    width: 100%;
+}
 
 </style>

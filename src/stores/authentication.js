@@ -176,4 +176,3 @@ export const useAuthStore = defineStore('auth', {
     }
 });
 
-// https://stackblitz.com/edit/vue-3-pinia-jwt-authentication-tutorial-and-example?file=src%2Fstores%2Fauth.store.js

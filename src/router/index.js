@@ -35,9 +35,8 @@ export const router = createRouter({
       component: () => import('../views/ProjectPage.vue')
     },
 
-    // temporário, depois provavelmente serão colocados em um lugar próprio
     {
-      path: '/user', // negligenciarei por enquanto
+      path: '/user/:id',
       name: 'usuário',
       component: () => import('../views/UserPage.vue')
     },
