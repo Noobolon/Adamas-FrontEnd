@@ -2,7 +2,7 @@
 import LinkButton from '@/components/LinkButton.vue';
 
 export default {
-    name: "RegisterAccount",
+    name: "LoginAccount",
     components: {
         LinkButton
     }
@@ -13,11 +13,11 @@ export default {
     <main>
 
         <h1>
-            Qual tipo de conta deseja criar?
+            Com qual tipo de conta deseja entrar?
         </h1>
         
-        <LinkButton link="/cadastrar/usuario" icon="/symbols/user/WhiteCommon.png" width="25%" height="max-content">Usuário</LinkButton>
-        <LinkButton link="/cadastrar/instituicao" icon="/symbols/user/WhiteInst.png" width="25%" height="max-content">Instituição</LinkButton>
+        <LinkButton link="/login/usuario" icon="/symbols/user/WhiteCommon.png" width="25%" height="max-content">Usuário</LinkButton>
+        <LinkButton link="/login/instituicao" icon="/symbols/user/WhiteInst.png" width="25%" height="max-content">Instituição</LinkButton>
 
     </main>
 </template>
