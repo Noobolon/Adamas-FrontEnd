@@ -24,13 +24,18 @@ export const router = createRouter({
     },
 
     {
+      path: '/criar-evento',
+      name: 'criar evento',
+      component: () => import('../views/CreateEvent.vue')
+    },
+
+    {
       path: '/projeto/:id',
       name: 'projeto',
       component: () => import('../views/ProjectPage.vue')
     },
 
     // temporário, depois provavelmente serão colocados em um lugar próprio
-
     {
       path: '/user', // negligenciarei por enquanto
       name: 'usuário',
