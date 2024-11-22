@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router';
 import ProjectComponent from '../../components/ProjectComponent.vue';
 import { useProjectStore } from '@/stores/project';
+import { all_tags } from '@/assets/scripts/search_scripts';
 
 
 export default{
@@ -13,13 +14,26 @@ export default{
         return {
             projectStore: useProjectStore(),
             projects_list: this.projects_list,
-            search_content: this.search_content,
 
-            search_results: this.search_results
+            search_content: this.search_content,
+            search_results: this.search_results,
+ 
+            all_tags: all_tags,
+            selected_tags: []
         };
     },
     
     methods: {
+        
+        clickTag(tag){
+            if (!this.selected_tags.includes(tag)){
+                this.selected_tags.push(tag)
+            } else {
+                var index = this.selected_tags.indexOf(tag)
+                this.selected_tags.splice(index, 1)
+            }
+            console.log(this.selected_tags)
+        }
 
     },
 
@@ -28,13 +42,17 @@ export default{
             this.search_results = this.projectStore.projects.filter(
                 project => project.title.toLowerCase().includes(newSearch.toLowerCase())
             )
+            // Filtro de categorias (incompleto)
+            // this.search_results = this.search_results.filter(
+            //     project => project.categories.includes(this.selected_tags)
+            // )
         }
     },
 
 
     async created(){
         await this.projectStore.fetchProjects()
-        this.search_results =this.projectStore.getProjects
+        this.search_results = this.projectStore.getProjects
         
     },
 }
@@ -74,9 +92,14 @@ export default{
         <div class="tag_container">
             <h2>Categorias</h2>
             <div class="categories">
-                    <p class="cat">AAAAAAAAA</p>
-                    <p class="cat">aaaaaaa</p>
-                    <p class="cat">aAAAAAAAA Aa a</p>
+                <p 
+                :class="!this.selected_tags.includes(tag) ? 'defaultCat' : 'selectedCat'"
+                class="cat"
+                v-for="tag in all_tags"
+                @click="clickTag(tag)"
+                >
+                    {{ tag.cat_name }}
+                </p>
             </div>
         </div>   
 
@@ -88,6 +111,17 @@ export default{
 @import url(../../assets/css/pesquisas.css);
 @import url(../../assets/css/categorias.css);
 
+
+.tag_container .cat{
+    user-select: none;
+}
+.cat:hover{cursor: pointer;}
+.selectedCat{
+    color: var(--Text);
+    background-color: var(--TagSelectedColor);
+}
+
+/* Responsividade */
 
 .mobile {
     display: none;
