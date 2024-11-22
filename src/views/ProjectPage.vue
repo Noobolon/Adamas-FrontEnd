@@ -143,7 +143,7 @@ export default{
         <section class="comment_section">
 
             <form id="add_comment" @submit="comentar()">
-                <input v-model="comment" type="text" name="Texto" placeholder="Escreva um comentário...">
+                <input required v-model="comment" type="text" name="Texto" placeholder="Escreva um comentário...">
                 <button type="submit">Enviar</button>
             </form>
 
