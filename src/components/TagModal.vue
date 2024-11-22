@@ -1,7 +1,5 @@
-  <script>
-  import { warn } from 'vue';
-
-
+<script>
+  import { all_tags } from '@/assets/scripts/search_scripts';
 
   export default {
     props: {
@@ -11,15 +9,7 @@
 
     data(){
       return{
-        all_tags: [
-          {cat_name:"Saúde", cat_id: 1},
-          {cat_name: "Agricultura", cat_id: 2},
-          {cat_name: "Ferramenta", cat_id: 3},
-          {cat_name: "Música", cat_id: 4},
-          {cat_name: "TI", cat_id: 5},
-          {cat_name: "Marketing", cat_id: 6},
-          {cat_name: "Mecânica", cat_id: 7}
-        ]
+        all_tags: all_tags,
       }
     },
 

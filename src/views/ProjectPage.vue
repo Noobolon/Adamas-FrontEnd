@@ -1,5 +1,5 @@
 <script>
-import { getProjectFromID, commentOnProject } from '@/assets/scripts/project_scripts';
+import { getProjectFromID, commentOnProject, likeProject, unlikeProject } from '@/assets/scripts/project_scripts';
 import { useAuthStore } from '@/stores/authentication';
 import { marked } from 'marked';
 
@@ -36,7 +36,48 @@ export default{
                 this.project.project_id,
                 this.comment
             )
+        },
+
+        hasUserLiked(){
+            if (this.project.likes){
+                if (this.user){
+                    let like_array = this.project.likes.map(like => like.user_id)
+                    var isTrue = like_array.includes(this.user.id)
+                    return isTrue
+                }
+            }
+        },
+
+        async likeToggle(){
+            const uid = this.user.id
+            const p_id = this.project.project_id
+
+            if (this.project.likes){
+
+                let like_array = this.project.likes.map(like => like.user_id); // coloca todos os likes em uma array
+                if (like_array.includes(uid)){ // se o ID to usuário estiver na array, remover like
+                    
+                    await unlikeProject(
+                        this.token,
+                        p_id
+                    )
+
+                } else {
+                    await likeProject(
+                        this.token,
+                        p_id
+                    )
+                }
+            } else { // caso não tenha nenhum like
+                await likeProject(
+                    this.token,
+                    p_id
+                )
+                
+            }
+            
         }
+
     },
 
     created(){
@@ -50,7 +91,6 @@ export default{
         
         this.user = this.authStore.getUser
         this.token = this.authStore.getToken
-
     }
 }
 
@@ -70,7 +110,7 @@ export default{
                 </header>
                 <div class="formatted" v-html="formattedContent">
 
-                </div>
+                </div>  
             </div>
 
             <div class="items_info">
@@ -81,8 +121,10 @@ export default{
                 </div>
 
                 <div class="project_items">
-                    <ul>
-                        <img src="/logos/AdamasWhite.png" alt="Gosteis">
+                    <ul @click="likeToggle">
+                        <img v-if="hasUserLiked()" src="/logos/AdamasWhite.png" alt="Likes">
+                        <img v-else src="/logos/HollowDiamond.svg" alt="Likes">
+                       
                         <li v-if="project.likes">{{ formatador(project.likes.length) }}</li>
                         <li v-else>0</li>
                     </ul>
@@ -98,29 +140,31 @@ export default{
             
         </section>
         
-        <!-- Incompleto -->
         <section class="comment_section">
 
             <form id="add_comment" @submit="comentar()">
-                <input v-model="comment" type="text" name="Texto">
+                <input required v-model="comment" type="text" name="Texto" placeholder="Escreva um comentário...">
                 <button type="submit">Enviar</button>
             </form>
 
-            <div class="comment" v-for="comment in this.project.comments">
-                <div id="user">
-                    <img src="/symbols/user/BlackCommon.svg" alt="Foto de usuário">
-                    <p>
-                        {{ comment.user_name }}
-                    </p>
-                </div>
+            <div id="comment_container">
+                <article class="comment" v-for="comment in this.project.comments">
+                    <div id="user">
+                        <img src="/symbols/user/BlackCommon.svg" alt="Foto de usuário">
+                        <p>
+                            {{ comment.user_name }}
+                        </p>
+                    </div>
 
-                <div id="comment_content">
-                    <p>
-                        {{ comment.comment }}
-                    </p>
-                </div>
-                
+                    <div id="comment_content">
+                        <p>
+                            {{ comment.comment }}
+                        </p>
+                    </div>
+                    
+                </article>
             </div>
+            
         </section>
 
     </div>
@@ -200,7 +244,7 @@ h2{
     background-color: var(--ButtonColor); 
     padding: 4%;
     width: 100%;
-    min-height: 25%;       
+    min-height: 35vh;
 }
 .wrapper {
   width: 100%;
@@ -242,19 +286,34 @@ h2{
 
 /* Comentários */
 
-.comment{
-    margin-top: 6%;
-}
-
 #add_comment{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 #add_comment input[type="text"]{
-    width: 50%;
+    width: 75%;
     border: 2px solid var(--ButtonColor);
     border-radius: 25px;
+    padding: 1% 2%;
+}
+#add_comment button{
+    color: var(--Text2);
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 1% 4%;
+
+    background-color: var(--ButtonColor);
+    border: 2px solid var(--ButtonColor);
+    border-radius: 25px;
+}
+#add_comment button:hover{
+    cursor: pointer;
+    background-color: var(--ButtonHoverColor);
+}
+
+.comment{
+    margin-top: 6%;
 }
 
 .comment_section{
@@ -267,10 +326,15 @@ h2{
     padding: 4%;
 }
 
-.comment_section div{
+.comment_section article{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#comment_container{
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 #user{
@@ -278,7 +342,7 @@ h2{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 25%;
+    width: 20%;
     text-align: center;
 }
 #user img{
@@ -294,7 +358,7 @@ h2{
 #comment_content{
     border-left: 4px solid var(--ButtonColor);
 
-    width: 75%;
+    width: 80%;
     min-height: 100%;
     height: fit-content;
     word-break:break-all;
