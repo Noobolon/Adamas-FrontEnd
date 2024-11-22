@@ -31,6 +31,12 @@ export default{
         },
 
         comentar(){
+
+            if (this.authStore.getAccType == "institution"){
+                alert("Instituições não podem comentar!")
+                return
+            }
+
             commentOnProject(
                 this.token,
                 this.project.project_id,
@@ -49,6 +55,12 @@ export default{
         },
 
         async likeToggle(){
+
+            if (this.authStore.getAccType == "institution"){
+                alert("Instituições não podem dar like!")
+                return
+            }
+
             const uid = this.user.id
             const p_id = this.project.project_id
 
@@ -86,7 +98,7 @@ export default{
             this.project = project; // Atribui o projeto carregado
         })
         .catch(error => {
-            console.error("Erro ao buscar projeto:", error);
+            console.error(error);
         });
         
         this.user = this.authStore.getUser
