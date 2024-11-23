@@ -12,6 +12,29 @@ export async function getUserFromID(userID) {
     }
 }
 
+
+//Função de editar perfil
+export async function editUserProfile(token, userID, newNickname, newDescription){
+    try {
+        const response = await api.put(`/user`, {
+            id: userID,
+            nickname: newNickname,
+            description: newDescription
+        },
+        {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+        return response.data
+        
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
+
+
+
 // Função de pegar projetos pelo ID do autor
 export async function getProjectsFromUserID(userID) {
     try {

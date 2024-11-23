@@ -3,10 +3,16 @@ import ProjectComponent from '@/components/ProjectComponent.vue';
 import { getProjectsFromUserID, getUserFromID } from '@/assets/scripts/user_scripts';
 import { useAuthStore } from '@/stores/authentication';
 import { useProjectStore } from '@/stores/project';
+import LinkButton from '@/components/LinkButton.vue';
+import EditUserModal from '@/components/modals/EditUserModal.vue';
 
 export default {
     name: "UserPage",
-    components: { ProjectComponent },
+    components: { 
+        ProjectComponent,
+        LinkButton,
+        EditUserModal
+    },
 
     data(){
         return{
@@ -15,7 +21,9 @@ export default {
 
             user: undefined,
             u_id: this.$route.params.id,
-            user_projects: {}
+            user_projects: [],
+
+            modalOpen: false
         }
     },
 
@@ -66,7 +74,7 @@ export default {
 
         <p id="you" v-if="isLoggedUserSameAsProfile()">(Você)</p>
         <ul>
-            <li v-if="this.user.description">
+            <li v-if="this.user.description" id="desc">
                 {{ this.user.description }}
             </li>
             <li v-else>
@@ -78,16 +86,24 @@ export default {
             </li>
 
         </ul>
-        <ul v-if="isLoggedUserSameAsProfile()">
+        <ul v-if="isLoggedUserSameAsProfile()" class="personal_buttons">
+            <li @click="this.modalOpen = true">Editar perfil</li>
             <li id="logout" @click="this.authStore.logout()">Sair</li>
         </ul>
+
+        <Teleport to="body">
+            <EditUserModal :show="modalOpen" @close="modalOpen = false" 
+            :userID="this.u_id"
+            :userToken="this.authStore.getToken"
+            :currentNickname="this.user.nickname"
+            :currentDescription="this.user.description" />
+        </Teleport>
+
     </div>
 
     <main>
         <h2>Projetos feitos por esse usuário:</h2>
-        <p>
-
-        </p>
+        <LinkButton v-if="isLoggedUserSameAsProfile()" link="/criar-projeto">Criar projeto</LinkButton>
 
         <div class="projects_container">
             <p v-if="!this.user_projects">
@@ -111,18 +127,6 @@ export default {
 @import url(@/assets/css/pesquisas.css);
 @import url(@/assets/css/categorias.css);
 
-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: baseline;
-
-    padding: 4%;
-    width: 35%;
-}
-main > h2{
-    color: var(--TextHighlight);
-}
 
 .container{
     display: flex;
@@ -133,11 +137,28 @@ main > h2{
 
 /* Projetos criados pelo usuário */
 
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: baseline;
+
+    padding: 4%;
+    width: 35%;
+}
+main > h2{color: var(--TextHighlight);}
+main > a{
+    margin: 2% 0 0 0;
+    width: 50%;
+    height: 50%;
+}
+
 .projects_container{
     margin: 2% 0 4% 0;
     width: 90%;
 }
-.projects_container p {
+
+.projects_container p{
     padding: 2%;
     text-align: center;
     color: var(--TextHighlight2);
@@ -185,9 +206,14 @@ ul > li:first-child{
 
 #you{font-size: 1rem;}
 
-#logout:hover{
+.personal_buttons li:hover{
     font-weight: bold;
     cursor: pointer;
+}
+
+#desc{
+    max-width: 100%;
+    line-break: anywhere;
 }
 
 #banner{
@@ -196,7 +222,7 @@ ul > li:first-child{
     background-color: var(--SubBackgroundColor);
 }
 
-#userImg{
+#userImg{ 
     width: 50px;
     background-color: black;
     padding: 4%;

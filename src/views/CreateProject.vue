@@ -1,7 +1,7 @@
 <script>
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
-import TagModal from '@/components/TagModal.vue';
+import TagModal from '@/components/modals/TagModal.vue';
 import PT_BR    from '@vavt/cm-extension/dist/locale/pt-BR';
 import { MdEditor, config } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
