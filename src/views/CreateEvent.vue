@@ -112,6 +112,12 @@ export default{
                 <textarea id="desc" v-model="description" placeholder="Descrição do evento" type="text" required rows="12">
                 </textarea>
 
+                <div class="divisor"></div>
+
+                <div class="buttons">
+                    <button type="reset">Limpar</button>
+                    <button type="submit">Criar</button>
+                </div>  
             </fieldset>
 
             <Teleport to="body">
@@ -133,10 +139,7 @@ export default{
                 </div>
             </fieldset> -->
 
-            <div class="buttons">
-                <button type="reset">Limpar</button>
-                <button type="submit">Criar</button>
-            </div>  
+
 
         </form>
 
@@ -179,14 +182,14 @@ input::placeholder{
 }
 
 fieldset{
+    border: 2px solid var(--ButtonColor);
     justify-content: center;
     align-items: center;
     display: flex; 
     flex-direction: column;
-    border: none;
-    border-bottom: 4px solid var(--ButtonColor);
     background-color: var(--MenuColor);
-    width: 80%;
+    width: 60%;
+    border-radius: 25px;
 }
 /*  */
 
@@ -205,12 +208,17 @@ form{
 }
 
 #datetimes > div {
-    width: 40%;
+    width: 45%;
     display: flex;
     align-items: start;
     flex-direction: column;
 }
+#datetimes > div > input{
+    width: 100%;
+
+}
 .buttons{
+    width: 80%;
     display: flex;
     justify-content: space-between;
 }
@@ -220,7 +228,7 @@ form{
     border: 2px solid var(--ButtonColor);
     border-radius: 25px;
 
-    width: 100%;
+    width: 35%;
     padding: 1% 0;
     
     font-size: 2rem;
@@ -236,6 +244,11 @@ form{
     margin-bottom: 4%;
 }
 
+.divisor{
+    width: 80%;
+    height: 4px;
+    background-color: var(--ButtonColor);
+}
 
 /* Salas */
 
@@ -261,6 +274,8 @@ form{
         width: 80%;
     }
     fieldset{
+        border: none;
+        border-radius: 0;
         padding: 0;
         width: 100%;
     }
