@@ -66,6 +66,10 @@ export default {
         
 
         <div id="user">
+            <button type="button" id="logoutMobile" v-if="accType != null" @click="this.authStore.logout()">
+                <img src="/symbols/LogoutIcon.svg" alt="Sair">
+            </button>
+
             <p id="username" v-if="user">
                 {{ user.name }}
             </p>
@@ -78,7 +82,8 @@ export default {
             </RouterLink>
 
 
-            <RouterLink v-if="accType == null" to="/tipo-de-conta">
+
+            <RouterLink v-if="accType == null" to="/tipo-de-conta" id="btnEntrar">
                 <p>Entrar</p>
             </RouterLink>
         </div>
@@ -159,6 +164,9 @@ li:last-child{border-right: none;}
     margin-right: 2%;
 }
 
+#logoutMobile{
+    display: none;
+}
 #username{
     width: 25%;
     font-weight: bold;
@@ -212,12 +220,20 @@ li:last-child{border-right: none;}
         width: 12vw;
     }
     #username{
+        margin-right: 50vw;
         margin-left: 20px
     }
     #returnHomeB{
         display: none;
     }
     #logout{
+        display: none;
+    }
+    #logoutMobile{
+        display: block;
+    }
+
+    #btnEntrar{
         display: none;
     }
 

@@ -113,7 +113,6 @@ export default{
 <main v-if="project">
 
     <div class="content">
-
         <section class="project_info">
             <div class="wrapper">
                 <header>
@@ -159,6 +158,7 @@ export default{
                 <button type="submit">Enviar</button>
             </form>
 
+
             <div id="comment_container">
                 <article class="comment" v-for="comment in this.project.comments">
                     <div id="user">
@@ -197,7 +197,7 @@ export default{
 @import url(@/assets/css/categorias.css);
 
 main{
-    display: flexbox;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     
@@ -259,7 +259,7 @@ h2{
     min-height: 35vh;
 }
 .wrapper {
-  width: 100%;
+    max-width: 96%;
 }
 
 .formatted *{
@@ -269,6 +269,9 @@ h2{
     margin: 0 auto;
 }
 
+.formatted > p {
+    text-align: justify;
+}
 .items_info{
     display: flex;
     flex-direction: row;
@@ -285,7 +288,7 @@ h2{
     align-items: baseline;
 }
 .project_items ul{
-    padding: 0%;
+    padding: 0;
     list-style: none;
     text-align: center;
 }
@@ -354,12 +357,17 @@ h2{
 }
 
 #user{
+    border-right: 4px solid var(--ButtonColor);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 20%;
     text-align: center;
+}
+
+#user > * {
+    margin: 20px;
 }
 #user img{
     width: 30%;
@@ -372,7 +380,6 @@ h2{
 }
 
 #comment_content{
-    border-left: 4px solid var(--ButtonColor);
 
     width: 80%;
     min-height: 100%;
@@ -386,6 +393,85 @@ h2{
     width: 100%;
     text-align: justify;
     margin-left: 4%;
+}
+
+@media screen and (max-width: 800px){
+    .content{
+        width: 80%;
+    }
+    .owners{
+        margin: 10px;
+    }
+
+    .project_items{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 600px){
+
+    main{
+        padding: 0;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .content > * {
+        padding: 0;
+
+    }
+    .content{
+        padding: 0;
+        margin: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .owners{
+        margin-top: 20px;
+        width: 80%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .project_info > h1 {
+        font-size: 10px;
+    }
+
+    .items_info{
+        margin: 1%;
+    }
+    .owners > * {
+        margin: 10px;
+    }
+
+    .wrapper{
+        margin: 10px;
+    }
+
+    .project_tags{
+        width: 20%;
+        margin: 10px;
+    }
+
+    #add_comment{
+        margin: 10px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #comment_container{
+
+        margin: 10px
+    }
+
+    .comment { 
+        display: flex; 
+        align-items: center;
+    }
+    .comment > p {
+        padding: 10px;
+    }
+
 }
 
 </style>

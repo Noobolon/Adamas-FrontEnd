@@ -72,37 +72,47 @@ export default{
 
 <template>
 
-    <main>
+    <main class="container">
 
-        <form class="container" @submit.prevent="criarEvento()">
-            <h1>Criação de projeto</h1>
+        <form  @submit.prevent="criarEvento()">
 
             <fieldset class="event_content">
-            
+                <h1>Criação de projeto</h1>
+
                 <input id="title" v-model="name" placeholder="Nome do evento" type="text" required>
                 <input id="address" v-model="address" placeholder="Local do evento" type="text" required>
 
                 <div id="datetimes">
-                    <input
-                    type="datetime-local"
-                    name="Data Inicial" 
-                    id="startDate"
-                    :min="getCurrentDate()"
-                    v-model="start_date"
-                    >
-
-                    <input
-                    type="datetime-local"
-                    name="Data Final"
-                    id="endDate"
-                    :min="getCurrentDate()"
-                    v-model="end_date"
-                    >
+                    <div>
+                        <label for="startDate">Data de início</label>
+                        <input
+                            type="datetime-local"
+                            name="Data Inicial" 
+                            id="startDate"
+                            v-model="start_date"
+                            v-on:change="console.log(this.start_date)"
+                        >
+                    </div>
+                    <div>
+                        <label for="startDate">Data de encerramento</label>
+                        <input
+                            type="datetime-local"
+                            name="Data Final"
+                            id="endDate"
+                            v-model="end_date"
+                        >
+                    </div>
                 </div>
 
                 <textarea id="desc" v-model="description" placeholder="Descrição do evento" type="text" required rows="12">
                 </textarea>
 
+                <div class="divisor"></div>
+
+                <div class="buttons">
+                    <button type="reset">Limpar</button>
+                    <button type="submit">Criar</button>
+                </div>  
             </fieldset>
 
             <Teleport to="body">
@@ -124,10 +134,7 @@ export default{
                 </div>
             </fieldset> -->
 
-            <div class="buttons">
-                <button type="reset">Limpar</button>
-                <button type="submit">Criar</button>
-            </div>  
+
 
         </form>
 
@@ -137,29 +144,106 @@ export default{
 
 
 <style scoped>
-@import url(@/assets/css/criarItem.css);
 
+/* Inputs  */
+textarea{
+    width: 79%;
+    padding: 1%;
+    color: var(--Text);
+    font-size: 1.5rem;
+    border: 4px solid var(--ButtonColor);
+    border-radius: 25px;
+}
+h1{
+    margin-top: 40px;
+    width: 80%;
+}
+input{
+    width: 80%;
+    background-color: #00000000;
+    border: none;
+    border-bottom: 2px solid var(--ButtonColor);
+    font-size: 2rem;
+    caret-color: var(--TextFieldColor);
+}
 
+input:focus{
+    outline: none;
+}
+
+input::placeholder{
+    font-weight: normal;
+    color: var(--TextFieldColor);
+}
+
+fieldset{
+    border: 2px solid var(--ButtonColor);
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    flex-direction: column;
+    background-color: var(--MenuColor);
+    width: 60%;
+    border-radius: 25px;
+}
+/*  */
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 2%;
+}
 #datetimes{
+    width: 80%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
-#datetimes input{
-    width: 45%;
+    justify-content: space-between
 }
 
+#datetimes > div {
+    width: 45%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+#datetimes > div > input{
+    width: 100%;
+
+}
+.buttons{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button{
+    background-color: var(--ButtonColor);
+    border: 2px solid var(--ButtonColor);
+    border-radius: 25px;
+
+    width: 35%;
+    padding: 1% 0;
+    
+    font-size: 2rem;
+    color: var(--Text2);
+    text-align: center;
+}
 
 .event_content{
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 .event_content *{
     margin-bottom: 4%;
 }
 
+.divisor{
+    width: 80%;
+    height: 4px;
+    background-color: var(--ButtonColor);
+}
 
 /* Salas */
 
@@ -176,5 +260,35 @@ export default{
     padding: 2%;
 }
 
+@media screen and (max-width: 700px){
+    form{
+        padding: 0;
+    }
+    input{
+ 
+        width: 80%;
+    }
+    fieldset{
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        width: 100%;
+    }
+    #datetimes{
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        width: 80%;
+    }
 
+    #datetimes > div  {
+        width: 100%;
+
+    }
+    #datetimes > div > input {
+        width: 100%;
+
+    }
+    
+}
 </style>

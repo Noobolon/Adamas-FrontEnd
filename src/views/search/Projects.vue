@@ -94,9 +94,14 @@ export default{
             <div class="tag_container mobile">
                 <h2>Categorias</h2>
                 <div class="categories">
-                    <p class="cat"></p>
-                    <p class="cat">aaaaaaa</p>
-                    <p class="cat">aAAAAAAAA Aa a</p>
+                    <p 
+                    :class="!this.selected_tags.includes(tag) ? 'defaultCat' : 'selectedCat'"
+                    class="cat"
+                    v-for="tag in all_tags"
+                    @click="clickTag(tag)"
+                    >
+                        {{ tag.cat_name }}
+                    </p>
                 </div>
 
             </div>
@@ -151,10 +156,6 @@ export default{
 .mobile {
     display: none;
     width:100%
-}
-
-.tag_container{
-    padding: 2%;
 }
 
 
