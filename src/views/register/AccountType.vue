@@ -38,11 +38,12 @@ h1{
     margin-top: 5%;
     color: var(--TextHighlight);
     text-align: center;
+    margin-bottom: 10%;
 }
 @media screen and (max-width: 600px){
     a{
-        width: 50%;
-        font-size: 1.5rem;
+        width: 60%;
+        font-size: 1.8rem;
     }
 
 }

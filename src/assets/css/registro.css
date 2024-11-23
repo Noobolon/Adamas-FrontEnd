@@ -113,12 +113,25 @@ a{
         transform: translateY(0);
     }
 
+    input[type="email"], input[type="password"], input[type="text"] {
+        width: 100%;
+        font-size: 1.8rem;
+    }
     form > *{
         font-size: 1.5rem;
     }
 
+    input[type="submit"] {
+        font-size: 1.5rem;
+    }
+
+     p, a {
+        font-size: 1.2rem;
+    }
     img{
         display: none;
     }
-
+    #back {
+        margin-bottom: 10%;
+    }
 }
