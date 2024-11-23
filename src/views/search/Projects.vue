@@ -64,12 +64,13 @@ export default{
             this.updateSearch(newSearch)
         },
 
+        // Atualiza os resultados sempre que as tags selecionadas mudarem
         selected_tags: {
             handler(newTags) {
-                // Atualiza os resultados sempre que as tags selecionadas mudarem
+                
                 this.updateSearch(this.search_content);
             },
-            deep: true // Necessário se `selected_tags` for um array de objetos
+            deep: true
         }
         
     },
