@@ -33,20 +33,17 @@ export default{
     methods: {
         getCurrentDate(){
             let curDate = new Date()
-            return curDate.toISOString()
-        },
+            curDate.setMinutes(curDate.getMinutes() - curDate.getTimezoneOffset());
+            return curDate.toISOString().slice(0,16);
+        },  
 
         dateFormatter(date){
-            const formattedDate = format(date, 'yyyy-MM-dd hh:mm')
+            const formattedDate = format(date, 'yyyy-MM-dd HH:mm')
             return formattedDate
         },
 
         async criarEvento(){
-            console.log(
-                this.dateFormatter(this.start_date),
-                this.dateFormatter(this.end_date)
-            )
-
+            
             createEvent(
                 this.user_token,
                 
@@ -90,14 +87,15 @@ export default{
                     type="datetime-local"
                     name="Data Inicial" 
                     id="startDate"
+                    :min="getCurrentDate()"
                     v-model="start_date"
-                    v-on:change="console.log(this.start_date)"
                     >
 
                     <input
                     type="datetime-local"
                     name="Data Final"
                     id="endDate"
+                    :min="getCurrentDate()"
                     v-model="end_date"
                     >
                 </div>

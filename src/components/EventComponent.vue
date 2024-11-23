@@ -18,9 +18,16 @@ export default{
     },
 
     mounted(){
-        // Se os dois meses forem iguais, mostrar só a hora
-        if ( (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL")) && ( format(this.event.end_date, "d") == format(this.event.start_date, "d") )){
-            this.data_final = format(this.event.end_date, "'às' HH:mm", {locale: ptBR})
+
+        if ( (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL"))){ // se for no mesmo mês
+
+
+            if (format(this.event.end_date, "d") == format(this.event.start_date, "d") ) { // se for no mesmo dia
+                this.data_final = format(this.event.end_date, "'às' HH:mm", {locale: ptBR})
+            } else {
+                this.data_final = format(this.event.end_date, "'dia' d 'às' HH:mm", {locale: ptBR})
+            }
+            
         } else {
             this.data_final = format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
         }
