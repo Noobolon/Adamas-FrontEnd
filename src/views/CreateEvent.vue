@@ -1,6 +1,6 @@
 <script>
 import { createEvent } from '@/assets/scripts/event_scripts';
-import RoomModal from '@/components/RoomModal.vue';
+import RoomModal from '@/components/modals/RoomModal.vue';
 import { useAuthStore } from '@/stores/authentication';
 import { format } from 'date-fns';
 
@@ -33,20 +33,17 @@ export default{
     methods: {
         getCurrentDate(){
             let curDate = new Date()
-            return curDate.toISOString()
-        },
+            curDate.setMinutes(curDate.getMinutes() - curDate.getTimezoneOffset());
+            return curDate.toISOString().slice(0,16);
+        },  
 
         dateFormatter(date){
-            const formattedDate = format(date, 'yyyy-MM-dd hh:mm')
+            const formattedDate = format(date, 'yyyy-MM-dd HH:mm')
             return formattedDate
         },
 
         async criarEvento(){
-            console.log(
-                this.dateFormatter(this.start_date),
-                this.dateFormatter(this.end_date)
-            )
-
+            
             createEvent(
                 this.user_token,
                 
@@ -105,8 +102,6 @@ export default{
                             v-model="end_date"
                         >
                     </div>
-
-
                 </div>
 
                 <textarea id="desc" v-model="description" placeholder="Descrição do evento" type="text" required rows="12">

@@ -1,7 +1,7 @@
 <script>
 import { useAuthStore } from '@/stores/authentication';
 import { createProject } from '@/assets/scripts/project_scripts';
-import TagModal from '@/components/TagModal.vue';
+import TagModal from '@/components/modals/TagModal.vue';
 import PT_BR    from '@vavt/cm-extension/dist/locale/pt-BR';
 import { MdEditor, config } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
@@ -86,7 +86,7 @@ export default{
 <main>
 
     <form @submit.prevent="criarProjeto()">
-        <input id="title" v-model="title" placeholder="Título do projeto" type="text" required>
+        <input id="title" v-model="title" placeholder="Título do projeto" type="text" autocomplete="off" required>
 
 
         <div class="tags">
@@ -100,14 +100,21 @@ export default{
             <button id="add_tag_button" @click="modalOpen = true" v-if="selected_tags.length < 3" type="button"></button>
         </div> 
 
-        <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" required>
+        <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" autocomplete="off" required>
 
         <div class="container">
             <h1>Conteúdo do projeto:</h1>
 
-            <!-- Editor de markdown md-editor-v3 -->
-            <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
-            :toolbarsExclude="this.excButtons"/>
+            <Transition>
+
+                <!-- Editor de markdown md-editor-v3 -->
+                <!-- Ele é oculto ao abrir o modal pois gera uma linha que atrapalha a seleção de tags;
+                provavelmente tem um jeito de arrumar mas deixei assim -->
+                <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
+                :toolbarsExclude="this.excButtons"/>
+
+            </Transition>
+            
 
             <div class="buttons">
                 <button type="reset" @click="clearAll()">Limpar</button>
@@ -186,5 +193,16 @@ export default{
     }
 }
 
+
+/* Animações do Transition */
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 
 </style>
