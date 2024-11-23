@@ -2,7 +2,6 @@ import api from "@/api"
 
 
 // Função de criar projeto
-
 export async function createProject(token, titulo, categorias, descricao, conteudo ){
     try {
         const new_project = await api.post("/project",
@@ -23,16 +22,8 @@ export async function createProject(token, titulo, categorias, descricao, conteu
     }
 }
 
-export async function getProjectsFromUserID(userID) {
-    try {
-        const response = await api.get(`/project/user/${userID}`)
-        return response.data
 
-    } catch (error) {
-        console.log(error);
-    }
-}
-
+// Função de pegar projeto pelo ID do projeto
 export async function getProjectFromID(projectID){
     try {
         const response = await api.get(`/project/${projectID}`);
@@ -42,6 +33,8 @@ export async function getProjectFromID(projectID){
     }
 }
 
+
+// Função de comentar no projeto
 export async function commentOnProject(token, projectID, comment){
     try {
         const response = await api.post(`/project/${projectID}/comment`,
@@ -59,6 +52,8 @@ export async function commentOnProject(token, projectID, comment){
     }
 }
 
+
+// Função de dar curtir o projeto
 export async function likeProject(token, projectID) {
     try {
         const response = await api.post("/project/like",
@@ -77,6 +72,8 @@ export async function likeProject(token, projectID) {
     }
 }
 
+
+// Função de remover like do projeto
 export async function unlikeProject(token, projectID) {
     try {
         const response = await api.delete("/project/like",
@@ -88,9 +85,6 @@ export async function unlikeProject(token, projectID) {
                     Authorization: `Bearer ${token}`
                 }
             },
-
-
-
         )
         location.reload()
         return response

@@ -36,7 +36,7 @@ export const router = createRouter({
     },
 
     {
-      path: '/user/:id',
+      path: '/usuario/:id',
       name: 'usuário',
       component: () => import('../views/UserPage.vue')
     },

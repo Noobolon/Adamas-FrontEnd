@@ -170,7 +170,6 @@ export const useAuthStore = defineStore('auth', {
             this.acc_type = null;
             localStorage.removeItem('token');
             localStorage.removeItem('acc_type');
-            await router.push('/');
             location.reload();
         }
     }
