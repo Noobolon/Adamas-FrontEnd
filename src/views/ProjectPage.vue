@@ -288,7 +288,7 @@ h2{
     align-items: baseline;
 }
 .project_items ul{
-    padding: 0%;
+    padding: 0;
     list-style: none;
     text-align: center;
 }
@@ -412,15 +412,17 @@ h2{
 
     main{
         padding: 0;
-        margin: 0;
         width: 100%;
         flex-direction: column;
     }
 
     .content > * {
         padding: 0;
+
     }
     .content{
+        padding: 0;
+        margin: 0;
         margin-bottom: 10px;
         width: 100%;
     }
@@ -434,6 +436,10 @@ h2{
     .project_info > h1 {
         font-size: 10px;
     }
+
+    .items_info{
+        margin: 1%;
+    }
     .owners > * {
         margin: 10px;
     }
@@ -446,9 +452,7 @@ h2{
         width: 20%;
         margin: 10px;
     }
-    .project_items{
-        margin: 10px;
-    }
+
     #add_comment{
         margin: 10px;
         display: flex;
