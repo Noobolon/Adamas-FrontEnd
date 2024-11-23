@@ -38,7 +38,7 @@ h1{
     margin-top: 5%;
     color: var(--TextHighlight);
     text-align: center;
-    margin-bottom: 10%;
+
 }
 @media screen and (max-width: 600px){
     a{
@@ -46,5 +46,8 @@ h1{
         font-size: 1.8rem;
     }
 
+    h1{
+        margin-bottom: 10%;
+    }
 }
 </style>
