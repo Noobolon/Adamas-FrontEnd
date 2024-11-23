@@ -70,9 +70,6 @@ export default {
                 {{ user.name }}
             </p>
 
-            <button type="button" id="logout" v-if="accType != null" @click="this.authStore.logout()">
-                <img src="/symbols/LogoutIcon.svg" alt="Sair">
-            </button>
             <RouterLink v-if="accType == 'common'" :to="`/usuario/${this.user.id}`">
                 <img class="profile" src="/symbols/user/WhiteCommon.png" alt="Perfil">
             </RouterLink>
