@@ -124,6 +124,10 @@ div #Equipe{
     background-color: #88DAEC;
 }
 
+#Equipe > article > p{
+    text-align: left;
+}
+
 ul{
     list-style-type: none;
     padding: 2% 5%;
