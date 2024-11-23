@@ -82,7 +82,7 @@ export default {
             </RouterLink>
 
 
-            <RouterLink v-if="accType == null" to="/tipo-de-conta">
+            <RouterLink v-if="accType == null" to="/tipo-de-conta" id="btnEntrar">
                 <p>Entrar</p>
             </RouterLink>
         </div>
@@ -222,6 +222,10 @@ li:last-child{border-right: none;}
         display: none;
     }
     #logout{
+        display: none;
+    }
+
+    #btnEntrar{
         display: none;
     }
 
