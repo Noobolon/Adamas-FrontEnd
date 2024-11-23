@@ -86,6 +86,7 @@ a{color: var(--Text2);}
     width: 100%;
     background-color: var(--CardColor);
     color: var(--Text2);
+    
 }
 
 .project_container{

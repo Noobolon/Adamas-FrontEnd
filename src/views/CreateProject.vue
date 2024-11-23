@@ -38,7 +38,7 @@ export default{
         createProject,
 
         async criarProjeto(){
-            /* Função para pegar apenas os IDs da array dos selecionados;
+            /* Função para pegar apenas os IDs da array das categorias selecionadas;
             a API aceita apenas os IDs das categorias. */ 
             let tagID_array = this.selected_tags.map(tag => tag.cat_id); 
             createProject(
@@ -102,14 +102,14 @@ export default{
 
         <input id="desc" v-model="description" placeholder="Descrição breve do projeto" type="text" required>
 
-        <div class="content">
+        <div class="container">
             <h1>Conteúdo do projeto:</h1>
 
             <!-- Editor de markdown md-editor-v3 -->
             <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
             :toolbarsExclude="this.excButtons"/>
 
-            <div id="buttons">
+            <div class="buttons">
                 <button type="reset" @click="clearAll()">Limpar</button>
                 <button type="submit">Criar</button>
             </div>  
@@ -122,63 +122,7 @@ export default{
 
 <style scoped>
 @import url(@/assets/css/categorias.css);
-
-main{
-    padding: 7% 0 0 0;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    width: 90vw;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    margin: 2% auto auto auto;
-    width: 60%;
-}
-
-input{
-    background-color: #00000000;
-    border: none;
-    border-bottom: 2px solid var(--ButtonColor);
-
-    font-size: 2rem;
-
-    padding: 1%;
-    caret-color: var(--TextFieldColor);
-    margin: 2% 0;
-}
-
-input:focus{
-    outline: none;
-}
-
-input::placeholder{
-    font-weight: normal;
-    color: var(--TextFieldColor);
-}
-
-textarea{
-    width: 100%;
-    padding: 0;
-    resize: vertical;
-}
-
-
-.content{
-    background-color: var(--MenuColor);
-    border: 2px solid var(--ButtonColor);
-    border-radius: 25px;
-    padding: 4%;
-}
-.content h1{
-    margin: 0px;
-    color: var(--TextHighlight);
-}
-.content > *{margin: 4% 0 0 0;}
+@import url(@/assets/css/criarItem.css);
 
 .tags{
     display: flex;
@@ -209,56 +153,11 @@ textarea{
     cursor: pointer;
 }
 
-/* Botões de limpar e enviar */
 
-#buttons{
-    display: flex;
-    justify-content: space-between;
-}
-
-#buttons button{
-    background-color: var(--ButtonColor);
-    border: 2px solid var(--ButtonColor);
-    border-radius: 25px;
-
-    width: 35%;
-    padding: 1% 0;
-    
-    font-size: 2rem;
-    color: var(--Text2);
-    text-align: center;
-}
-
-#buttons button:hover{
-    cursor: pointer;
-    background-color: var(--ButtonHoverColor);
-}
-
-
-/* Customização do título */
 
 #title{
     background-image: url(/symbols/PencilIcon.svg);
-    background-size: 35px; 
-    background-position: left;
-    background-repeat: no-repeat;
-    text-indent: 30px;
-
-    font-weight: bold;
-}
-
-#title:hover{
-    cursor: pointer;
-}
-
-#title:focus{
-    background-image: none;
-    text-indent: 0px;
-    cursor: text;
-}
-
-#title::placeholder{
-    font-weight: normal;
+    text-indent: 4%;
 }
 
 

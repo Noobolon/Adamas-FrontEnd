@@ -2,6 +2,7 @@ import api from "@/api"
 
 
 // Função de criar projeto
+
 export async function createProject(token, titulo, categorias, descricao, conteudo ){
     try {
         const new_project = await api.post("/project",
@@ -19,6 +20,16 @@ export async function createProject(token, titulo, categorias, descricao, conteu
         
     } catch (error) {
         console.log(error)
+    }
+}
+
+export async function getProjectsFromUserID(userID) {
+    try {
+        const response = await api.get(`/project/user/${userID}`)
+        return response.data
+
+    } catch (error) {
+        console.log(error);
     }
 }
 
