@@ -5,6 +5,11 @@ import { useAuthStore } from '@/stores/authentication';
 
 export default {
     name: "navBar",
+
+    components:{
+        RouterLink
+    },
+
     setup() {
         // authStore
         const authStore = useAuthStore();
@@ -77,7 +82,7 @@ export default {
             <RouterLink v-if="accType == 'common'" :to="`/usuario/${this.user.id}`">
                 <img class="profile" src="/symbols/user/WhiteCommon.png" alt="Perfil">
             </RouterLink>
-            <RouterLink v-if="accType == 'institution'" :to="`/`">
+            <RouterLink v-if="accType == 'institution'" :to="`/instituicao/${this.user.id}`">
                 <img class="profile" src="/symbols/user/WhiteInst.png" alt="Perfil">
             </RouterLink>
 

@@ -47,6 +47,11 @@ export const router = createRouter({
       component: () => import('../views/EventPage.vue')
     },
 
+    {
+      path: '/instituicao/:id',
+      name: 'instituição',
+      component: () => import('../views/InstitutionPage.vue')
+    },
 
     // Pesquisas 
     {
@@ -112,10 +117,10 @@ export const router = createRouter({
 
 router.beforeEach(async (to) => {
   const privateCommonPages = ['/criar-projeto'];
-  const privateInstPages = ['/criar-evento'];
+  const privateInstPages = ['/criar-evento', '/instituicao/:id'];
 
   const userAuthRequired = privateCommonPages.includes(to.path);
-  const instAuthRequired = privateInstPages.includes(to.path);
+  const instAuthRequired = privateInstPages.includes(to.path) || to.path.startsWith('/instituicao/'); 
 
   const authStore = useAuthStore();
   const token = authStore.getToken;

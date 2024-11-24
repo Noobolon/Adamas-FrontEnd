@@ -30,7 +30,7 @@ main{
 
 a{
     margin: 3% 0;
-    width: 25%;
+    width: 15%;
     height: max-content;
 }
 
