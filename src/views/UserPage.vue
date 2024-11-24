@@ -148,9 +148,10 @@ main{
 }
 main > h2{color: var(--TextHighlight);}
 main > a{
+    font-size: 1.5rem;
     margin: 2% 0 0 0;
     width: 50%;
-    height: 50%;
+    height: 100%;
 }
 
 .projects_container{
@@ -164,7 +165,7 @@ main > a{
     color: var(--TextHighlight2);
 }
 .projects_container div{
-    height: 100%;
+    height: fit-content;
 }
 
 

@@ -1,5 +1,6 @@
 <script>
 import { getProjectFromID, commentOnProject, likeProject, unlikeProject } from '@/assets/scripts/project_scripts';
+import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
 import { marked } from 'marked';
 
@@ -32,6 +33,11 @@ export default{
 
         comentar(){
 
+            if (!this.authStore.isUserLogged){
+                router.push({ path: '/tipo-de-conta' })
+                return
+            }
+
             if (this.authStore.getAccType == "institution"){
                 alert("Instituições não podem comentar!")
                 return
@@ -42,6 +48,8 @@ export default{
                 this.project.project_id,
                 this.comment
             )
+
+            location.reload()
         },
 
         hasUserLiked(){
@@ -55,6 +63,11 @@ export default{
         },
 
         async likeToggle(){
+
+            if (!this.authStore.isUserLogged){
+                router.push({ path: '/tipo-de-conta' })
+                return
+            }
 
             if (this.authStore.getAccType == "institution"){
                 alert("Instituições não podem dar like!")
@@ -88,6 +101,7 @@ export default{
                 
             }
             
+            location.reload()
         }
 
     },
@@ -153,7 +167,7 @@ export default{
         
         <section class="comment_section">
 
-            <form id="add_comment" @submit="comentar()">
+            <form id="add_comment" @submit.prevent="comentar()">
                 <input required v-model="comment" type="text" name="Texto" placeholder="Escreva um comentário...">
                 <button type="submit">Enviar</button>
             </form>
@@ -184,7 +198,9 @@ export default{
     <div class="owners">
         <h2>Criadores:</h2>
         <ul class="owners_style">
-            <li v-for="owner in this.project.owners">{{ owner.name }}</li>
+            <li v-for="owner in this.project.owners" :key="owner.id">
+                <RouterLink :to="`/usuario/${owner.id}`">{{ owner.name }}</RouterLink>
+            </li>
         </ul>
     </div>
     
@@ -221,6 +237,8 @@ h2{
     font-size: 2rem;
 }
 
+a{color: var(--Text);}
+a:visited{color: var(--Text);}
 
 .content{
     display: flex;
