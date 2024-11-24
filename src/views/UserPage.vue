@@ -62,6 +62,31 @@ export default {
 
 <div id="banner" v-if="this.user">
     <img src="" alt="">
+    <div class="user_containerMobile">
+        <div class="userInfo">
+            <img id="userImg" src="/symbols/UserIcon.png" alt="Usuário">
+            <h1 v-if="this.user.nickname">{{ this.user.nickname }}</h1>
+            <h1 v-else>{{ this.user.username }}</h1>
+            <h1 id="you" v-if="isLoggedUserSameAsProfile()">(Você)</h1>
+        </div>
+        <div class="divisor"></div>
+        <ul>
+            <li v-if="this.user.description" id="desc">
+                {{ this.user.description }}
+            </li>
+            <li v-else>
+                <p>Usuário não possui descrição.</p>
+            </li>
+
+            <li>
+                <p v-if="this.user_projects"><b>Projetos: </b>{{ this.user_projects.length }}</p>
+            </li>
+            <ul v-if="isLoggedUserSameAsProfile()" class="personal_buttons">
+                <li @click="this.modalOpen = true">Editar perfil</li>
+                <li id="logout" @click="this.authStore.logout()">Sair</li>
+            </ul>
+        </ul>
+    </div>
 </div>
 
 <div class="container">
@@ -194,6 +219,10 @@ main > a{
 
     transform: translateY(-10%);
 }
+
+.user_containerMobile{
+    display: none;
+}
 .user_container h1{
     color: var(--TextHighlight);
     font-size: 2rem;
@@ -240,6 +269,57 @@ ul > li:first-child{
     margin-bottom: 4%;
     border: 2px solid black;
     border-radius: 100%;
+}
+
+@media screen and (max-width: 600px){
+ .user_containerMobile{
+    padding: 10px;
+    display: block;
+ }
+ .userInfo{
+    display: flex;
+    align-items: center;
+
+ }
+ main{
+    width: 100%;
+ }
+ ul{
+    width: 100%;
+    border: 0;
+ }
+ ul > li {
+    font-size: 1.5rem;
+    text-align: start;
+ }
+ #userImg{
+    width: 50px;
+    margin-right: 20px;
+    margin-bottom: 0;
+ }
+ .user_container{
+    display: none;
+ }
+ .userInfo > h1 {
+    font-size: 2rem;
+    color: var(--TextHighlight);
+ }
+ #you{
+    margin-left: 5px;
+    font-size: 1.5rem;
+ }
+ .divisor{
+    margin-top: 20px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 4px;
+    background-color:  var(--ButtonColor);
+ }
+ .personal_buttons {
+    color: var(--TextHighlight);    
+    width: 100%;
+ }
 }
 
 </style>
