@@ -289,6 +289,7 @@ ul > li:first-child{
     border: 0;
  }
  ul > li {
+    color: var(--TextHighlight);
     font-size: 1.5rem;
     text-align: start;
  }
@@ -314,10 +315,10 @@ ul > li:first-child{
     margin-left: auto;
     margin-right: auto;
     height: 4px;
-    background-color:  var(--ButtonColor);
+    background-color:  var(--TextHighlight);
  }
  .personal_buttons {
-    color: var(--TextHighlight);    
+    color: var(--TextHighlight);
     width: 100%;
  }
 }
