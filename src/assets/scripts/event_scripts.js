@@ -49,6 +49,19 @@ export async function subscribeToEvent(token, eventID){
     }
 }
 
+// Função de se desinscrever de um evento
+export async function unsubscribeFromEvent(token, eventID){
+    try {
+        const response = await api.delete(`/event/${eventID}/subscribe`,{
+            data: {},
+            headers: {Authorization: `Bearer ${token}`}
+        });
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 // Função de formatar a data final
 export function formatEndDate(start_date, end_date){

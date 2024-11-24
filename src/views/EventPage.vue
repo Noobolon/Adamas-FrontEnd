@@ -1,5 +1,5 @@
 <script>
-import { formatEndDate, getEventFromID, subscribeToEvent } from '@/assets/scripts/event_scripts';
+import { formatEndDate, getEventFromID, subscribeToEvent, unsubscribeFromEvent } from '@/assets/scripts/event_scripts';
 import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
 import { format } from 'date-fns';
@@ -46,11 +46,23 @@ export default{
 
             try {
                 subscribeToEvent(this.authStore.getToken, this.e_id)
+                location.reload()
+                
             } catch (error) {
                 console.log(error)
             }
+            
+        },
 
-            location.reload()
+        async desinscrever(){
+
+            try {
+                unsubscribeFromEvent(this.authStore.getToken, this.e_id)
+                location.reload()
+
+            } catch (error) {
+                console.log(error)
+            }
         }
 
     },
@@ -68,10 +80,10 @@ export default{
         this.data_inicial = format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR})
         this.data_final = formatEndDate(this.event.start_date, this.event.end_date)
 
-        this.subscribers_ID_array = this.event.subscribers.map(subscriber => subscriber.id)
+        if (this.event.subscribers){
+            this.subscribers_ID_array = this.event.subscribers.map(subscriber => subscriber.id)
+        }
     }
-
-    
 
 }
 
@@ -108,8 +120,8 @@ export default{
 
             <section class="buttons">
 
-                <button v-if="hasUserSubscribed()" type="button" @click.prevent="console.log('não criado ainda')">
-                    Desinscrever-se
+                <button v-if="hasUserSubscribed()" type="button" @click.prevent="desinscrever()">
+                    Cancelar inscrição
                 </button>
                 <button v-else type="button" @click.prevent="inscrever()">
                     Inscrever-se
@@ -192,6 +204,7 @@ h1{
     color: var(--Text2);
     font-weight: bold;
     font-size: 1.5rem;
+    text-align: center;
     
     padding: 1%;
     width: 45%;
