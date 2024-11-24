@@ -60,7 +60,7 @@ export default {
 
 <template>
 
-<div id="banner">
+<div id="banner" v-if="this.user">
     <img src="" alt="">
 </div>
 
@@ -101,7 +101,7 @@ export default {
 
     </div>
 
-    <main>
+    <main v-if="this.user">
         <h2>Projetos feitos por esse usuário:</h2>
         <LinkButton v-if="isLoggedUserSameAsProfile()" link="/criar-projeto">Criar projeto</LinkButton>
 
@@ -117,7 +117,7 @@ export default {
         </div>
         
     </main>
-
+    <main v-else id="userNotExist"><h2>Usuário inexistente :(</h2></main>
 </div>
  
 </template>
@@ -154,6 +154,16 @@ main > a{
     height: fit-content;
 }
 
+#userNotExist{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+}
 .projects_container{
     margin: 2% 0 4% 0;
     width: 90%;
