@@ -32,11 +32,17 @@ export const useAuthStore = defineStore('auth', {
         },
 
         checkToken(){
-            if (this.token != null){
+            if (this.isUserLogged){
                 const timeNow = Math.floor(Date.now() / 1000)
                 return this.getUser.exp < timeNow
             }
         },
+
+        isUserLogged(){
+            if (this.token != null) {
+                return true
+            } else return false
+        }
      
     },
 
