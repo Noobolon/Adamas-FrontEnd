@@ -151,7 +151,7 @@ main > a{
     font-size: 1.5rem;
     margin: 2% 0 0 0;
     width: 50%;
-    height: 100%;
+    height: fit-content;
 }
 
 .projects_container{
