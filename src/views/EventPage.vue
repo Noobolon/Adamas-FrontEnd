@@ -218,6 +218,18 @@ h1{
     background-color: var(--ButtonHoverColor);
     cursor: pointer;
 }
-
-
+@media screen and (max-width: 800px){
+    .container{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 600px){
+    main{
+        padding-top: 7%;
+        padding: 4%;
+    }
+    .container{
+        width: 100%;
+    }
+}
 </style>
