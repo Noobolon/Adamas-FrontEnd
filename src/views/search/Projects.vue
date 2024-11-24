@@ -142,6 +142,8 @@ export default{
 @import url(@/assets/css/categorias.css);
 
 
+.tag_container{padding: 2%;}
+
 .tag_container .cat{
     user-select: none;
 }
@@ -163,6 +165,7 @@ export default{
 
     .tag_container{
         display: none;
+        padding: 0px;
     }
     .mobile{
         display: block;

@@ -43,7 +43,7 @@ a:hover{ background-color: var(--ButtonHoverColor);}
 a:visited{color: var(--Text2);}
 
 img{
-    width: 4vw;
+    width: 50px;
     margin-right: 2%;
 }
 

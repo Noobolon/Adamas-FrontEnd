@@ -41,6 +41,17 @@ export const router = createRouter({
       component: () => import('../views/UserPage.vue')
     },
     
+    {
+      path: '/evento/:id',
+      name: 'evento',
+      component: () => import('../views/EventPage.vue')
+    },
+
+    {
+      path: '/instituicao/:id',
+      name: 'instituição',
+      component: () => import('../views/InstitutionPage.vue')
+    },
 
     // Pesquisas 
     {
@@ -105,15 +116,29 @@ export const router = createRouter({
 
 
 router.beforeEach(async (to) => {
-  const privatePages = ['/criar-projeto'];
-  const authRequired = privatePages.includes(to.path);
-  const authStore = useAuthStore();
+  const privateCommonPages = ['/criar-projeto'];
+  const privateInstPages = ['/criar-evento', '/instituicao/:id'];
 
-  if (authRequired && !authStore.token && !authStore.checkToken && to.path !== '/tipo-de-conta') {
-      return {
-          path: '/tipo-de-conta',
-          query: { returnUrl: to.href }
-      };
+  const userAuthRequired = privateCommonPages.includes(to.path);
+  const instAuthRequired = privateInstPages.includes(to.path) || to.path.startsWith('/instituicao/'); 
+
+  const authStore = useAuthStore();
+  const token = authStore.getToken;
+  const accType = authStore.getAccType;
+
+  // se requirir autenticação, o tipo de conta não for comum ou o token está inválido
+  if (userAuthRequired && accType !== 'common' && (!token || !authStore.checkToken)) {
+    return {
+      path: '/tipo-de-conta',
+      query: { returnUrl: to.fullPath }
+    };
+  }
+
+  if (instAuthRequired && accType !== 'institution' && (!token || !authStore.checkToken)) {
+    return {
+      path: '/tipo-de-conta',
+      query: { returnUrl: to.fullPath }
+    };
   }
 }); 
 
