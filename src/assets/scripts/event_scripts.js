@@ -23,3 +23,14 @@ export async function createEvent(token, nome, endereco, descricao, data_comeco,
         console.log(error)
     }
 }
+
+
+// Função de pegar evento por ID
+export async function getEventFromID(eventID){
+    try {
+        const response = await api.get(`/event/${eventID}`);
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}

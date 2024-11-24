@@ -41,6 +41,12 @@ export const router = createRouter({
       component: () => import('../views/UserPage.vue')
     },
     
+    {
+      path: '/evento/:id',
+      name: 'evento',
+      component: () => import('../views/EventPage.vue')
+    },
+
 
     // Pesquisas 
     {
