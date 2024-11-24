@@ -86,20 +86,21 @@ export default{
                     <div>
                         <label for="startDate">Data de início</label>
                         <input
-                            type="datetime-local"
-                            name="Data Inicial" 
-                            id="startDate"
-                            v-model="start_date"
-                            v-on:change="console.log(this.start_date)"
+                        type="datetime-local"
+                        name="Data Inicial" 
+                        id="startDate"
+                        :min="getCurrentDate()"
+                        v-model="start_date"
                         >
                     </div>
                     <div>
                         <label for="startDate">Data de encerramento</label>
                         <input
-                            type="datetime-local"
-                            name="Data Final"
-                            id="endDate"
-                            v-model="end_date"
+                        type="datetime-local"
+                        name="Data Final"
+                        id="endDate"
+                        :min="getCurrentDate()"
+                        v-model="end_date"
                         >
                     </div>
                 </div>

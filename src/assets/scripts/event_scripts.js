@@ -1,5 +1,6 @@
 import api from "@/api"
-
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 
 // Função de criar evento
@@ -34,3 +35,42 @@ export async function getEventFromID(eventID){
         console.log(error)
     }
 }
+
+
+// Função de se inscrever em evento
+export async function subscribeToEvent(token, eventID){
+    try {
+        const response = await api.post(`/event/${eventID}/subscribe`,{},{
+            headers: {Authorization: `Bearer ${token}`}
+        });
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// Função de formatar a data final
+export function formatEndDate(start_date, end_date){
+
+    let start_month = format(start_date, "LLL")
+    let end_month = format(end_date, "LLL")
+
+    if (start_month == end_month){ // se for no mesmo mês
+
+        let start_day = format(start_date, "d")
+        let end_day = format(end_date, "d")
+
+        if (end_day == start_day ) { // se for no mesmo mês e dia, mostrar apenas o horário
+            return format(end_date, "'às' HH:mm", {locale: ptBR})
+
+        } else { // se for só no mesmo mês
+            return format(end_date, "'dia' d 'às' HH:mm", {locale: ptBR})
+        }
+
+    } else { // se não for no mesmo mês, mostrar data completa
+        return format(end_date, "d LLL 'às' HH:mm", {locale: ptBR})
+    }
+
+}
+

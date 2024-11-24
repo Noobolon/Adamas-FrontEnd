@@ -1,4 +1,5 @@
 <script>
+import { formatEndDate } from '@/assets/scripts/event_scripts';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -19,17 +20,7 @@ export default{
 
     mounted(){
 
-        if ( (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL"))){ // se for no mesmo mês
-
-            if (format(this.event.end_date, "d") == format(this.event.start_date, "d") ) { // se for no mesmo dia
-                this.data_final = format(this.event.end_date, "'às' HH:mm", {locale: ptBR})
-            } else {
-                this.data_final = format(this.event.end_date, "'dia' d 'às' HH:mm", {locale: ptBR})
-            }
-            
-        } else {
-            this.data_final = format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
-        }
+        this.data_final = formatEndDate(this.event.start_date, this.event.end_date)
     }
 }
 

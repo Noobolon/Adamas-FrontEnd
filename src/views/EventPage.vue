@@ -1,5 +1,6 @@
 <script>
-import { getEventFromID } from '@/assets/scripts/event_scripts';
+import { formatEndDate, getEventFromID, subscribeToEvent } from '@/assets/scripts/event_scripts';
+import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -11,14 +12,50 @@ export default{
     data(){
         return{
             authStore: useAuthStore(),
+            user: undefined,
             
             e_id: this.$route.params.id,
             event: undefined,
+            subscribers_ID_array: [],
 
             data_inicial: undefined,
             data_final: undefined,
         }
     },
+
+    methods:{
+
+        hasUserSubscribed(){
+            if (this.user){
+                return this.subscribers_ID_array.includes(this.user.id)
+            } else return false 
+            
+        },
+
+        async inscrever(){
+
+            if (!this.authStore.isUserLogged){
+                router.push({ path: '/tipo-de-conta' })
+                return
+            }
+
+            if (this.authStore.getAccType == "institution"){
+                alert("Instituições não podem se inscrever em eventos!")
+                return
+            }
+
+            try {
+                subscribeToEvent(this.authStore.getToken, this.e_id)
+            } catch (error) {
+                console.log(error)
+            }
+
+            location.reload()
+        }
+
+    },
+
+
 
     async created(){
         await getEventFromID(this.e_id)
@@ -26,19 +63,12 @@ export default{
             this.event = event
         }).catch(error => console.log(error))
 
+        this.user = this.authStore.getUser
+
         this.data_inicial = format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR})
+        this.data_final = formatEndDate(this.event.start_date, this.event.end_date)
 
-        if ( (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL"))){ // se for no mesmo mês
-
-            if (format(this.event.end_date, "d") == format(this.event.start_date, "d") ) { // se for no mesmo dia
-                this.data_final = format(this.event.end_date, "'às' HH:mm", {locale: ptBR})
-            } else {
-                this.data_final = format(this.event.end_date, "'dia' d 'às' HH:mm", {locale: ptBR})
-            }
-
-        } else {
-            this.data_final = format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
-        }
+        this.subscribers_ID_array = this.event.subscribers.map(subscriber => subscriber.id)
     }
 
     
@@ -65,7 +95,7 @@ export default{
                     </li>
 
                     <li>
-                        <p><span>Data: </span> {{ this.data_inicial }} <span>até</span> {{ this.data_final }} </p>
+                        <p><span>Data: </span> {{ this.data_inicial }} <span>até</span> {{ this.data_final }}</p>
                     </li>
                 </ul>
             </section>
@@ -78,7 +108,10 @@ export default{
 
             <section class="buttons">
 
-                <button type="button">
+                <button v-if="hasUserSubscribed()" type="button" @click.prevent="console.log('não criado ainda')">
+                    Desinscrever-se
+                </button>
+                <button v-else type="button" @click.prevent="inscrever()">
                     Inscrever-se
                 </button>
 
@@ -105,6 +138,22 @@ h1{
     margin-bottom: 2%;
 }
 
+.container{
+    font-size: 1.25rem;
+    width: 50%;
+    height: fit-content;
+    min-height: 35vh;
+    padding: 2%;
+    color: var(--Text2);
+    background-color: var(--CardColor);
+
+    border: 4px solid var(--ButtonColor);
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* Informações do evento */
 
@@ -122,19 +171,10 @@ h1{
 
 .event_content{
     margin-bottom: 2%;
+    line-break: anywhere;
 }
-
-.container{
-    font-size: 1.25rem;
-    width: 50%;
-    padding: 2%;
-    color: var(--Text2);
-    background-color: var(--CardColor);
-
-    border: 4px solid var(--ButtonColor);
-    border-radius: 25px;
-
-    word-break: break-all;
+.event_content p{
+    height: fit-content;
 }
 
 
@@ -144,6 +184,9 @@ h1{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: auto 0 0 0;
+    width: 100%;
+    height: 100%;
 }
 .buttons button{
     color: var(--Text2);
@@ -151,8 +194,8 @@ h1{
     font-size: 1.5rem;
     
     padding: 1%;
-    width: 35%;
-    height: 100%;
+    width: 45%;
+    height: auto;
 
     background-color: var(--ButtonColor);
     border: none;
