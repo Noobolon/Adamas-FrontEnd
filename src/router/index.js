@@ -52,6 +52,11 @@ export const router = createRouter({
       name: 'instituição',
       component: () => import('../views/InstitutionPage.vue')
     },
+    {
+      path: '/instituicao/editar-evento/:e_id',
+      name: 'editar evento',
+      component: () => import('../views/EventEditor.vue')
+    },
 
     // Pesquisas 
     {
