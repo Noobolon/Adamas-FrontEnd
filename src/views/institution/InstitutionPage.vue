@@ -5,6 +5,8 @@ import { useEventStore } from '@/stores/event';
 import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import EditEventModal from '@/components/modals/EditEventModal.vue';
+import MultiModalButton from '@/components/MultiModalButton.vue';
 
 
 export default{
@@ -12,6 +14,7 @@ export default{
 
     components:{
         RouterLink,
+        MultiModalButton
     },
 
     data(){
@@ -22,7 +25,7 @@ export default{
             inst_events: undefined,
             i_id: this.$route.params.id,
             
-            ptBR: ptBR
+            ptBR: ptBR,
         }
     },
 
@@ -69,8 +72,8 @@ export default{
             <img src="/symbols/user/BlueInst.svg" alt="">
             <h1>{{ this.inst.name }}</h1>
             <ul>
-                <li>teste</li>
-                <li><b>teste: </b></li>
+                <li>Olá, {{ this.inst.name }}!</li>
+                <li v-if="this.inst_events"><b>Eventos: </b>{{ this.inst_events.length }}</li>
             </ul>
             <ul class="personal_buttons">
                 <li @click="this.authStore.logout()">Sair</li>
@@ -97,7 +100,9 @@ export default{
                                 {{ event.name }}
                             </RouterLink>
                         </h3>
-                        <RouterLink :to="{ name: 'editar evento', params: {e_id: event.id}}"></RouterLink>
+
+                        <MultiModalButton :event="event"/>
+
                     </div>
                     
                     <ul>
@@ -113,19 +118,24 @@ export default{
         </main>
     </div>
 
+    <div v-else id="fail">
+        <h1>Instituição não encontrada!</h1>
+    </div>
+
     
 
 
 </template>
 
 <style scoped>
-@import url(@/assets/css/event_owner.css);
+@import url(@/assets/css/event_instview.css);
 
 .container{
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     font-size: 1.5rem;
 }
 
@@ -223,5 +233,17 @@ main{
     font-weight: bold;
     cursor: pointer;
 }
+
+#fail{
+    color: var(--TextHighlight);
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center
+}
+
 
 </style>

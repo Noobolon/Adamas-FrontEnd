@@ -146,7 +146,7 @@ export default{
                     </button>
                 </div>
 
-                <div class="added_room" v-if="this.rooms.length && this.rooms.length != 0" v-for="room in this.rooms">
+                <div class="added_room" :v-if="this.rooms.length && this.rooms.length != 0" v-for="room in this.rooms">
                     <h1>{{ room.name }}</h1>
                     <p><b>Quantidade de projetos:</b> {{ room.quantity_projects }}</p>
                 </div>
