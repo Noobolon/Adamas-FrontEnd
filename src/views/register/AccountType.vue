@@ -40,6 +40,17 @@ h1{
     text-align: center;
 
 }
+
+@media screen and (max-width: 1200px){
+    a{
+        width: 30%;
+        font-size: 1.8rem;
+    }
+
+    h1{
+        margin-bottom: 10%;
+    }
+}
 @media screen and (max-width: 600px){
     a{
         width: 60%;

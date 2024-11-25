@@ -193,12 +193,18 @@ main{
     width: 25%;
     height: 100vh;
     padding: 4%;
-    background-color: var(--SubBackgroundColor);
+    /* background-color: var(--SubBackgroundColor); */
     color: var(--TextHighlight2);
 
     display: flex;
     flex-direction: column;
     justify-content: baseline;
+    align-items: center;
+}
+.userInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -213,8 +219,8 @@ main{
 }
 
 .inst_container ul{
-    width: 50%;
-    margin: 2% 0 2% 0;
+    width: 100%;
+    margin: 10% 0 2% 0;
     padding: 4%;
     border-top: 4px solid var(--ButtonColor);
     list-style: none;
@@ -233,17 +239,5 @@ main{
     font-weight: bold;
     cursor: pointer;
 }
-
-#fail{
-    color: var(--TextHighlight);
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center
-}
-
 
 </style>
