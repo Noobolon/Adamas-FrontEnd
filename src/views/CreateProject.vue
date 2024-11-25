@@ -175,6 +175,11 @@ export default{
     border-radius: 25px;
 }
 
+@media screen and (max-width: 900px) {
+    #title{
+        text-indent: 10%;
+    }
+}
 @media screen and (max-width: 600px){
 
     form{
@@ -183,6 +188,7 @@ export default{
     }
 
     #title{
+        text-indent: 8%;
         font-size: 25px;
         background-size: 30px;
     }
