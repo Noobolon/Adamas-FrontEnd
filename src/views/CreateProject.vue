@@ -105,13 +105,21 @@ export default{
         <div class="container">
             <h1>Conteúdo do projeto:</h1>
 
-            <Transition>
+            <Transition  class="desktopMD" >
 
                 <!-- Editor de markdown md-editor-v3 -->
                 <!-- Ele é oculto ao abrir o modal pois gera uma linha que atrapalha a seleção de tags;
                 provavelmente tem um jeito de arrumar mas deixei assim -->
                 <MdEditor v-show="!modalOpen" v-model="content" language="pt-BR" 
                 :toolbarsExclude="this.excButtons"/>
+
+
+            </Transition>
+            <Transition  class="mobileMD" >
+
+                <MdEditor v-show="!modalOpen"  :preview="false" v-model="content" language="pt-BR" 
+                :toolbarsExclude="this.excButtons"/>
+
 
             </Transition>
             
@@ -175,18 +183,29 @@ export default{
     border-radius: 25px;
 }
 
-@media screen and (max-width: 900px) {
+.mobileMD{
+    display: none;
+}
+@media screen and (max-width: 1200px) {
     #title{
-        text-indent: 10%;
+        text-indent: 8%;
     }
 }
 @media screen and (max-width: 600px){
+    .desktopMD{
+        display: none;
+    }
 
+    .mobileMD{
+        display: flex;
+    }
     form{
         width: 100%;
         
     }
-
+    .buttons button{
+        width: 45%;
+    }
     #title{
         text-indent: 8%;
         font-size: 25px;
@@ -197,6 +216,7 @@ export default{
         font-size: 25px;
         padding: 2%;
     }
+
 }
 
 
