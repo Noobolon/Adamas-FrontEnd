@@ -208,7 +208,7 @@ main{
 }
 
 .inst_container ul{
-    width: 50%;
+    width: 100%;
     margin: 10% 0 2% 0;
     padding: 4%;
     border-top: 4px solid var(--ButtonColor);
