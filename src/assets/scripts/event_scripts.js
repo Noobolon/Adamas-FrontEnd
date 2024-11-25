@@ -87,3 +87,63 @@ export function formatEndDate(start_date, end_date){
 
 }
 
+
+// Função de morrer
+export async function addRoom(token, event_id, room_name, room_capacity) {
+
+    try {
+        const response = await api.post(`/event/${event_id}/room`,
+            {
+                name: room_name,
+                quantity_projects: room_capacity
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+
+// Função de pegar salas por ID do evento
+export async function getRoomsFromEventID(token, eventID){
+    try {
+        const response = await api.get(`/event/${eventID}/room`,
+            {
+                data: {},
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        );
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// Função de editar evento
+export async function editEvent(token, e_id, nome, endereco, descricao, data_comeco, data_encerramento){
+    try {
+        const new_event = await api.put(`/event/${e_id}`,
+            {
+                name: nome,
+                address: endereco,
+                description: descricao,
+                start_date: data_comeco,
+                end_date: data_encerramento
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return new_event.data
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+

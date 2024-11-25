@@ -1,4 +1,6 @@
 <script>
+import { addRoom } from '@/assets/scripts/event_scripts';
+
 
 export default{
     name: "RoomModal",
@@ -6,6 +8,8 @@ export default{
     props: {
         show: Boolean,
         roomArray: Array,
+        e_id: String,
+        token: String
     },
 
     data(){
@@ -16,10 +20,18 @@ export default{
     },
 
     methods:{
-        addRoom(){
-            this.roomArray.push(
-                
+        adicionarSala(){
+
+            let id = parseInt(this.e_id)
+            console.log(id)
+
+            addRoom(
+                this.token,
+                id,
+                this.room_name,
+                this.room_capacity
             )
+            
         }
     }
 
@@ -48,9 +60,7 @@ export default{
                             Fechar
                         </button> 
 
-                        <button @click.prevent="
-                        console.log('ue'); $emit('close')
-                        ">  
+                        <button @click.prevent="adicionarSala(); $emit('close')">  
                             Adicionar
                         </button>
                     </div>
@@ -65,6 +75,13 @@ export default{
 
 <style scoped>
 @import url(@/assets/css/modal.css);
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 
 input{
     font-size: 1.25rem;  
