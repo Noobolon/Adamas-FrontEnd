@@ -76,15 +76,8 @@ export default{
                 <li @click="this.authStore.logout()">Sair</li>
             </ul>
         </div>
+
         
-
-        <!-- modal de editar eventos -->
-        <Teleport to="body">
-            <EditEventModal :show="openMenu == true" @close="openMenu = false"
-            :curr-event="this.editEvent"/>
-        </Teleport>
-
-
         <!-- Eventos -->
         <main v-if="this.inst_events">
             <div class="inst_content">
@@ -99,7 +92,11 @@ export default{
             <div class="event_container">
                 <div class="owner_event" v-for="event in this.inst_events">
                     <div>
-                        <h3><RouterLink :to="{ name: 'evento', params: {id: event.id}}">{{ event.name }}</RouterLink></h3>
+                        <h3>
+                            <RouterLink :to="{ name: 'evento', params: {id: event.id}}">
+                                {{ event.name }}
+                            </RouterLink>
+                        </h3>
                         <RouterLink :to="{ name: 'editar evento', params: {e_id: event.id}}"></RouterLink>
                     </div>
                     

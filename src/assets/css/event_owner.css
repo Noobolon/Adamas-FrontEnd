@@ -9,6 +9,7 @@
     margin: 4%;
     border-radius: 25px;
     background-color: var(--MenuColor);
+    word-break: break-all;
 }
 
 .owner_event div{
@@ -29,8 +30,8 @@
 
     width: 5%;
 }
-.owner_event div > a:hover{cursor: pointer;}
-.owner_event div > a:visited{color: var(--Text);}
+.owner_event a:hover{cursor: pointer;}
+.owner_event a:visited{color: var(--Text);}
     
 .owner_event h3{
     margin-bottom: 2%;

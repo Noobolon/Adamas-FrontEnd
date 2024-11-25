@@ -77,7 +77,7 @@ export default{
         <form  @submit.prevent="criarEvento()">
 
             <fieldset class="event_content">
-                <h1>Criação de projeto</h1>
+                <h1>Criação de eventos</h1>
 
                 <input id="title" v-model="name" placeholder="Nome do evento" type="text" required>
                 <input id="address" v-model="address" placeholder="Local do evento" type="text" required>
@@ -116,27 +116,6 @@ export default{
                 </div>  
             </fieldset>
 
-            <Teleport to="body">
-                <RoomModal
-                :show="modalOpen"
-                @close="modalOpen = false"
-                :roomArray="this.rooms"/>
-            </Teleport>
-
-            <!-- <fieldset v-show="editing" class="rooms">
-                <div class="buttons">
-                    <button @click="modalOpen = true" type="button" id="add_room">
-                        Adicionar sala
-                    </button>
-                </div>
-                <div class="added_room" v-if="this.rooms.length != 0" v-for="room in this.rooms">
-                    <h1>{{ room.room_name }}</h1>
-                    <p><b>Quantidade de projetos:</b> {{ room.room_capacity }}</p>
-                </div>
-            </fieldset> -->
-
-
-
         </form>
 
     </main>
@@ -145,106 +124,8 @@ export default{
 
 
 <style scoped>
+@import url(@/assets/css/event_creator.css);
 
-/* Inputs  */
-textarea{
-    width: 79%;
-    padding: 1%;
-    color: var(--Text);
-    font-size: 1.5rem;
-    border: 4px solid var(--ButtonColor);
-    border-radius: 25px;
-}
-h1{
-    margin-top: 40px;
-    width: 80%;
-}
-input{
-    width: 80%;
-    background-color: #00000000;
-    border: none;
-    border-bottom: 2px solid var(--ButtonColor);
-    font-size: 2rem;
-    caret-color: var(--TextFieldColor);
-}
-
-input:focus{
-    outline: none;
-}
-
-input::placeholder{
-    font-weight: normal;
-    color: var(--TextFieldColor);
-}
-
-fieldset{
-    border: 2px solid var(--ButtonColor);
-    justify-content: center;
-    align-items: center;
-    display: flex; 
-    flex-direction: column;
-    background-color: var(--MenuColor);
-    width: 60%;
-    border-radius: 25px;
-}
-/*  */
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    padding: 2%;
-}
-#datetimes{
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between
-}
-
-#datetimes > div {
-    width: 45%;
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-}
-#datetimes > div > input{
-    width: 100%;
-
-}
-.buttons{
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttons button{
-    background-color: var(--ButtonColor);
-    border: 2px solid var(--ButtonColor);
-    border-radius: 25px;
-
-    width: 35%;
-    padding: 1% 0;
-    
-    font-size: 2rem;
-    color: var(--Text2);
-    text-align: center;
-}
-
-.event_content{
-    display: flex;
-    flex-direction: column;
-}
-.event_content *{
-    margin-bottom: 4%;
-}
-
-.divisor{
-    width: 80%;
-    height: 4px;
-    background-color: var(--ButtonColor);
-}
 
 /* Salas */
 
@@ -261,35 +142,5 @@ form{
     padding: 2%;
 }
 
-@media screen and (max-width: 700px){
-    form{
-        padding: 0;
-    }
-    input{
- 
-        width: 80%;
-    }
-    fieldset{
-        border: none;
-        border-radius: 0;
-        padding: 0;
-        width: 100%;
-    }
-    #datetimes{
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-        width: 80%;
-    }
 
-    #datetimes > div  {
-        width: 100%;
-
-    }
-    #datetimes > div > input {
-        width: 100%;
-
-    }
-    
-}
 </style>

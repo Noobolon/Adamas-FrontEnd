@@ -1,6 +1,7 @@
 <script>
-import { getEventFromID } from '@/assets/scripts/event_scripts';
+import { editEvent, getEventFromID, getRoomsFromEventID } from '@/assets/scripts/event_scripts';
 import RoomModal from '@/components/modals/RoomModal.vue';
+import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
 import { format } from 'date-fns';
 
@@ -23,12 +24,12 @@ export default{
             name: this.event,
             address: this.address,
             description: this.description,
-
             start_date: this.start_date,
             end_date: this.end_date,
 
-            rooms: [],
-            modalOpen: false
+            modalOpen: false,
+
+            rooms: []
         }
     },
 
@@ -45,23 +46,43 @@ export default{
         },
 
         async editarEvento(){
-            
-            
-        }
 
+            try {
+                editEvent(
+                    this.user_token,
+                    this.e_id,
+
+                    this.name,
+                    this.address,
+                    this.description,
+                    this.start_date,
+                    this.end_date
+                )
+                router.push(`/evento/${this.e_id}`)
+                
+            } catch (error) {
+                console.log(error)
+            }
+        
+        }
     },
 
     created(){
         this.user_token = this.authStore.getToken
         console.log(this.curDate)
 
-        getEventFromID(this.e_id).
-        then(event => {
+        getEventFromID(this.e_id)
+        .then(event => {
             this.name= event.name
             this.address = event.address
             this.description = event.description
             this.start_date = event.start_date
             this.end_date = event.end_date
+        })
+
+        getRoomsFromEventID(this.user_token, this.e_id)
+        .then(rooms => {
+            this.rooms = rooms
         })
 
     }
@@ -75,7 +96,7 @@ export default{
 
     <main class="container">
 
-        <form  @submit.prevent="criarEvento()">
+        <form  @submit.prevent="editarEvento()">
 
             <fieldset class="event_content">
                 <h1>Editar eventos:</h1>
@@ -113,29 +134,32 @@ export default{
 
                 <div class="buttons">
                     <button type="reset">Limpar</button>
-                    <button type="submit">Criar</button>
+                    <button type="submit">Editar</button>
                 </div>  
+            </fieldset>
+
+            <fieldset class="rooms">
+                <h1>Salas: </h1>
+                <div class="buttons">
+                    <button @click="modalOpen = true" type="button" id="add_room">
+                        Adicionar sala
+                    </button>
+                </div>
+
+                <div class="added_room" v-if="this.rooms.length && this.rooms.length != 0" v-for="room in this.rooms">
+                    <h1>{{ room.name }}</h1>
+                    <p><b>Quantidade de projetos:</b> {{ room.quantity_projects }}</p>
+                </div>
             </fieldset>
 
             <Teleport to="body">
                 <RoomModal
                 :show="modalOpen"
                 @close="modalOpen = false"
-                :roomArray="this.rooms"/>
+                :roomArray="this.rooms"
+                :e_id="this.e_id"
+                :token="this.user_token"/>
             </Teleport>
-
-            <fieldset class="rooms">
-                <div class="buttons">
-                    <button @click="modalOpen = true" type="button" id="add_room">
-                        Adicionar sala
-                    </button>
-                </div>
-                <div class="added_room" v-if="this.rooms.length != 0" v-for="room in this.rooms">
-                    <h1>{{ room.room_name }}</h1>
-                    <p><b>Quantidade de projetos:</b> {{ room.room_capacity }}</p>
-                </div>
-            </fieldset>
-
 
 
         </form>
@@ -146,151 +170,44 @@ export default{
 
 
 <style scoped>
+@import url(@/assets/css/event_creator.css);
 
-/* Inputs  */
-textarea{
-    width: 79%;
-    padding: 1%;
-    color: var(--Text);
-    font-size: 1.5rem;
-    border: 4px solid var(--ButtonColor);
-    border-radius: 25px;
-}
-h1{
-    margin-top: 40px;
-    width: 80%;
-}
-input{
-    width: 80%;
-    background-color: #00000000;
-    border: none;
-    border-bottom: 2px solid var(--ButtonColor);
-    font-size: 2rem;
-    caret-color: var(--TextFieldColor);
-}
-
-input:focus{
-    outline: none;
-}
-
-input::placeholder{
-    font-weight: normal;
-    color: var(--TextFieldColor);
-}
-
-fieldset{
-    border: 2px solid var(--ButtonColor);
-    justify-content: center;
-    align-items: center;
-    display: flex; 
-    flex-direction: column;
-    background-color: var(--MenuColor);
-    width: 60%;
-    border-radius: 25px;
-}
-/*  */
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    padding: 2%;
-}
-#datetimes{
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between
-}
-
-#datetimes > div {
-    width: 45%;
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-}
-#datetimes > div > input{
-    width: 100%;
-
-}
-.buttons{
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttons button{
-    background-color: var(--ButtonColor);
-    border: 2px solid var(--ButtonColor);
-    border-radius: 25px;
-
-    width: 35%;
-    padding: 1% 0;
-    
-    font-size: 2rem;
-    color: var(--Text2);
-    text-align: center;
-}
-
-.event_content{
-    display: flex;
-    flex-direction: column;
-}
-.event_content *{
-    margin-bottom: 4%;
-}
-
-.divisor{
-    width: 80%;
-    height: 4px;
-    background-color: var(--ButtonColor);
-}
 
 /* Salas */
 
-#add_room{
-    width: 25%;
-    font-size: 1.25rem;
-    border-radius: 10px;
-    margin-left: 4%;
+.rooms{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: flex-start;
 }
 
-.added_room{
-    background-color: var(--SubBackgroundColor);
-    border: 4px solid var(--ButtonColor);
+.rooms > *{
+    padding: 0px;
+    margin: 0 0 4% 4%;
+}
+
+#add_room{
+    width: 25%;
+    font-size: 1.5rem;
+    border-radius: 25px;
     padding: 2%;
 }
 
-@media screen and (max-width: 700px){
-    form{
-        padding: 0;
-    }
-    input{
- 
-        width: 80%;
-    }
-    fieldset{
-        border: none;
-        border-radius: 0;
-        padding: 0;
-        width: 100%;
-    }
-    #datetimes{
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-        width: 80%;
-    }
-
-    #datetimes > div  {
-        width: 100%;
-
-    }
-    #datetimes > div > input {
-        width: 100%;
-
-    }
-    
+.added_room{
+    color: var(--Text2);
+    background-color: var(--CardColor);
+    border: 4px solid var(--ButtonColor);
+    border-radius: 25px;
+    width: 50%;
+    padding: 2%;
+    margin-bottom: 2%;
 }
+.added_room:last-child{
+    margin-bottom: 4%;
+}
+.added_room h1{
+    margin: 0px;
+}
+
 </style>
