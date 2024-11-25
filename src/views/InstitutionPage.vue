@@ -66,12 +66,11 @@ export default{
     <div v-if="this.inst && isLoggedInstSameAsProfile()" class="container">
         
         <div class="inst_container">
-            <img src="/symbols/user/BlueInst.svg" alt="">
-            <h1>{{ this.inst.name }}</h1>
-            <ul>
-                <li>teste</li>
-                <li><b>teste: </b></li>
-            </ul>
+            <div class="userInfo">
+                <img src="/symbols/user/BlueInst.svg" alt="">
+                <h1>{{ this.inst.name }}</h1>
+            </div>
+
             <ul class="personal_buttons">
                 <li @click="this.authStore.logout()">Sair</li>
             </ul>
@@ -186,12 +185,18 @@ main{
     width: 25%;
     height: 100vh;
     padding: 4%;
-    background-color: var(--SubBackgroundColor);
+    /* background-color: var(--SubBackgroundColor); */
     color: var(--TextHighlight2);
 
     display: flex;
     flex-direction: column;
     justify-content: baseline;
+    align-items: center;
+}
+.userInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -207,7 +212,7 @@ main{
 
 .inst_container ul{
     width: 50%;
-    margin: 2% 0 2% 0;
+    margin: 10% 0 2% 0;
     padding: 4%;
     border-top: 4px solid var(--ButtonColor);
     list-style: none;
@@ -225,6 +230,38 @@ main{
 .personal_buttons li:hover{
     font-weight: bold;
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px){
+    .container{
+        flex-direction: column;
+
+    }
+    .userInfo{
+        flex-direction: row;
+    }
+    .inst_container img{
+        width: 30%;
+        margin-bottom: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .inst_container {
+        padding: 0;
+        width: 100%;
+        flex-direction: row;
+    }
+    .inst_container > ul {
+        margin: 0;
+         border-top: 0;
+    }
+
+    .inst_content a{
+        width: 45%;
+    }
+    .inst_content div{
+        width: 45%;
+    }
 }
 
 </style>
