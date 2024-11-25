@@ -1,7 +1,8 @@
-<svg width="132" height="139" viewBox="0 0 132 139" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M132 118.801H0V138.601H132V118.801Z" fill="#2B6585"/>
-<path d="M33.0009 59.3984H13.2009V105.598H33.0009V59.3984Z" fill="#2B6585"/>
-<path d="M75.9006 59.3984H56.1006V105.598H75.9006V59.3984Z" fill="#2B6585"/>
-<path d="M118.801 59.3984H99.0015V105.598H118.801V59.3984Z" fill="#2B6585"/>
-<path d="M66 0L0 33V46.2H132V33L66 0Z" fill="#2B6585"/>
+<svg width="217" height="217" viewBox="0 0 217 217" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="108.5" cy="108.5" r="108.5" transform="matrix(1 0 0 -1 0 217)" fill="#96DAF7"/>
+<path d="M174 146.801H42V166.601H174V146.801Z" fill="#2B6585"/>
+<path d="M75.0009 87.3984H55.2009V133.598H75.0009V87.3984Z" fill="#2B6585"/>
+<path d="M117.901 87.3984H98.1006V133.598H117.901V87.3984Z" fill="#2B6585"/>
+<path d="M160.801 87.3984H141.001V133.598H160.801V87.3984Z" fill="#2B6585"/>
+<path d="M108 28L42 61V74.2H174V61L108 28Z" fill="#2B6585"/>
 </svg>

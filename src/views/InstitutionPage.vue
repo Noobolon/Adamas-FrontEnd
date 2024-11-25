@@ -5,15 +5,13 @@ import { useEventStore } from '@/stores/event';
 import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import EditEventModal from '@/components/modals/EditEventModal.vue';
-import LinkButton from '@/components/LinkButton.vue';
+
 
 export default{
     name: "InstitutionPage",
 
     components:{
         RouterLink,
-        EditEventModal
     },
 
     data(){
@@ -66,6 +64,7 @@ export default{
 
     <!-- Perfil da instituição: -->
     <div v-if="this.inst && isLoggedInstSameAsProfile()" class="container">
+        
         <div class="inst_container">
             <img src="/symbols/user/BlueInst.svg" alt="">
             <h1>{{ this.inst.name }}</h1>
@@ -100,8 +99,8 @@ export default{
             <div class="event_container">
                 <div class="owner_event" v-for="event in this.inst_events">
                     <div>
-                        <h3>{{ event.name }}</h3>
-                        <RouterLink :to="`/editar-evento`"></RouterLink>
+                        <h3><RouterLink :to="{ name: 'evento', params: {id: event.id}}">{{ event.name }}</RouterLink></h3>
+                        <RouterLink :to="{ name: 'editar evento', params: {e_id: event.id}}"></RouterLink>
                     </div>
                     
                     <ul>
@@ -135,7 +134,7 @@ export default{
 
 main{
     width: 100%;
-    height: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,7 +184,7 @@ main{
 
 .inst_container{
     width: 25%;
-    height: 100%;
+    height: 100vh;
     padding: 4%;
     background-color: var(--SubBackgroundColor);
     color: var(--TextHighlight2);
@@ -197,7 +196,7 @@ main{
 }
 
 .inst_container img{
-    width: 25%;
+    width: 50%;
     margin-bottom: 4%;
 }
 
