@@ -6,6 +6,7 @@ import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import EditEventModal from '@/components/modals/EditEventModal.vue';
+import LinkButton from '@/components/LinkButton.vue';
 
 export default{
     name: "InstitutionPage",
@@ -23,19 +24,12 @@ export default{
             inst_events: undefined,
             i_id: this.$route.params.id,
             
-            openMenu: false,
-            editEvent: undefined,
-            
             ptBR: ptBR
         }
     },
 
     methods: {
         format,
-
-        openModal(e_id, e_name, e_desc){
-
-        },
 
         isLoggedInstSameAsProfile(){
             if (this.authStore.token){
@@ -107,7 +101,7 @@ export default{
                 <div class="owner_event" v-for="event in this.inst_events">
                     <div>
                         <h3>{{ event.name }}</h3>
-                        <input type="button">
+                        <RouterLink :to="`/editar-evento`"></RouterLink>
                     </div>
                     
                     <ul>
