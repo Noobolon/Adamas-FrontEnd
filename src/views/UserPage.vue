@@ -31,10 +31,12 @@ export default {
         isLoggedUserSameAsProfile(){
             if (this.authStore.token){
                 let logged_user = this.authStore.getUser
-                return logged_user && this.u_id == logged_user.id
+                let accType = this.authStore.getAccType
+
+                return logged_user && this.u_id == logged_user.id && accType == 'common'
             } else return false
-            
         }
+        
     },
 
     created(){
@@ -142,7 +144,7 @@ export default {
         </div>
         
     </main>
-    <main v-else id="userNotExist"><h2>Usuário inexistente :(</h2></main>
+    <main v-else id="userNotExist"><h2>Usuário não carregando</h2></main>
 </div>
  
 </template>

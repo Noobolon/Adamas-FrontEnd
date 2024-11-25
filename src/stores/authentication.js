@@ -72,8 +72,8 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "common"
                 localStorage.setItem("acc_type", "common")
 
-                // retorna pra home
-                await router.push('/') 
+                // manda para a página dele
+                await router.push(`/usuario/${this.getUser.id}`) 
                 location.reload()
 
 
@@ -112,7 +112,7 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "common"
                 localStorage.setItem("acc_type", "common")
 
-                await router.push('/') 
+                await router.push(`/usuario/${this.getUser.id}`) 
                 location.reload()
 
             } catch (error) {
@@ -135,7 +135,7 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "institution"
                 localStorage.setItem("acc_type", "institution")
 
-                await router.push('/') 
+                await router.push(`/instituicao/${this.getUser.id}`) 
                 location.reload()
 
             } catch (error) {
@@ -160,7 +160,7 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "institution"
                 localStorage.setItem("acc_type", "institution")
 
-                await router.push('/') 
+                await router.push(`/instituicao/${this.getUser.id}`) 
                 location.reload()
 
                 

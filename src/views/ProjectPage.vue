@@ -276,6 +276,7 @@ a:visited{color: var(--Text);}
     width: 100%;
     min-height: 35vh;
 }
+
 .wrapper {
     max-width: 96%;
 }
@@ -286,10 +287,10 @@ a:visited{color: var(--Text);}
     display: block;
     margin: 0 auto;
 }
-
 .formatted > p {
     text-align: justify;
 }
+
 .items_info{
     display: flex;
     flex-direction: row;
@@ -313,7 +314,6 @@ a:visited{color: var(--Text);}
 .project_items ul > *:hover{
     cursor: pointer;
 }
-
 .project_items img{width: 35px;}
 
 .project_tags{
