@@ -214,6 +214,9 @@ li:last-child{border-right: none;}
         flex-direction: column;
         justify-items: end;
     }
+    ul > li {
+        text-align: center;
+    }
     #user {
         flex-direction: row-reverse;
         display: flex;
