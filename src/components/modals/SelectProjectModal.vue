@@ -8,7 +8,6 @@ export default{
     props:{
         userID: Number,
         token: String,
-        project: Object,
         show: Boolean
     },
 
@@ -48,7 +47,7 @@ export default{
 
                 <div class="user_info">
 
-                    <div v-for="project in this.user_projects" @click="selectProject(project); $emit('close')">
+                    <div v-for="project in this.user_projects" @click="$emit('project', project); $emit('close')">
                         <h3>{{ project.title }}</h3>
                         <p>{{ project.description }}</p>
                         <div class="cat" v-for="cat in project.categories">{{ cat.name }}</div>

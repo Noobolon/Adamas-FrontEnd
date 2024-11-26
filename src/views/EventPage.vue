@@ -184,7 +184,7 @@ export default{
             :userID="this.user.id"
             :token="this.authStore.getToken"
             :show="this.showProjects"
-            :project="this.selected_project"
+            @project="this.selected_project = p"
             @close="this.showProjects = false"
             />
 
@@ -201,10 +201,9 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: baseline;
-    padding: 7%;
+    padding: 10% 7% 7% 7%;
     min-height: 100vh;
-    align-items: center;
+    align-items: flex-start;
 }
 
 h1{
