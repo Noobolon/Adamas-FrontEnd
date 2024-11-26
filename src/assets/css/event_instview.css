@@ -18,23 +18,12 @@
     justify-content: space-between;
 }
 
-.owner_event div > a{
-    color: var(--Text);
-    background-color: #00000000;
-    border: none;
-
-    background-image: url("/symbols/PencilIcon.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right;
-
-    width: 5%;
-}
+.owner_event a{color: var(--Text);}
 .owner_event a:hover{cursor: pointer;}
 .owner_event a:visited{color: var(--Text);}
     
 .owner_event h3{
-    margin-bottom: 2%;
+    color: var(--Text);
 }
 
 .owner_event > ul{

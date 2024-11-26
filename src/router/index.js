@@ -26,7 +26,7 @@ export const router = createRouter({
     {
       path: '/criar-evento',
       name: 'criar evento',
-      component: () => import('../views/CreateEvent.vue')
+      component: () => import('../views/institution/CreateEvent.vue')
     },
 
     {
@@ -50,12 +50,12 @@ export const router = createRouter({
     {
       path: '/instituicao/:id',
       name: 'instituição',
-      component: () => import('../views/InstitutionPage.vue')
+      component: () => import('../views/institution/InstitutionPage.vue')
     },
     {
       path: '/instituicao/editar-evento/:e_id',
       name: 'editar evento',
-      component: () => import('../views/EventEditor.vue')
+      component: () => import('../views/institution/EventEditor.vue')
     },
 
     // Pesquisas 
