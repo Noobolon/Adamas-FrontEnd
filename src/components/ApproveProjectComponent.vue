@@ -1,5 +1,5 @@
 <script>
-import { approveProject } from '@/assets/scripts/event_scripts';
+import { approveProject, rejectProject } from '@/assets/scripts/event_scripts';
 
 export default{
 
@@ -21,16 +21,26 @@ export default{
     methods:{
 
         aprovarProjeto(){
-
+            // eu geralmente faço essa função externa pra tratar variáveis, mas não precisou dessa vez
             approveProject(
                 this.token,
                 this.project.project_id,
                 this.selected_room.id,
                 this.event_id
             )
+        },
 
+        desaprovarProjeto(){
 
+            rejectProject(
+                this.token,
+                this.project.project_id,
+                this.event_id
+            )
+
+            location.reload()
         }
+
     }
 
 }
@@ -59,7 +69,7 @@ export default{
         <p v-if="selected_room">Capacidade: {{ selected_room.projects ? selected_room.projects.length : 0 }}/{{ selected_room.quantity_projects }}</p>
 
         <input type="submit" value="Aprovar" id="approve">
-        <input type="button" value="Rejeitar" id="reject">
+        <input type="button" value="Rejeitar" id="reject" @click="desaprovarProjeto()">
     </form>
 
 </div>
