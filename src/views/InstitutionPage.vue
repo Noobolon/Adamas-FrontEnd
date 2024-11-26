@@ -252,13 +252,22 @@ main{
         margin: 0;
          border-top: 0;
     }
-
+    .userInfo > h1 {
+        font-size: 2rem;
+    }
+    .userInfo > img {
+        width: 40%;
+    }
     .inst_content a{
         width: 45%;
     }
     .inst_content div{
         width: 45%;
     }
+
+    .inst_container ul > li:first-child{
+    margin-top: 0;
+}
 }
 
 </style>

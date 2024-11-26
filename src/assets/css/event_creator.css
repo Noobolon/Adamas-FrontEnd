@@ -107,6 +107,11 @@ form{
 
 
 @media screen and (max-width: 700px){
+
+    .event_content{
+        padding:0;
+        margin:0;
+    }
     form{
         padding: 0;
     }
@@ -126,6 +131,7 @@ form{
         align-items: center;
         width: 80%;
     }
+  
 
     #datetimes > div  {
         width: 100%;
@@ -135,5 +141,5 @@ form{
         width: 100%;
 
     }
-    
+
 }
