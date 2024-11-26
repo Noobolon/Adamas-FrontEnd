@@ -97,7 +97,7 @@ export default {
         <img id="userImg" src="/symbols/UserIcon.png" alt="Usuário">
 
         <h1 v-if="this.user.nickname">{{ this.user.nickname }}</h1>
-        <h1 v-else>{{ this.user.username }}</h1>
+        <h1 v-else>{{ this.user.name }}</h1>
 
         <p id="you" v-if="isLoggedUserSameAsProfile()">(Você)</p>
         <ul>
