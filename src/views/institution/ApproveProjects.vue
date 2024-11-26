@@ -1,16 +1,22 @@
 <script>
-import { getEventFromID, getPendingProjects } from '@/assets/scripts/event_scripts';
+import { getEventFromID, getPendingProjects, getRoomsFromEventID } from '@/assets/scripts/event_scripts';
+import ApproveProjectComponent from '@/components/ApproveProjectComponent.vue';
 import { useAuthStore } from '@/stores/authentication';
 
 
 export default{
     name: "ApproveProjects",
 
+    components:{
+        ApproveProjectComponent
+    },
+
     data(){
         return{
             authStore: useAuthStore(),
             token: undefined,
 
+            rooms: [],
             pending_projects: [],
             event: undefined,
             e_id: this.$route.params.e_id
@@ -37,6 +43,9 @@ export default{
         getPendingProjects(this.token, this.e_id)
         .then(projects => this.pending_projects = projects)
 
+        getRoomsFromEventID(this.token, this.e_id)
+        .then(rooms => this.rooms = rooms)
+
     }
 
 }
@@ -50,6 +59,7 @@ export default{
 
             <h1>
                 {{ this.event.name }}
+                
             </h1>
 
             <p>{{ this.event.description }}</p>
@@ -60,19 +70,17 @@ export default{
 
         <section>
             <h1>Projetos pendentes:</h1>
+
             <div v-if="this.pending_projects"
             v-for="project in this.pending_projects" class="project">
 
+                <ApproveProjectComponent
+                :token="this.token"
+                :project="project"
+                :event_id="this.e_id"
+                :rooms="this.rooms"
+                />
 
-                <RouterLink :to="{ name: 'projeto', params: {id: project.project_id}}">
-                    <h3>{{ project.title }}</h3>
-                </RouterLink>
-
-                 <p>{{ project.description }}</p>
-
-                 <form>
-
-                 </form>
 
             </div>
 
@@ -96,6 +104,7 @@ export default{
 <style scoped>
 
 main{
+    background-color: var(--SubBackgroundColor);
     padding: 7%;
 }
 
@@ -122,13 +131,12 @@ section{
 }
 
 a{
-    color: var(--Text2);
+    color: var(--Text);
 }
 
 
-.project{
-    margin-bottom: 2%;
-}
+
+
 
 
 </style>

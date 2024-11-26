@@ -99,7 +99,6 @@ export default{
 
             let u_token = this.authStore.getToken
             let p_id = parseInt(this.selected_project.project_id)
-            console.log(p_id, u_token)
 
             sendProjectToApproval(
                 u_token,
@@ -196,7 +195,7 @@ export default{
                     <h3>Selecionar projeto</h3>
                 </div>
 
-                <div>
+                <div class="buttons">
                     <button v-if="this.selected_project" type="button" @click="mandarProjeto()">
                         Participar
                     </button>
@@ -215,7 +214,6 @@ export default{
             @project="p => this.selected_project = p"
             @close="this.showProjects = false"
             />
-
         </Teleport>
         
 
@@ -346,6 +344,7 @@ h1{
         width: 100%;
     }
 }
+
 
 
 

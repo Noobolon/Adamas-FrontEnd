@@ -85,6 +85,7 @@ export async function addRoom(token, event_id, room_name, room_capacity) {
     }
 }
 
+// Função de enviar projeto para aprovação em evento
 export async function sendProjectToApproval(token, project_ID, event_id){
     try {
         const response = await api.post(`/event/${event_id}/participation`,
@@ -98,11 +99,35 @@ export async function sendProjectToApproval(token, project_ID, event_id){
         return response.data
         
     } catch (error) {
-        console.log(error)
+        if (error.response.data.message.startsWith("Error 1062 (23000): Duplicate entry")){
+            alert("Projeto já registrado no evento!")
+        } else console.log(error)
     }
 
+}
+
+// Função de aprovar projeto em evento
+export async function approveProject(token, project_id, room_id, event_id){
+    try {
+        const response = await api.post(`/event/${event_id}/approve-participation`,
+            {   
+                project_id: project_id,
+                room_id: room_id
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response.data
+        
+    } catch (error) {
+        if (error.response.data.message.startsWith("Error 1062 (23000): Duplicate entry")){
+            alert("Projeto já registrado no evento!")
+        } else console.log(error)
+    }
 
 }
+
 
 
 /* 
@@ -153,7 +178,7 @@ export async function getRoomsFromEventID(token, eventID){
     }
 }
 
-// Fumção de pegar projetos participantes de um evento
+// Função de pegar projetos participantes de um evento
 export async function getApprovedProjects(eventID){
     try {
         const response = await api.get(`/event/${eventID}/approved_projects`)
