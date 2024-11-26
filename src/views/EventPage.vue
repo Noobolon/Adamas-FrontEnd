@@ -204,7 +204,7 @@ main{
     align-items: baseline;
     padding: 7%;
     min-height: 100vh;
-    align-items: center;
+    align-items: flex-start;
 }
 
 h1{
@@ -307,12 +307,18 @@ h1{
 }
 @media screen and (max-width: 600px){
     main{
-        padding-top: 7%;
-        padding: 4%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .container{
+        margin-top: 10px;
         width: 100%;
     }
+    h1{
+        font-size: 1.5rem;
+    }
+
 }
 
 
