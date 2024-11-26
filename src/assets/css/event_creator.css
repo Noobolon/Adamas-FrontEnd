@@ -132,7 +132,9 @@ form{
         width: 80%;
     }
   
-
+    .buttons button {
+        width: 40%;
+    }
     #datetimes > div  {
         width: 100%;
 

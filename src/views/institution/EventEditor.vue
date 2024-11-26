@@ -221,8 +221,13 @@ export default{
     .rooms{
         width: 100%;
     }
+
+    
     #add_room{
-        width: 40%;
+        width: 50%;
+    }
+    .added_room{
+        width: 70%;
     }
 }
 </style>
