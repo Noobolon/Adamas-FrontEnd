@@ -69,8 +69,11 @@ export default{
     <div v-if="this.inst && isLoggedInstSameAsProfile()" class="container">
         
         <div class="inst_container">
-            <img src="/symbols/user/BlueInst.svg" alt="">
-            <h1>{{ this.inst.name }}</h1>
+            <div id="user_info">
+                <img src="/symbols/user/BlueInst.svg" alt="">
+                <h1>{{ this.inst.name }}</h1>
+            </div>
+
             <ul>
                 <li>Olá, {{ this.inst.name }}!</li>
                 <li v-if="this.inst_events"><b>Eventos: </b>{{ this.inst_events.length }}</li>
@@ -147,6 +150,13 @@ main{
     align-items: center;
 }
 
+#user_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .inst_content{
     display: flex;
     flex-direction: row;
@@ -201,14 +211,9 @@ main{
     justify-content: baseline;
     align-items: center;
 }
-.userInfo{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.inst_container img{
+
+.inst_container > img{
     width: 50%;
     margin-bottom: 4%;
 }
@@ -245,7 +250,7 @@ main{
         flex-direction: column;
 
     }
-    .userInfo{
+    #user_info{
         flex-direction: row;
     }
     .inst_container img{
@@ -257,17 +262,20 @@ main{
     .inst_container {
         padding: 0;
         width: 100%;
-        flex-direction: row;
+        height: 20%;
+        flex-direction: column;
     }
     .inst_container > ul {
         margin: 0;
          border-top: 0;
     }
-    .userInfo > h1 {
+    #user_info > h1 {
         font-size: 2rem;
     }
-    .userInfo > img {
-        width: 40%;
+    #user_info > img {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 20%;
     }
     .inst_content a{
         width: 45%;
@@ -275,7 +283,11 @@ main{
     .inst_content div{
         width: 45%;
     }
-
+    .inst_container ul > li{
+        margin: 20px;
+        padding: 0;
+        text-align: start;
+    }
     .inst_container ul > li:first-child{
     margin-top: 0;
 }
