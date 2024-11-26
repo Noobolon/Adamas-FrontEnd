@@ -213,10 +213,11 @@ export default{
 @import url(@/assets/css/categorias.css);
 
 main{
+    min-height: 80vh;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    
+    justify-content: start;
+    margin-bottom:10px;
     padding: 0% 7% 7% 7%;
 }
 main > *{

@@ -47,6 +47,7 @@ export const router = createRouter({
       component: () => import('../views/EventPage.vue')
     },
 
+    // Instituição
     {
       path: '/instituicao/:id',
       name: 'instituição',
@@ -56,6 +57,16 @@ export const router = createRouter({
       path: '/instituicao/editar-evento/:e_id',
       name: 'editar evento',
       component: () => import('../views/institution/EventEditor.vue')
+    },
+    {
+      path: '/instituicao/visualizar/:e_id',
+      name: 'visualizar participantes',
+      component: () => import('../views/institution/ViewSubs.vue')
+    },
+    {
+      path: '/instituicao/aprovar-projetos/:e_id',
+      name: 'aprovar projetos',
+      component: () => import('../views/institution/ApproveProjects.vue')
     },
 
     // Pesquisas 
@@ -97,6 +108,7 @@ export const router = createRouter({
       name: 'login como instituição',
       component: () => import('../views/register/LogInstitution.vue')
     },
+    
 
 
     // Página de debug (será removido na versão final)

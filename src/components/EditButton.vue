@@ -3,7 +3,7 @@ import EditEventModal from './modals/EditEventModal.vue';
 
 
 export default{
-    name: "MultiModalButton",
+    name: "EditButton",
 
     props:{
         button: String,

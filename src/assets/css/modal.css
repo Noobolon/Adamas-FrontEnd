@@ -38,6 +38,7 @@ button:hover{
     flex-direction: column;
     justify-content: space-between;
     width: 25%;
+    min-height: fit-content;
     height: 35%;
     margin: auto;
     padding: 2%;
@@ -65,6 +66,9 @@ button:hover{
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+
+/* Responsividade */
 
 @media screen and (max-width: 800px){
     .container{

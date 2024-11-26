@@ -1,6 +1,8 @@
 <script>
     export default{
-        name: "Footer1"
+        name: "Footer1",
+
+        
     }
 </script>
 
@@ -20,17 +22,21 @@
 
 footer{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-self: flex-end;
     align-content: flex-end;
+
+    margin-top: auto;
+    align-self: flex-end;
     width: 100%;
-    margin-top: 10%;
+    background-color: var(--ToolbarColor);
 }
 
 ul{
     width: 100%;
     list-style-type: none;
     font-size: 1rem;
-    color: var(--TextHighlight2);
+    color: var(--Text2);
 
     padding: 5%;
         

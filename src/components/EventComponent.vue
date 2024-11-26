@@ -60,7 +60,10 @@ a{color: var(--Text2);}
     color: var(--Text2);
 }
 
-.event_container{margin: 2%;}
+.event_container{
+    line-break: anywhere;
+    margin: 2%;
+}
 
 
 /* Nomes dos integrantes */

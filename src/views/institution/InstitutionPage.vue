@@ -5,16 +5,14 @@ import { useEventStore } from '@/stores/event';
 import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import EditEventModal from '@/components/modals/EditEventModal.vue';
-import MultiModalButton from '@/components/MultiModalButton.vue';
-
+import EditButton from '@/components/EditButton.vue';
 
 export default{
     name: "InstitutionPage",
 
     components:{
         RouterLink,
-        MultiModalButton
+        EditButton
     },
 
     data(){
@@ -85,13 +83,15 @@ export default{
 
         
         <!-- Eventos -->
-        <main v-if="this.inst_events">
+        <main v-if="this.inst && isLoggedInstSameAsProfile()">
             <div class="inst_content">
                 <RouterLink to="/criar-evento">
                     Criar evento
                 </RouterLink>
+
+                <!-- Incompleto -->
                 <div>
-                    <p>Eventos: {{this.inst_events.length}}/10</p>
+                    <p>Excluir eventos</p>
                 </div>
             </div>
 
@@ -104,7 +104,7 @@ export default{
                             </RouterLink>
                         </h3>
 
-                        <MultiModalButton :event="event"/>
+                        <EditButton :event="event"/>
 
                     </div>
                     
@@ -134,6 +134,7 @@ export default{
 @import url(@/assets/css/event_instview.css);
 
 .container{
+    background-color: var(--SubBackgroundColor);
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -143,6 +144,7 @@ export default{
 }
 
 main{
+    background-color: var(--BackgroundColor);
     width: 100%;
     height: fit-content;
     display: flex;
@@ -163,6 +165,7 @@ main{
     justify-content: space-between;
     width: 100%;
     margin: 8% 4% 4% 4%;
+    background-color: var(--BackgroundColor);
 }
 .inst_content > *{
     font-size: 1.5rem;
@@ -193,7 +196,9 @@ main{
 }
 
 .event_container{
+    min-height: 100vh;
     width: 100%;
+    
 }
 
 
@@ -203,7 +208,7 @@ main{
     width: 25%;
     height: 100vh;
     padding: 4%;
-    /* background-color: var(--SubBackgroundColor); */
+    background-color: var(--SubBackgroundColor);
     color: var(--TextHighlight2);
 
     display: flex;

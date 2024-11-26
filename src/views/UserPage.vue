@@ -167,7 +167,7 @@ export default {
 main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-content: baseline;
 
     padding: 4%;
@@ -176,7 +176,7 @@ main{
 main > h2{color: var(--TextHighlight);}
 main > a{
     font-size: 1.5rem;
-    margin: 2% 0 0 0;
+    margin: 2% 0 5% 0;
     width: 50%;
     height: fit-content;
 }

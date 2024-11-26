@@ -1,5 +1,6 @@
 <script>
 import { formatEndDate, getEventFromID, subscribeToEvent, unsubscribeFromEvent } from '@/assets/scripts/event_scripts';
+import SelectProjectModal from '@/components/modals/SelectProjectModal.vue';
 import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
 import { format } from 'date-fns';
@@ -8,6 +9,10 @@ import { ptBR } from 'date-fns/locale';
 
 export default{
     name: 'EventPage',
+
+    components:{
+        SelectProjectModal
+    },
 
     data(){
         return{
@@ -20,10 +25,29 @@ export default{
 
             data_inicial: undefined,
             data_final: undefined,
+
+            showProjects: false,
+            showParticipation: false,
+            selected_project: undefined
         }
     },
 
     methods:{
+
+        participation(){
+
+            if (!this.authStore.isUserLogged){
+                router.push({ path: '/tipo-de-conta' })
+                return
+            }
+            if (this.authStore.getAccType == "institution"){
+                alert("Instituições não podem se inscrever em eventos!")
+                return
+            }
+            
+            this.showParticipation = true
+
+        },
 
         hasUserSubscribed(){
             if (this.user){
@@ -127,12 +151,44 @@ export default{
                     Inscrever-se
                 </button>
 
-                <button type="button">
+                <button @click="this.participation()" type="button" v-if="!this.showParticipation">
                     Participar com projeto
+                </button>
+                <button @click="this.showParticipation = false" type="button" v-else-if="this.showParticipation == true">
+                    Cancelar
                 </button>
 
             </section>
         </div>
+
+        <Transition name="participation">
+            
+            <div v-if="showParticipation == true" class="container">
+                <h1>Participar com projeto</h1>
+                <h3>Selecione um projeto:</h3>
+
+                <div class="selection" v-if="this.selected_project">
+                    {{ this.selected_project }}
+                </div>
+                <div class="selection" v-else @click="showProjects = true">
+                    <h3>Selecionar projeto</h3>
+                </div>
+                
+            </div>
+
+        </Transition>
+
+        <Teleport to="body">
+            <SelectProjectModal
+            v-if="this.user"
+            :userID="this.user.id"
+            :token="this.authStore.getToken"
+            :show="this.showProjects"
+            :project="this.selected_project"
+            @close="this.showProjects = false"
+            />
+
+        </Teleport>
         
 
     </main>
@@ -142,7 +198,12 @@ export default{
 <style scoped>
 
 main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
     padding: 7%;
+    min-height: 100vh;
     align-items: center;
 }
 
@@ -152,7 +213,7 @@ h1{
 
 .container{
     font-size: 1.25rem;
-    width: 50%;
+    width: 45%;
     height: fit-content;
     min-height: 35vh;
     padding: 2%;
@@ -188,6 +249,27 @@ h1{
 .event_content p{
     height: fit-content;
 }
+
+
+/* Seleção de projetos */
+
+.selection{
+    margin: auto auto;
+
+    background-color: var(--BackgroundColor);
+    border: 4px solid var(--ButtonColor);
+    border-radius: 25px;
+    color: var(--TextHighlight);
+    width: 100%;
+    height: 10vh;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 /* Botões */
@@ -232,4 +314,23 @@ h1{
         width: 100%;
     }
 }
+
+
+
+.participation-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.participation-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.participation-enter-from,
+.participation-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+
+
 </style>
