@@ -81,13 +81,13 @@ export default{
 
         
         <!-- Eventos -->
-        <main v-if="this.inst_events">
+        <main v-if="this.inst && isLoggedInstSameAsProfile()">
             <div class="inst_content">
                 <RouterLink to="/criar-evento">
                     Criar evento
                 </RouterLink>
                 <div>
-                    <p>Eventos: {{this.inst_events.length}}/10</p>
+                    <p>Excluir eventos</p>
                 </div>
             </div>
 
@@ -185,7 +185,7 @@ main{
 }
 
 .event_container{
-    
+    min-height: 100vh;
     width: 100%;
     
 }
