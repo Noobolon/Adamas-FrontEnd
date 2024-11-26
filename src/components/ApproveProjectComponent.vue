@@ -25,7 +25,7 @@ export default{
             approveProject(
                 this.token,
                 this.project.project_id,
-                this.selected_room.id,
+                this.selected_room.room_id,
                 this.event_id
             )
         },
@@ -63,11 +63,10 @@ export default{
     <form class="actions" @submit="aprovarProjeto()">
 
         <select v-model="selected_room" name="Salas" id="salas" required>
-            <option disabled autofocus >Selecione uma sala</option>
             <option v-for="room in this.rooms" :value="room">{{ room.name }}</option>
         </select>
         <p v-if="selected_room">Capacidade: {{ selected_room.projects ? selected_room.projects.length : 0 }}/{{ selected_room.quantity_projects }}</p>
-
+        
         <input type="submit" value="Aprovar" id="approve">
         <input type="button" value="Rejeitar" id="reject" @click="desaprovarProjeto()">
     </form>
