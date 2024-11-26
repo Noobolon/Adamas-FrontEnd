@@ -244,4 +244,45 @@ main{
     cursor: pointer;
 }
 
+@media screen and (max-width: 600px){
+    .container{
+        flex-direction: column;
+
+    }
+    .userInfo{
+        flex-direction: row;
+    }
+    .inst_container img{
+        width: 30%;
+        margin-bottom: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .inst_container {
+        padding: 0;
+        width: 100%;
+        flex-direction: row;
+    }
+    .inst_container > ul {
+        margin: 0;
+         border-top: 0;
+    }
+    .userInfo > h1 {
+        font-size: 2rem;
+    }
+    .userInfo > img {
+        width: 40%;
+    }
+    .inst_content a{
+        width: 45%;
+    }
+    .inst_content div{
+        width: 45%;
+    }
+
+    .inst_container ul > li:first-child{
+    margin-top: 0;
+}
+}
+
 </style>
