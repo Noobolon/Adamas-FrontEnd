@@ -176,14 +176,16 @@ export default{
 /* Salas */
 
 .rooms{
+    width: 59%;
     display: flex;
     flex-direction: column;
     justify-content: baseline;
     align-items: flex-start;
+    padding: 1%;
 }
 
 .rooms > *{
-    padding: 0px;
+    padding: 0;
     margin: 0 0 4% 4%;
 }
 
@@ -210,4 +212,17 @@ export default{
     margin: 0px;
 }
 
+@media screen and (max-width: 900px) {
+    .rooms{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 700px){
+    .rooms{
+        width: 100%;
+    }
+    #add_room{
+        width: 40%;
+    }
+}
 </style>
