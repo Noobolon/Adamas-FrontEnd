@@ -85,6 +85,24 @@ export async function addRoom(token, event_id, room_name, room_capacity) {
     }
 }
 
+export async function sendProjectToApproval(token, project_ID, event_id){
+    try {
+        const response = await api.post(`/event/${event_id}/participation`,
+            {   
+                project_id: project_ID
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response.data
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
 
 
 /* 

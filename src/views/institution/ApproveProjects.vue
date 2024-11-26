@@ -22,7 +22,6 @@ export default{
             if (this.token && this.event){
                 let logged_user = this.authStore.getUser
                 let accType = this.authStore.getAccType
-                console.log(logged_user)
 
                 return logged_user && this.event.institution_id == logged_user.id && accType == 'institution'
             } else return false
@@ -60,16 +59,27 @@ export default{
         </section>
 
         <section>
-            <div v-if="this.pending_projects && this.pending_projects.length == 0"
-            v-for="project in this.pending_projects">
-            {{ project }}
+            <h1>Projetos pendentes:</h1>
+            <div v-if="this.pending_projects"
+            v-for="project in this.pending_projects" class="project">
+
+
+                <RouterLink :to="{ name: 'projeto', params: {id: project.project_id}}">
+                    <h3>{{ project.title }}</h3>
+                </RouterLink>
+
+                 <p>{{ project.description }}</p>
+
+                 <form>
+
+                 </form>
+
             </div>
 
             <div v-else>
                 Nenhum projeto pendente encontrado.
             </div>
 
-            
             
         </section>
 
@@ -93,6 +103,8 @@ main > *{
     margin: auto;
 }
 
+h1{margin-bottom: 4%;}
+
 section{
     color: var(--Text2);
     background-color: var(--CardColor);
@@ -101,10 +113,20 @@ section{
 
     width: 50%;
     padding: 4%;
+    margin-bottom: 4%;
     line-break: anywhere;
 }
 
 .event_info h1{
+    margin-bottom: 2%;
+}
+
+a{
+    color: var(--Text2);
+}
+
+
+.project{
     margin-bottom: 2%;
 }
 
