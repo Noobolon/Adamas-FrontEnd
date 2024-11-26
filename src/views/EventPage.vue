@@ -203,6 +203,7 @@ main{
     justify-content: space-around;
     align-items: baseline;
     padding: 7%;
+    min-height: 100vh;
     align-items: center;
 }
 

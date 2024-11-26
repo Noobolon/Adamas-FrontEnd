@@ -25,6 +25,7 @@ export default {
 <style scoped>
 
 main{
+    min-height: 90vh;
     align-items: center;
 }
 
