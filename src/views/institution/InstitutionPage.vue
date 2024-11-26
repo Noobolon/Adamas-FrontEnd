@@ -5,7 +5,6 @@ import { useEventStore } from '@/stores/event';
 import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import EditEventModal from '@/components/modals/EditEventModal.vue';
 import MultiModalButton from '@/components/MultiModalButton.vue';
 
 
@@ -131,6 +130,7 @@ export default{
 @import url(@/assets/css/event_instview.css);
 
 .container{
+    background-color: var(--SubBackgroundColor);
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -140,6 +140,7 @@ export default{
 }
 
 main{
+    background-color: var(--BackgroundColor);
     width: 100%;
     height: fit-content;
     display: flex;
@@ -153,6 +154,7 @@ main{
     justify-content: space-between;
     width: 100%;
     margin: 8% 4% 4% 4%;
+    background-color: var(--BackgroundColor);
 }
 .inst_content > *{
     font-size: 1.5rem;
@@ -183,7 +185,9 @@ main{
 }
 
 .event_container{
+    
     width: 100%;
+    
 }
 
 
@@ -193,7 +197,7 @@ main{
     width: 25%;
     height: 100vh;
     padding: 4%;
-    /* background-color: var(--SubBackgroundColor); */
+    background-color: var(--SubBackgroundColor);
     color: var(--TextHighlight2);
 
     display: flex;

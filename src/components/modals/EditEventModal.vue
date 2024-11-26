@@ -38,8 +38,8 @@ export default{
                 
                 <div class="links">
                     <RouterLink :to="{ name: 'editar evento', params: {e_id: event.id}}">Editar</RouterLink>
-                    <!-- <RouterLink>Visualizar inscritos</RouterLink>
-                    <RouterLink>Aprovar participantes</RouterLink> -->
+                    <RouterLink :to="{ name: 'visualizar participantes', params: {e_id: event.id}}">Visualizar inscritos</RouterLink>
+                    <!-- <RouterLink>Aprovar participantes</RouterLink> -->
                 </div>
                 
 

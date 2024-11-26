@@ -19,6 +19,7 @@ export default{
   mounted() {
     if (this.authStore.checkToken){
       this.authStore.clearUserData()
+      location.reload()
     }
   }
   

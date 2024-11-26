@@ -3,65 +3,6 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 
-// Função de criar evento
-export async function createEvent(token, nome, endereco, descricao, data_comeco, data_encerramento){
-    try {
-        const new_event = await api.post("/event",
-            {
-                name: nome,
-                address: endereco,
-                description: descricao,
-                start_date: data_comeco,
-                end_date: data_encerramento
-            },
-            {
-                headers: {Authorization: `Bearer ${token}`}
-            }
-        )
-        return new_event.data
-        
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-// Função de pegar evento por ID
-export async function getEventFromID(eventID){
-    try {
-        const response = await api.get(`/event/${eventID}`);
-        return response.data
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-// Função de se inscrever em evento
-export async function subscribeToEvent(token, eventID){
-    try {
-        const response = await api.post(`/event/${eventID}/subscribe`,{},{
-            headers: {Authorization: `Bearer ${token}`}
-        });
-        return response.data
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-// Função de se desinscrever de um evento
-export async function unsubscribeFromEvent(token, eventID){
-    try {
-        const response = await api.delete(`/event/${eventID}/subscribe`,{
-            data: {},
-            headers: {Authorization: `Bearer ${token}`}
-        });
-        return response.data
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 
 // Função de formatar a data final
 export function formatEndDate(start_date, end_date){
@@ -87,8 +28,45 @@ export function formatEndDate(start_date, end_date){
 
 }
 
+/*
+    MÉTODOS POST
+*/
 
-// Função de morrer
+// Função de criar evento
+export async function createEvent(token, nome, endereco, descricao, data_comeco, data_encerramento){
+    try {
+        const new_event = await api.post("/event",
+            {
+                name: nome,
+                address: endereco,
+                description: descricao,
+                start_date: data_comeco,
+                end_date: data_encerramento
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return new_event.data
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Função de se inscrever em evento
+export async function subscribeToEvent(token, eventID){
+    try {
+        const response = await api.post(`/event/${eventID}/subscribe`,{},{
+            headers: {Authorization: `Bearer ${token}`}
+        });
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Função de adicionar sala a um evento
 export async function addRoom(token, event_id, room_name, room_capacity) {
 
     try {
@@ -105,9 +83,42 @@ export async function addRoom(token, event_id, room_name, room_capacity) {
     } catch (error) {
         console.log(error)
     }
-
 }
 
+
+
+/* 
+    MÉTODOS DELETE
+*/
+
+// Função de se desinscrever de um evento
+export async function unsubscribeFromEvent(token, eventID){
+    try {
+        const response = await api.delete(`/event/${eventID}/subscribe`,{
+            data: {},
+            headers: {Authorization: `Bearer ${token}`}
+        });
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+/* 
+    MÉTODOS GET 
+*/
+
+// Função de pegar evento por ID
+export async function getEventFromID(eventID){
+    try {
+        const response = await api.get(`/event/${eventID}`);
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 // Função de pegar salas por ID do evento
 export async function getRoomsFromEventID(token, eventID){
@@ -124,6 +135,20 @@ export async function getRoomsFromEventID(token, eventID){
     }
 }
 
+// Fumção de pegar projetos participantes de um evento
+export async function getApprovedProjects(eventID){
+    try {
+        const response = await api.get(`event/${eventID}/approved_projects`)
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+/*
+    MÉTODOS PUT
+*/
 
 // Função de editar evento
 export async function editEvent(token, e_id, nome, endereco, descricao, data_comeco, data_encerramento){
