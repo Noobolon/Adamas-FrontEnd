@@ -143,6 +143,7 @@ export default{
 
 main{
     padding: 7%;
+    min-height: 100vh;
     align-items: center;
 }
 
