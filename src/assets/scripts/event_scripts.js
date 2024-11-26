@@ -18,7 +18,7 @@ export function formatEndDate(start_date, end_date){
         if (end_day == start_day ) { // se for no mesmo mês e dia, mostrar apenas o horário
             return format(end_date, "'às' HH:mm", {locale: ptBR})
 
-        } else { // se for só no mesmo mês
+        } else { // se for só no mesmo mês  
             return format(end_date, "'dia' d 'às' HH:mm", {locale: ptBR})
         }
 
@@ -138,8 +138,24 @@ export async function getRoomsFromEventID(token, eventID){
 // Fumção de pegar projetos participantes de um evento
 export async function getApprovedProjects(eventID){
     try {
-        const response = await api.get(`event/${eventID}/approved_projects`)
+        const response = await api.get(`/event/${eventID}/approved_projects`)
         return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Função de pegar projetos pendentes
+export async function getPendingProjects(token, eventID){
+    try {
+        const response = await api.get(`/event/${eventID}/pending_projects`,
+            {
+                data: {},
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response.data
+        
     } catch (error) {
         console.log(error)
     }

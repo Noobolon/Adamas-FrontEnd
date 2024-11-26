@@ -1,5 +1,5 @@
 <script>
-import { getEventFromID } from '@/assets/scripts/event_scripts';
+import { getEventFromID, getPendingProjects } from '@/assets/scripts/event_scripts';
 import { useAuthStore } from '@/stores/authentication';
 
 
@@ -19,11 +19,12 @@ export default{
 
     methods:{
         isLoggedInstSameAsProfile(){
-            if (this.authStore.token){
+            if (this.token && this.event){
                 let logged_user = this.authStore.getUser
                 let accType = this.authStore.getAccType
+                console.log(logged_user)
 
-                return logged_user && this.event.owner.id == logged_user.id && accType == 'institution'
+                return logged_user && this.event.institution_id == logged_user.id && accType == 'institution'
             } else return false
         }
     },
@@ -34,6 +35,9 @@ export default{
         getEventFromID(this.e_id)
         .then(event => this.event = event)
 
+        getPendingProjects(this.token, this.e_id)
+        .then(projects => this.pending_projects = projects)
+
     }
 
 }
@@ -42,12 +46,39 @@ export default{
 <template>
 
     <main v-if="isLoggedInstSameAsProfile() && this.event">
-        <div>
 
-            {{ event }}
+        <section class="event_info">
 
-        </div>
+            <h1>
+                {{ this.event.name }}
+            </h1>
 
+            <p>{{ this.event.description }}</p>
+            <p>{{ this.event.start_date }} até {{ this.event.end_date }}</p>
+            
+
+        </section>
+
+        <section>
+            <div v-if="this.pending_projects && this.pending_projects.length == 0"
+            v-for="project in this.pending_projects">
+            {{ project }}
+            </div>
+
+            <div v-else>
+                Nenhum projeto pendente encontrado.
+            </div>
+
+            
+            
+        </section>
+
+    </main>
+
+    <main v-else>
+        <h1>
+            Você não possui permissões para acessar isso.
+        </h1>
     </main>
 
 </template>
@@ -60,6 +91,21 @@ main{
 
 main > *{
     margin: auto;
+}
+
+section{
+    color: var(--Text2);
+    background-color: var(--CardColor);
+    border: 4px solid var(--ButtonColor);
+    border-radius: 25px;
+
+    width: 50%;
+    padding: 4%;
+    line-break: anywhere;
+}
+
+.event_info h1{
+    margin-bottom: 2%;
 }
 
 

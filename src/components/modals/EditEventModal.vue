@@ -83,6 +83,7 @@ header > input:hover{cursor: pointer;}
     flex-direction: column;
     align-items: center;
     text-align: center;
+    line-break: anywhere;   
 }
 .info > *{
     margin-bottom: 2%;

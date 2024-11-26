@@ -23,7 +23,6 @@ export default{
         
         isInstCreatorOfEvent(){
             let inst_id = this.authStore.getUser.id
-            console.log(inst_id)
             return inst_id == this.event.institution_id 
         }
 
@@ -53,7 +52,7 @@ export default{
 
 <template>
 
-    <main v-if="this.event &&">
+    <main v-if="this.event && isInstCreatorOfEvent()">
         
         <div id="event_info">
             <RouterLink :to="{ name: 'instituição', params: {id: this.authStore.getUser.id}}">Voltar</RouterLink>
@@ -90,7 +89,8 @@ export default{
 
                     <div class="room" v-if="this.event_rooms && this.event_rooms.length != 0" v-for="room in this.event_rooms">
                         <h3>{{ room.name }}</h3>
-                        <p>Projetos: {{ room.projects.length }}/{{ room.quantity_projects }}</p>
+                        <p v-if="room.projects">Projetos: {{ room.projects.length }}/{{ room.quantity_projects }}</p>
+                        <p v-else>Nenhum projeto nessa sala.</p>
                     </div>
                     
                 </section>
