@@ -5,15 +5,14 @@ import { useEventStore } from '@/stores/event';
 import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import MultiModalButton from '@/components/MultiModalButton.vue';
-
+import EditButton from '@/components/EditButton.vue';
 
 export default{
     name: "InstitutionPage",
 
     components:{
         RouterLink,
-        MultiModalButton
+        EditButton
     },
 
     data(){
@@ -86,6 +85,8 @@ export default{
                 <RouterLink to="/criar-evento">
                     Criar evento
                 </RouterLink>
+
+                <!-- Incompleto -->
                 <div>
                     <p>Excluir eventos</p>
                 </div>
@@ -100,7 +101,7 @@ export default{
                             </RouterLink>
                         </h3>
 
-                        <MultiModalButton :event="event"/>
+                        <EditButton :event="event"/>
 
                     </div>
                     

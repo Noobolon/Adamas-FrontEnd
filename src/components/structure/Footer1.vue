@@ -22,8 +22,12 @@
 
 footer{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-self: flex-end;
     align-content: flex-end;
+
+    margin-top: auto;
+    align-self: flex-end;
     width: 100%;
     background-color: var(--ToolbarColor);
 }

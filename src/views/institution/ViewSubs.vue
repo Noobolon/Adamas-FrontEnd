@@ -19,6 +19,16 @@ export default{
         }
     },
 
+    methods:{
+        
+        isInstCreatorOfEvent(){
+            let inst_id = this.authStore.getUser.id
+            console.log(inst_id)
+            return inst_id == this.event.institution_id 
+        }
+
+    },
+
     async created(){
         this.token = this.authStore.getToken
 
@@ -31,6 +41,8 @@ export default{
         getApprovedProjects(this.e_id)
         .then(projects => this.approved_array = projects)
 
+        
+
     }
 
     
@@ -41,7 +53,7 @@ export default{
 
 <template>
 
-    <main v-if="this.event">
+    <main v-if="this.event &&">
         
         <div id="event_info">
             <RouterLink :to="{ name: 'instituição', params: {id: this.authStore.getUser.id}}">Voltar</RouterLink>

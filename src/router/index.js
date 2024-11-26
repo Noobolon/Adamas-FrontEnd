@@ -63,6 +63,11 @@ export const router = createRouter({
       name: 'visualizar participantes',
       component: () => import('../views/institution/ViewSubs.vue')
     },
+    {
+      path: '/instituicao/aprovar-projetos/:e_id',
+      name: 'aprovar projetos',
+      component: () => import('../views/institution/ApproveProjects.vue')
+    },
 
     // Pesquisas 
     {
@@ -103,6 +108,7 @@ export const router = createRouter({
       name: 'login como instituição',
       component: () => import('../views/register/LogInstitution.vue')
     },
+    
 
 
     // Página de debug (será removido na versão final)
