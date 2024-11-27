@@ -31,6 +31,7 @@ export default{
                 this.room_name,
                 this.room_capacity
             )
+            location.reload()
             
         }
     }

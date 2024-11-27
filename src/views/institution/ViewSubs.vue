@@ -89,8 +89,16 @@ export default{
 
                     <div class="room" v-if="this.event_rooms && this.event_rooms.length != 0" v-for="room in this.event_rooms">
                         <h3>{{ room.name }}</h3>
-                        <p v-if="room.projects">Projetos: {{ room.projects.length }}/{{ room.quantity_projects }}</p>
+                        <p>Projetos: {{ room.projects ? room.projects.length : 0}}/{{ room.quantity_projects }}</p>
+
+                        <ul v-if="room.projects">
+                            <li v-if="room.projects" v-for="project in room.projects">{{ project.title }}</li>
+                        </ul>
+                        
                         <p v-else>Nenhum projeto nessa sala.</p>
+                    </div>
+                    <div v-else class="error">
+                        Nenhuma sala encontrada.
                     </div>
                     
                 </section>
