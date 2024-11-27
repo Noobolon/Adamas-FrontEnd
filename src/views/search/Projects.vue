@@ -113,9 +113,14 @@ export default{
             </nav>
    
             <div class="cntnt_container">
-                <div v-for="project in this.search_results">
-                    <ProjectComponent :project="project" :key="project.project_id" />
-                </div>
+                <TransitionGroup name="list" tag="div">
+
+                    <ProjectComponent  v-for="project in this.search_results"
+                    :project="project"
+                    :key="project.project_id" />
+                    
+                </TransitionGroup>
+                
             </div>
         </div>
 
@@ -172,7 +177,7 @@ export default{
         
     }
 
-
-
 }
+
+
 </style>

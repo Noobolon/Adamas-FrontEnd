@@ -68,9 +68,14 @@ export default{
                 <RouterLink to="/usuarios" id="selected">Usuários</RouterLink>
             </nav>
 
-            <div class="cntnt_container">
-                <UserComponent v-for="user in this.search_results" :user="user" :key="user.id"/>
-            </div>
+            <TransitionGroup name="list" tag="div" class="cntnt_container">
+                
+                <UserComponent v-for="user in this.search_results"
+                :user="user"
+                :key="user.id"/>
+
+            </TransitionGroup>
+
             
         </div>
 
