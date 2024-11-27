@@ -2,7 +2,7 @@
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { RouterLink } from 'vue-router';
-
+import { formatEndDate } from '@/assets/scripts/event_scripts';
 export default{
     name: "EditEventModal",
 
@@ -18,7 +18,8 @@ export default{
     data(){
         return{
             formattedStart: format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR}),
-            formattedEnd: format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR}),
+            formattedEnd: formatEndDate(this.event.start_date, this.event.end_date),
+            // format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
             year: format(this.event.end_date, "yyyy")
         }
     }
@@ -43,8 +44,7 @@ export default{
                     <p><b>"{{ event.name }}"</b></p>
                     <p>{{ event.description }}</p>
                     <p>{{ this.year }}</p>
-                    <p>{{ this.formattedStart }} <b>até</b> {{ this.formattedEnd }}</p>
-
+                    <p>{{ this.formattedStart }} <b>até</b> {{ this.formattedEnd }} </p>
                 </div>
                 
                 <div class="links">

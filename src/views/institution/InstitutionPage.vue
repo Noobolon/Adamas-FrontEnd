@@ -71,6 +71,7 @@ export default{
                 <img src="/symbols/user/BlueInst.svg" alt="">
                 <h1>{{ this.inst.name }}</h1>
             </div>
+            <div class="divisor"></div>
 
             <ul>
                 <li>Olá, {{ this.inst.name }}!</li>
@@ -282,9 +283,18 @@ main{
         margin: 0;
          border-top: 0;
     }
+
     #user_info > h1 {
         font-size: 2rem;
-    }
+    } 
+    .divisor{
+    margin-top: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 4px;
+    background-color:  var(--TextHighlight);
+ }
     #user_info > img {
         margin-top: 10px;
         margin-bottom: 20px;

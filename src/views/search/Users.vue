@@ -96,7 +96,7 @@ export default{
 .cntnt_container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 
