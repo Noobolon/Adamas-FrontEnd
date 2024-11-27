@@ -1,6 +1,8 @@
 <script>
 import { getApprovedProjects, getEventFromID, getRoomsFromEventID } from '@/assets/scripts/event_scripts';
 import { useAuthStore } from '@/stores/authentication';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 
 export default{
@@ -16,6 +18,9 @@ export default{
             event: undefined,
             event_rooms: [],
             approved_array: [],
+
+            formattedStart: undefined,
+            formattedEnd: undefined,
         }
     },
 
@@ -32,7 +37,11 @@ export default{
         this.token = this.authStore.getToken
 
         getEventFromID(this.e_id)
-        .then(event => this.event = event)
+        .then(event => {
+            this.event = event
+            this.formattedStart = format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR})
+            this.formattedEnd = format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR})
+        })
 
         getRoomsFromEventID(this.token, this.e_id)
         .then(rooms => this.event_rooms = rooms)
@@ -58,7 +67,7 @@ export default{
             <RouterLink :to="{ name: 'instituição', params: {id: this.authStore.getUser.id}}">Voltar</RouterLink>
             <h1>{{ this.event.name }}</h1>
             <p>{{ this.event.description }}</p>
-            <p>{{ this.event.start_date }} até {{ this.event.end_date }}</p>
+            <p>{{ this.formattedStart }} <b>até</b> {{ this.formattedEnd }}</p>
         </div>
 
 
@@ -89,8 +98,16 @@ export default{
 
                     <div class="room" v-if="this.event_rooms && this.event_rooms.length != 0" v-for="room in this.event_rooms">
                         <h3>{{ room.name }}</h3>
-                        <p v-if="room.projects">Projetos: {{ room.projects.length }}/{{ room.quantity_projects }}</p>
+                        <p>Projetos: {{ room.projects ? room.projects.length : 0}}/{{ room.quantity_projects }}</p>
+
+                        <ul v-if="room.projects">
+                            <li v-if="room.projects" v-for="project in room.projects">{{ project.title }}</li>
+                        </ul>
+                        
                         <p v-else>Nenhum projeto nessa sala.</p>
+                    </div>
+                    <div v-else class="error">
+                        Nenhuma sala encontrada.
                     </div>
                     
                 </section>
