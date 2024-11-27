@@ -1,4 +1,6 @@
 <script>
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { RouterLink } from 'vue-router';
 
 export default{
@@ -11,6 +13,14 @@ export default{
 
     components:{
         RouterLink
+    },
+
+    data(){
+        return{
+            formattedStart: format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR}),
+            formattedEnd: format(this.event.end_date, "d LLL 'às' HH:mm", {locale: ptBR}),
+            year: format(this.event.end_date, "yyyy")
+        }
     }
 
 }
@@ -25,14 +35,15 @@ export default{
             <div class="container">
                 <header>
                     <h2>O que deseja fazer com esse evento?</h2>
-                    <input type="button" value="<" @click="$emit('close')">
+                    <input type="button" value="X" @click="$emit('close')">
                 </header>
 
                 <div class="info">
 
                     <p><b>"{{ event.name }}"</b></p>
                     <p>{{ event.description }}</p>
-                    <p>{{ event.start_date }} <b>até</b> {{ event.end_date }}</p>
+                    <p>{{ this.year }}</p>
+                    <p>{{ this.formattedStart }} <b>até</b> {{ this.formattedEnd }}</p>
 
                 </div>
                 
