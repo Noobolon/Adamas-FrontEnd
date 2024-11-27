@@ -44,7 +44,7 @@ img{
     border: solid 4px var(--ButtonColor);
     border-radius: 25px;
     margin-top: 2%;
-    width: 40%;
+    width: 60%;
     height: fit-content;
     min-height: 10vh;
     padding: 2%;
@@ -66,4 +66,12 @@ img{
     color: var(--SubText);
 }
 
+@media screen and (max-width: 1200px){
+    .user_style{
+        width: 100%;
+    }
+    .username{
+        font-size: 0.5rem;
+    }
+}
 </style>
