@@ -1,16 +1,22 @@
 <script>
-import { getEventFromID, getPendingProjects } from '@/assets/scripts/event_scripts';
+import { getEventFromID, getPendingProjects, getRoomsFromEventID } from '@/assets/scripts/event_scripts';
+import ApproveProjectComponent from '@/components/ApproveProjectComponent.vue';
 import { useAuthStore } from '@/stores/authentication';
 
 
 export default{
     name: "ApproveProjects",
 
+    components:{
+        ApproveProjectComponent
+    },
+
     data(){
         return{
             authStore: useAuthStore(),
             token: undefined,
 
+            rooms: [],
             pending_projects: [],
             event: undefined,
             e_id: this.$route.params.e_id
@@ -22,7 +28,6 @@ export default{
             if (this.token && this.event){
                 let logged_user = this.authStore.getUser
                 let accType = this.authStore.getAccType
-                console.log(logged_user)
 
                 return logged_user && this.event.institution_id == logged_user.id && accType == 'institution'
             } else return false
@@ -38,6 +43,9 @@ export default{
         getPendingProjects(this.token, this.e_id)
         .then(projects => this.pending_projects = projects)
 
+        getRoomsFromEventID(this.token, this.e_id)
+        .then(rooms => this.rooms = rooms)
+
     }
 
 }
@@ -51,6 +59,7 @@ export default{
 
             <h1>
                 {{ this.event.name }}
+                
             </h1>
 
             <p>{{ this.event.description }}</p>
@@ -60,16 +69,25 @@ export default{
         </section>
 
         <section>
-            <div v-if="this.pending_projects && this.pending_projects.length == 0"
-            v-for="project in this.pending_projects">
-            {{ project }}
+            <h1>Projetos pendentes:</h1>
+
+            <div v-if="this.pending_projects"
+            v-for="project in this.pending_projects" class="project">
+
+                <ApproveProjectComponent
+                :token="this.token"
+                :project="project"
+                :event_id="this.e_id"
+                :rooms="this.rooms"
+                />
+
+
             </div>
 
             <div v-else>
                 Nenhum projeto pendente encontrado.
             </div>
 
-            
             
         </section>
 
@@ -86,12 +104,15 @@ export default{
 <style scoped>
 
 main{
+    background-color: var(--SubBackgroundColor);
     padding: 7%;
 }
 
 main > *{
     margin: auto;
 }
+
+h1{margin-bottom: 4%;}
 
 section{
     color: var(--Text2);
@@ -101,12 +122,21 @@ section{
 
     width: 50%;
     padding: 4%;
+    margin-bottom: 4%;
     line-break: anywhere;
 }
 
 .event_info h1{
     margin-bottom: 2%;
 }
+
+a{
+    color: var(--Text);
+}
+
+
+
+
 
 
 </style>

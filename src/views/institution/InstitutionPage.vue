@@ -121,8 +121,8 @@ export default{
         </main>
     </div>
 
-    <div v-else id="fail">
-        <h1>Instituição não encontrada!</h1>
+    <div v-else id="loading">
+        <h1>Carregando...</h1>
     </div>
 
     
@@ -201,6 +201,13 @@ main{
     
 }
 
+#loading{
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    margin: 15% auto auto auto;
+}
+
 
 /* Perfil de instituição */
 
@@ -228,9 +235,10 @@ main{
     color: var(--TextHighlight);
 }
 
+.inst_container ul:first-of-type{margin-top: 10%}
 .inst_container ul{
     width: 100%;
-    margin: 10% 0 2% 0;
+    margin: 2% 0 2% 0;
     padding: 4%;
     border-top: 4px solid var(--ButtonColor);
     list-style: none;

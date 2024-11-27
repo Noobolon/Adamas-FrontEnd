@@ -56,9 +56,14 @@ export default{
             </nav>
 
             <div class="cntnt_container">
-                <div v-for="event in this.search_results">
-                    <EventComponent :event="event" :key="event.id" />
-                </div>
+                
+                <TransitionGroup name="list" tag="div">
+                    <EventComponent v-for="event in this.search_results"
+                    :event="event"
+                    :key="event.id"
+                    />
+                </TransitionGroup>
+
             </div>
             
         </div>

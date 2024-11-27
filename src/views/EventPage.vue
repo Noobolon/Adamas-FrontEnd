@@ -1,5 +1,5 @@
 <script>
-import { formatEndDate, getEventFromID, subscribeToEvent, unsubscribeFromEvent } from '@/assets/scripts/event_scripts';
+import { cancelParticipation, formatEndDate, getEventFromID, sendProjectToApproval, subscribeToEvent, unsubscribeFromEvent } from '@/assets/scripts/event_scripts';
 import SelectProjectModal from '@/components/modals/SelectProjectModal.vue';
 import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
@@ -50,7 +50,13 @@ export default{
         },
 
         hasUserSubscribed(){
-            if (this.user){
+
+            if(!this.authStore.getToken){
+                router.push({path: '/tipo-de-conta'})
+                return
+            }
+
+            if (this.user && this.authStore.getAccType == 'common'){
                 return this.subscribers_ID_array.includes(this.user.id)
             } else return false 
             
@@ -87,7 +93,33 @@ export default{
             } catch (error) {
                 console.log(error)
             }
+        },
+
+        async mandarProjeto(){
+
+            let u_token = this.authStore.getToken
+            let p_id = parseInt(this.selected_project.project_id)
+
+            sendProjectToApproval(
+                u_token,
+                p_id,
+                this.e_id
+            )
+            this.showParticipation = false
+        },
+
+        async cancelarParticipacao(){
+            let u_token = this.authStore.getToken
+            let p_id = parseInt(this.selected_project.project_id)
+
+            cancelParticipation(
+                u_token,
+                p_id,
+                this.e_id
+            )
+            this.showParticipation = false
         }
+
 
     },
 
@@ -167,11 +199,22 @@ export default{
                 <h1>Participar com projeto</h1>
                 <h3>Selecione um projeto:</h3>
 
-                <div class="selection" v-if="this.selected_project">
-                    {{ this.selected_project }}
+                <div class="selection" v-if="this.selected_project" @click="showProjects = true">
+                    <h3>{{ this.selected_project.title }}</h3>
+                    <p>{{ this.selected_project.description }}</p>
                 </div>
+                
                 <div class="selection" v-else @click="showProjects = true">
                     <h3>Selecionar projeto</h3>
+                </div>
+
+                <div class="buttons">
+                    <button v-if="this.selected_project" type="button" @click="mandarProjeto()">
+                        Participar
+                    </button>
+                    <button v-if="this.selected_project" type="button" @click="cancelarParticipacao(); this.showParticipation = false">
+                        Cancelar participação
+                    </button>
                 </div>
                 
             </div>
@@ -184,10 +227,9 @@ export default{
             :userID="this.user.id"
             :token="this.authStore.getToken"
             :show="this.showProjects"
-            :project="this.selected_project"
+            @project="p => this.selected_project = p"
             @close="this.showProjects = false"
             />
-
         </Teleport>
         
 
@@ -201,8 +243,7 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: baseline;
-    padding: 7%;
+    padding: 10% 7% 7% 7%;
     min-height: 100vh;
     align-items: flex-start;
 }
@@ -215,8 +256,9 @@ h1{
     font-size: 1.25rem;
     width: 45%;
     height: fit-content;
-    min-height: 35vh;
+    min-height: 45vh;
     padding: 2%;
+
     color: var(--Text2);
     background-color: var(--CardColor);
 
@@ -261,14 +303,18 @@ h1{
     border-radius: 25px;
     color: var(--TextHighlight);
     width: 100%;
-    height: 10vh;
+
+    padding: 2% 0;
+    height: fit-content;
+    min-height: 10vh;
     text-align: center;
     
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+.selection{cursor: pointer;}
 
 
 
@@ -320,6 +366,7 @@ h1{
     }
 
 }
+
 
 
 

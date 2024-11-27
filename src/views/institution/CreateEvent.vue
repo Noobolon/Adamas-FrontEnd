@@ -1,6 +1,7 @@
 <script>
 import { createEvent } from '@/assets/scripts/event_scripts';
 import RoomModal from '@/components/modals/RoomModal.vue';
+import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
 import { format } from 'date-fns';
 
@@ -44,7 +45,7 @@ export default{
 
         async criarEvento(){
             
-            createEvent(
+            await createEvent(
                 this.user_token,
                 
                 this.name,
@@ -54,8 +55,9 @@ export default{
                 this.dateFormatter(this.end_date)
                 
             ).then(newEvent => {
-                console.log(newEvent)
+                router.push(`/evento/${newEvent.id}`)
             })
+
         }
 
     },

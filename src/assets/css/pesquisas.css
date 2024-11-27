@@ -20,12 +20,18 @@ main{
 
 .srch_container input[type=text] {
     width: 100%;
+    caret-color: var(--TextFieldColor);
 
+    padding: 2%;
     background-color: var(--MenuColor);
     font-size: 1.5em;
-    border: solid 2px var(--ButtonColor);
+    border: solid 4px var(--ButtonColor);
     border-radius: 10px;
 }
+.srch_container input[type=text]:focus{
+    outline: none;
+}
+
 
 
 /* Container de tipo de pesquisa */
@@ -40,7 +46,7 @@ main{
 
 .ctgry_container a{
     padding: 5px 8%;
-    border: solid 2px var(--ButtonColor);
+    border: solid 4px var(--ButtonColor);
     border-radius: 20px;
 
     background-color: var(--ButtonColor);
@@ -56,7 +62,7 @@ main{
 /* Container de tags */
 .tag_container{
     background-color: var(--MenuColor);
-    border: solid 2px var(--ButtonColor);
+    border: solid 4px var(--ButtonColor);
     border-radius: 10px;
     width: 30%;
     height: fit-content;
@@ -67,6 +73,20 @@ main{
     transform: rotate(360deg); /* muito necessário para o funcionamento do código */
     margin: 2%;
 }
+
+
+/* Animações */
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
 
 
  /* IDs */
