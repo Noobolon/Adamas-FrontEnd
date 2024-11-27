@@ -1,5 +1,5 @@
 <script>
-import { validateCNPJ, validateEmail } from '@/assets/scripts/register_scripts';
+import { validateCNPJ, validateEmail, validadePassword } from '@/assets/scripts/register_scripts';
 import { useAuthStore } from '@/stores/authentication';
 
 
