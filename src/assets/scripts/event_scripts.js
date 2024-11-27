@@ -181,6 +181,27 @@ export async function rejectProject(token, project_id, event_id){
     }
 }
 
+// Função de remover evento como instituição
+export async function removeEvent(token, event_id, email, password){
+    try {
+        const response = await api.delete(`/event/${event_id}`,
+            {   
+                data: {
+                    email: email,
+                    password: password
+                },
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        return response.data
+        
+    } catch (error) {
+        if (error.response.data.message == 'sql: no rows in result set'){
+            alert("E-mail ou senha errados!")
+        } else console.log(error)
+    }
+}
+
 
 
 /* 

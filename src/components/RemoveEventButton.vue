@@ -1,17 +1,17 @@
 <script>
-import EditEventModal from './modals/EditEventModal.vue';
+import RemoveEventModal from './modals/RemoveEventModal.vue';
 
 
 export default{
-    name: "EditButton",
+    name: "RemoveEventButton",
 
     props:{
-        button: String,
+        token: String,
         event: Object,
     },
 
     components:{
-        EditEventModal
+        RemoveEventModal
     },
 
     data(){
@@ -28,8 +28,10 @@ export default{
     <button type="button" @click="showMenu = true"></button>
 
     <Teleport to="body">
-        <EditEventModal :show="this.showMenu == true" @close="this.showMenu = false" 
-        :event="this.event"/>
+        <RemoveEventModal :show="this.showMenu == true" @close="this.showMenu = false" 
+        :event="this.event"
+        :token="this.token"
+        />
     </Teleport>
 
 </template>
@@ -42,7 +44,7 @@ button{
     background-color: #00000000;
     border: none;
 
-    background-image: url("/symbols/PencilIcon.svg");
+    background-image: url("/symbols/TrashbinIcon.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;

@@ -5,14 +5,16 @@ import { useEventStore } from '@/stores/event';
 import { RouterLink } from 'vue-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import EditButton from '@/components/EditButton.vue';
+import EditEventButton from '@/components/EditEventButton.vue';
+import RemoveEventButton from '@/components/RemoveEventButton.vue';
 
 export default{
     name: "InstitutionPage",
 
     components:{
         RouterLink,
-        EditButton
+        RemoveEventButton,
+        EditEventButton
     },
 
     data(){
@@ -24,6 +26,7 @@ export default{
             i_id: this.$route.params.id,
             
             ptBR: ptBR,
+            toggleDelete: false
         }
     },
 
@@ -85,27 +88,37 @@ export default{
         
         <!-- Eventos -->
         <main v-if="this.inst && isLoggedInstSameAsProfile()">
+
             <div class="inst_content">
                 <RouterLink to="/criar-evento">
                     Criar evento
                 </RouterLink>
 
                 <!-- Incompleto -->
-                <div>
+                <div @click="toggleDelete = !toggleDelete" :id="!toggleDelete ? 'del_deactivated' : 'del_activated'">
                     <p>Excluir eventos</p>
                 </div>
+
             </div>
 
             <div class="event_container">
+
                 <div class="owner_event" v-for="event in this.inst_events">
+
                     <div>
+
                         <h3>
                             <RouterLink :to="{ name: 'evento', params: {id: event.id}}">
                                 {{ event.name }}
                             </RouterLink>
                         </h3>
 
-                        <EditButton :event="event"/>
+                        <EditEventButton v-if="!toggleDelete"
+                        :event="event"/>
+
+                        <RemoveEventButton v-else
+                        :token="this.authStore.getToken"
+                        :event="event" />
 
                     </div>
                     
@@ -177,7 +190,7 @@ main{
     width: 30vw;
     height: 8vh;
     
-
+    user-select: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,6 +220,16 @@ main{
     width: 100vw;
     text-align: center;
     margin: 15% auto auto auto;
+}
+
+#del_deactivated{cursor: pointer;}
+#del_activated{
+    background-color: var(--ButtonColor);
+    color: var(--TagColor);
+}
+#del_activated:hover{
+    background-color: var(--ButtonHoverColor);
+    cursor: pointer;
 }
 
 
