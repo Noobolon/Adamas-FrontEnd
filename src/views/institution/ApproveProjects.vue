@@ -106,10 +106,14 @@ export default{
 main{
     background-color: var(--SubBackgroundColor);
     padding: 7%;
+    height: 90vh;
+
 }
 
 main > *{
-    margin: auto;
+    margin-bottom: 4%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1{margin-bottom: 4%;}
@@ -119,16 +123,12 @@ section{
     background-color: var(--CardColor);
     border: 4px solid var(--ButtonColor);
     border-radius: 25px;
-
     width: 50%;
     padding: 4%;
-    margin-bottom: 4%;
     line-break: anywhere;
 }
 
-.event_info h1{
-    margin-bottom: 2%;
-}
+
 
 a{
     color: var(--Text);
@@ -136,7 +136,12 @@ a{
 
 
 
+@media screen and (max-width: 600px){
+    section{
+        width: 90%;
+    }
 
+}
 
 
 </style>

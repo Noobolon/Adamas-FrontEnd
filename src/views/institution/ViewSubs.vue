@@ -204,5 +204,28 @@ a:visited{color: var(--Text)}
     background-color: #00000000;
 }
 
+@media screen and (max-width: 600px){
+    .main_info{
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        width: 100%;
+   
+    }
+    #left-row{
+        padding: 1%;
+        width: 90%;
+    }
 
+    section{
+        min-height: 20vh;
+        padding: 4%;
+        margin-top:3%;
+    }
+    .subs{
+        padding: 4%;
+        min-height: 20vh;
+        width: 80%;
+    }
+}
 </style>
