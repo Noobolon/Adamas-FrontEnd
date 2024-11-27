@@ -1,5 +1,5 @@
 <script>
-import { formatEndDate, getEventFromID, sendProjectToApproval, subscribeToEvent, unsubscribeFromEvent } from '@/assets/scripts/event_scripts';
+import { cancelParticipation, formatEndDate, getEventFromID, sendProjectToApproval, subscribeToEvent, unsubscribeFromEvent } from '@/assets/scripts/event_scripts';
 import SelectProjectModal from '@/components/modals/SelectProjectModal.vue';
 import router from '@/router';
 import { useAuthStore } from '@/stores/authentication';
@@ -105,8 +105,21 @@ export default{
                 p_id,
                 this.e_id
             )
+            this.showParticipation = false
+        },
 
+        async cancelarParticipacao(){
+            let u_token = this.authStore.getToken
+            let p_id = parseInt(this.selected_project.project_id)
+
+            cancelParticipation(
+                u_token,
+                p_id,
+                this.e_id
+            )
+            this.showParticipation = false
         }
+
 
     },
 
@@ -198,6 +211,9 @@ export default{
                 <div class="buttons">
                     <button v-if="this.selected_project" type="button" @click="mandarProjeto()">
                         Participar
+                    </button>
+                    <button v-if="this.selected_project" type="button" @click="cancelarParticipacao(); this.showParticipation = false">
+                        Cancelar participação
                     </button>
                 </div>
                 

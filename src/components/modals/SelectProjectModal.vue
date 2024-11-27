@@ -46,10 +46,13 @@ export default{
 
                 <div class="projects">
 
-                    <div class="project" v-for="project in this.user_projects" @click="$emit('project', project); $emit('close')">
+                    <div class="project" v-if="this.user_projects" v-for="project in this.user_projects" @click="$emit('project', project); $emit('close')">
                         <h3>{{ project.title }}</h3>
                         <p>{{ project.description }}</p>
                         <div class="cat" v-for="cat in project.categories">{{ cat.name }}</div>
+                    </div>
+                    <div  v-else id="no_projects">
+                        <h2>Você não possui nenhum projeto.</h2>
                     </div>
                     
                 </div>
@@ -72,6 +75,10 @@ export default{
 <style scoped>
 @import url(@/assets/css/modal.css);
 @import url(@/assets/css/categorias.css);
+
+#no_projects{
+    text-align: center;
+}
 
 .buttons{
     display: flex;

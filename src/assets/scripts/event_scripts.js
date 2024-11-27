@@ -154,9 +154,7 @@ export async function cancelParticipation(token, project_id, event_id){
     try {
         const response = await api.delete(`/event/${event_id}/participation`,
             {   
-                project_id: project_id
-            },
-            {
+                data: {project_id: project_id},
                 headers: {Authorization: `Bearer ${token}`}
             }
         )
