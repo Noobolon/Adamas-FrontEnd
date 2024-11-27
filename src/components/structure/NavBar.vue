@@ -4,7 +4,12 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useAuthStore } from '@/stores/authentication';
 
 export default {
-    name: "headerBar",
+    name: "navBar",
+
+    components:{
+        RouterLink
+    },
+
     setup() {
         // authStore
         const authStore = useAuthStore();
@@ -28,9 +33,11 @@ export default {
             showMenu, authStore
         };
     },
+
     data(){
         return{
-            logged: this.authStore.getAccType
+            user: this.authStore.getUser,
+            accType: this.authStore.getAccType
         }
     },
 
@@ -46,16 +53,16 @@ export default {
 </script>
 
 <template>
-    <div class="mobileHeader">
+    <div class="mobileNav">
         <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
         <button @click="showMenu = !showMenu">
             <img src="/symbols/menuIcon.svg" alt="menu Icon" >
         </button>
     </div>
 
-    <header v-if="showMenu" >
-        <div>
-            <RouterLink to="/"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
+    <nav v-if="showMenu" >
+        <div id="buttonsNavigator">
+            <RouterLink to="/" id="returnHomeB"><img src="/logos/AdamasWhite.png" alt="Logo"></RouterLink>
             <ul>
                 <li><RouterLink to="/projetos">Projetos</RouterLink></li>
                 <li><RouterLink to="/eventos">Eventos</RouterLink></li>
@@ -63,29 +70,38 @@ export default {
         </div>
         
 
-        <div id="User">
-            <a v-if="logged != null" @click="this.authStore.logout()"><img src="/symbols/LogoutIcon.svg" alt=""></a>
+        <div id="user">
+            <button type="button" id="logoutMobile" v-if="accType != null" @click="this.authStore.logout()">
+                <img src="/symbols/LogoutIcon.svg" alt="Sair">
+            </button>
 
-            <RouterLink v-if="logged == 'common'" to="/">
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
+            <p id="username" v-if="user">
+                {{ user.name }}
+            </p>
+
+            <RouterLink v-if="accType == 'common'" :to="`/usuario/${this.user.id}`">
+                <img class="profile" src="/symbols/user/WhiteCommon.png" alt="Perfil">
             </RouterLink>
-            <RouterLink v-if="logged == 'institution'" to="/">
-                <img src="/symbols/InstIcon.png" alt="Perfil">
+            <RouterLink v-if="accType == 'institution'" :to="`/instituicao/${this.user.id}`">
+                <img class="profile" src="/symbols/user/WhiteInst.png" alt="Perfil">
             </RouterLink>
-            <RouterLink v-if="logged == null" to="/tipo-de-conta">
+
+
+
+            <RouterLink v-if="accType == null" to="/tipo-de-conta" id="btnEntrar">
                 <p>Entrar</p>
             </RouterLink>
         </div>
 
-    </header>
+    </nav>
 </template>
 
 
 
 <style scoped>
 
-header{
-    padding: 15px;
+nav{
+    width: 100%;
     background-color: var(--ToolbarColor);
     color: var(--Text2);
 
@@ -94,26 +110,31 @@ header{
     align-items: center;
 }
 
-.mobileHeader{
-    display: none;
-}
-div{
+nav > div{
+    width: 35%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-div > a {margin: 0px 10px;}
+nav > *{
+    margin: 1.25%;
+}
 
 a{
     font-size: 1.75rem;
-
     text-decoration: none;
     text-align: center;
     color: var(--Text2);
 }
 a::after{
     color: var(--Text2);
+}
+
+img{
+    padding: none;
+}
+.profile{
+    width: 100%;
 }
 
 /* Botões */
@@ -141,21 +162,93 @@ li:first-child{padding-left: 12%;}
 li:last-child{border-right: none;}
 
 
+#logout{
+    background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+#logoutMobile{
+    display: none;
+}
+#username{
+    width: 25%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#user{
+    justify-content: flex-end;
+}
+
+
 /* Responsividade */
 
+.mobileNav{
+    display: none;
+}
+
 @media screen and (max-width: 600px){
-    div, ul, header{
-        align-content: center;
-        display: flex;
-        flex-direction: column;
+
+    #buttonsNavigator > *{
+        width: 100%;
     }
-    header > div > a {
+    #buttonsNavigator{
+        width: 100%;
+    }
+    #buttonsNavigator > ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly
+    }
+    nav{
+        width: 100%;
+        display: flex;
+        align-items: start;
+        flex-direction: column-reverse;
+    }
+    ul{
+        flex-direction: column;
+        justify-items: end;
+    }
+    ul > li {
+        text-align: center;
+    }
+    #user {
+        flex-direction: row-reverse;
+        display: flex;
+        padding: 0
+
+    }
+
+    #user > a > img{
+        width: 12vw;
+    }
+    #username{
+        margin-right: 50vw;
+        margin-left: 20px
+    }
+    #returnHomeB{
         display: none;
     }
+    #logout{
+        display: none;
+    }
+    #logoutMobile{
+        display: block;
+    }
+
+    #btnEntrar{
+        display: none;
+    }
+
     header > div {
         align-items: start;
     }
-    .mobileHeader{
+    .mobileNav{
   
         width: 100%;
         display: flex;
@@ -172,7 +265,7 @@ li:last-child{border-right: none;}
 
    img {
         padding: 10px;
-        width: 3vh;
+        width: 5vw;
     }
     
 
@@ -187,8 +280,7 @@ li:last-child{border-right: none;}
     li:hover{
         background-color: #275e7b;
     }
-    li:first-child{border-top: 2px solid var(--Text2);}
-    li:last-child{border-bottom: 2px solid var(--Text2); margin-bottom: 5%;}
+
 }
 
 </style>

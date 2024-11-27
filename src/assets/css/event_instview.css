@@ -1,0 +1,38 @@
+
+
+.owner_event{
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 2%;
+    width: 8    0%;
+    
+    margin: 4%;
+    border-radius: 25px;
+    background-color: var(--MenuColor);
+    word-break: break-all;
+}
+
+.owner_event div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.owner_event a{color: var(--Text);}
+.owner_event a:hover{cursor: pointer;}
+.owner_event a:visited{color: var(--Text);}
+    
+.owner_event h3{
+    color: var(--Text);
+}
+
+.owner_event > ul{
+    color: var(--Text);
+    list-style: none;
+    padding: 0;
+}
+
+.owner_event > ul > li > span {
+    font-weight: normal;
+    color: var(--TextHighlight);
+}

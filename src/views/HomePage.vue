@@ -16,10 +16,11 @@ export default {
     <main>
         <div id="Intro">
             <header>
+                
                 <h1>Adamas</h1>
                 <h2>Plataforma de divulgação de projetos e eventos.</h2>
                 <LinkButton link="/tipo-de-conta" height="max-content">Entrar</LinkButton>
-                > 
+                
             </header>
         </div>
 
@@ -45,16 +46,16 @@ export default {
     <div id="Equipe">
             <article>
                 <h2>Equipe</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum voluptatum et aliquam eum voluptatem atque non sint! Quibusdam reprehenderit doloremque ex nam porro earum, similique consectetur fuga assumenda architecto adipisci.</p>
+                <p>Nós visamos abordar a dificuldade ao organizar projetos e eventos digitalmente em instituições escolares e temos como objetivo desenvolver um site para compartilhar projetos de alunos e eventos em instituições. Atualmente, estamos com o desenvolvimento parcialmente pronto. </p>
             </article>
             <ul>
                 <li>
                     <img src="https://avatars.githubusercontent.com/u/115102100?v=4" alt="Perfil">
-                    <h3>Eduardo<span>/frontiendo</span></h3>
+                    <h3>Eduardo<span>/Front-end</span></h3>
                 </li>
                 <li>
                     <img src="https://avatars.githubusercontent.com/u/105937609?v=4" alt="Perfil">
-                    <h3>Felipe<span>/backiendo</span></h3>
+                    <h3>Felipe<span>/Back-end</span></h3>
                 </li>
             </ul>
 
@@ -122,6 +123,10 @@ article > p{
 div #Equipe{
     padding: 2%;
     background-color: #88DAEC;
+}
+
+#Equipe > article > p{
+    text-align: left;
 }
 
 ul{

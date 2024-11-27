@@ -12,15 +12,25 @@
 }
 
 body{
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
   background-color: var(--BackgroundColor);
 }
 
 main{
   margin: none;
   display: flex;
+  min-height: 50vh;
   flex-direction: column;
 }
 
+footer{
+
+  bottom: 0;
+  width: 100%;
+}
 a{
   text-decoration: none;
 }

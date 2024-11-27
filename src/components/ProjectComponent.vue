@@ -31,7 +31,7 @@ export default{
     <div class="project_style">
 
         <div class="project_container">
-            <h1><RouterLink to="/">{{ project.title }}</RouterLink></h1>
+            <h1><RouterLink :to="`/projeto/${project.project_id}`">{{ project.title }}</RouterLink></h1>
             <p>{{ project.description }}</p>
 
             <div>
@@ -71,6 +71,10 @@ export default{
 
 a{color: var(--Text2);}
 
+.cat{
+    margin-right: 2%;
+}
+
 .project_style{
     display: flex;
     flex-direction: row ;
@@ -82,6 +86,7 @@ a{color: var(--Text2);}
     width: 100%;
     background-color: var(--CardColor);
     color: var(--Text2);
+    
 }
 
 .project_container{

@@ -33,11 +33,11 @@ export default {
         <RouterLink id="back" to="/tipo-de-conta">&lt Voltar</RouterLink>
         <h1>Login de Instituição</h1>
         <div class="forms">
-            <img src="@/assets/images/PencilDiamond.png" alt="Diamante" >
+            <img src="@/assets/images/diamond.png" alt="Diamante" >
 
             <form @submit.prevent="onSubmit">
-                <input v-model="email" placeholder="E-mail" id="email" type="email" required>
-                <input v-model="password" placeholder="Senha" id="senha" type="password" required>
+                <input v-model="email" placeholder="E-mail" id="email" type="email" autocomplete="email" required>
+                <input v-model="password" placeholder="Senha" id="senha" type="password" autocomplete="current-password" required>
                 <input type="submit" @submit="onSubmit" value="Entrar">
 
                 <p>Não possui uma conta?<br><RouterLink to="/cadastrar/instituicao">Cadastrar</RouterLink></p>

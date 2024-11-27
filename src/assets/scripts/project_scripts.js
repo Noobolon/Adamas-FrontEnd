@@ -2,21 +2,20 @@ import api from "@/api"
 
 
 // Função de criar projeto
-export async function createProject(token){
+export async function createProject(token, titulo, categorias, descricao, conteudo ){
     try {
-        await api.post("/project",
+        const new_project = await api.post("/project",
             {
-                title: this.title,
-                description: this.description,
-                content: this.content
+                title: titulo,
+                categories_add: categorias,
+                description: descricao,
+                content: conteudo
             },
             {
                 headers: {Authorization: `Bearer ${token}`}
             }
         )
-        .then(function (response){
-            // console.log(response)
-        })
+        return new_project.data
         
     } catch (error) {
         console.log(error)
@@ -24,22 +23,73 @@ export async function createProject(token){
 }
 
 
-// Função de adicionar tag ao projeto (incompleto)
-// export async function addTag(token, projectID, tag_name){
-//     try {
-//         await api.post(`/project/${projectID}`,
-//             {
-//                 category_name: tag_name,
-//             },
-//             {
-//                 headers: {Authorization: `Bearer ${token}`}
-//             }
-//         )
-//         .then(function (response){
-//             console.log(response)
-//         })
+// Função de pegar projeto pelo ID do projeto
+export async function getProjectFromID(projectID){
+    try {
+        const response = await api.get(`/project/${projectID}`);
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// Função de comentar no projeto
+export async function commentOnProject(token, projectID, comment){
+    try {
+        const response = await api.post(`/project/${projectID}/comment`,
+            {
+                comment: comment
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        ).then(new_comment =>{console.log(new_comment)})
+        return response
         
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// Função de dar curtir o projeto
+export async function likeProject(token, projectID) {
+    try {
+        const response = await api.post("/project/like",
+            {
+                project_id: projectID
+            },
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            }
+        )
+        location.reload()
+        return response
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// Função de remover like do projeto
+export async function unlikeProject(token, projectID) {
+    try {
+        const response = await api.delete("/project/like",
+            {
+                data: {
+                    project_id: projectID
+                }, 
+                headers: { 
+                    Authorization: `Bearer ${token}`
+                }
+            },
+        )
+        location.reload()
+        return response
+        
+    } catch (error) {
+        console.log(error)
+    }
+}

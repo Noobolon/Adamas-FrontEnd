@@ -1,4 +1,5 @@
 <script>
+import { formatEndDate } from '@/assets/scripts/event_scripts';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -12,18 +13,14 @@ export default{
 
     data() {
         return{
-            data_inicial: format(this.event.start_date, "d LLL 'às' k:mm", {locale: ptBR}),
+            data_inicial: format(this.event.start_date, "d LLL 'às' HH:mm", {locale: ptBR}),
             data_final: this.data_final
         };
     },
 
     mounted(){
-        // Se os dois meses forem iguais, mostrar só a hora
-        if (format(this.event.end_date, "LLL") == format(this.event.start_date, "LLL")){
-            this.data_final = format(this.event.end_date, "'às' k:mm", {locale: ptBR})
-        } else {
-            this.data_final = format(this.event.end_date, "d LLL 'às' k:mm", {locale: ptBR})
-        }
+
+        this.data_final = formatEndDate(this.event.start_date, this.event.end_date)
     }
 }
 
@@ -34,7 +31,7 @@ export default{
     <div class="event_style">
         
         <div class="event_container">
-            <h1><RouterLink to="/">{{ event.name }}</RouterLink></h1>
+            <h1><RouterLink :to="`/evento/${event.id}`">{{ event.name }}</RouterLink></h1>
             <p>{{ event.description }}</p>
 
             <div class="cntnt_style">
@@ -63,7 +60,10 @@ a{color: var(--Text2);}
     color: var(--Text2);
 }
 
-.event_container{margin: 2%;}
+.event_container{
+    line-break: anywhere;
+    margin: 2%;
+}
 
 
 /* Nomes dos integrantes */

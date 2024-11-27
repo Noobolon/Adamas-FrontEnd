@@ -4,9 +4,6 @@
         props: {
             link: String,
             icon: String,
-
-            width: String,
-            height: String
         }
     }
 
@@ -33,11 +30,8 @@ a{
     align-content: center;
 
     background-color: var(--ButtonColor);
-    padding: 2% 0;
+    padding: 2% ;
     border-radius: 15px;
-
-    width: v-bind(width);
-    height: v-bind(height);
     text-decoration: none;
     font-size: 2rem;
     color: var(--Text2);
@@ -49,7 +43,15 @@ a:hover{ background-color: var(--ButtonHoverColor);}
 a:visited{color: var(--Text2);}
 
 img{
+    width: 50px;
     margin-right: 2%;
+}
+
+@media screen and (max-width: 600px){
+    img{
+        margin: 5px;
+        width: 8vw;
+    }
 }
 
 </style>

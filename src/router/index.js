@@ -10,6 +10,7 @@ export const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue')
     },
+    
     {
       path: '/tipo-de-conta',
       name: 'tipo de conta',
@@ -22,14 +23,51 @@ export const router = createRouter({
       component: () => import('../views/CreateProject.vue')
     },
 
-
-    // Usuário (temporário, depois provavelmente será colocado em um lugar próprio)
     {
-      path: '/user',
+      path: '/criar-evento',
+      name: 'criar evento',
+      component: () => import('../views/institution/CreateEvent.vue')
+    },
+
+    {
+      path: '/projeto/:id',
+      name: 'projeto',
+      component: () => import('../views/ProjectPage.vue')
+    },
+
+    {
+      path: '/usuario/:id',
       name: 'usuário',
       component: () => import('../views/UserPage.vue')
     },
     
+    {
+      path: '/evento/:id',
+      name: 'evento',
+      component: () => import('../views/EventPage.vue')
+    },
+
+    // Instituição
+    {
+      path: '/instituicao/:id',
+      name: 'instituição',
+      component: () => import('../views/institution/InstitutionPage.vue')
+    },
+    {
+      path: '/instituicao/editar-evento/:e_id',
+      name: 'editar evento',
+      component: () => import('../views/institution/EventEditor.vue')
+    },
+    {
+      path: '/instituicao/visualizar/:e_id',
+      name: 'visualizar participantes',
+      component: () => import('../views/institution/ViewSubs.vue')
+    },
+    {
+      path: '/instituicao/aprovar-projetos/:e_id',
+      name: 'aprovar projetos',
+      component: () => import('../views/institution/ApproveProjects.vue')
+    },
 
     // Pesquisas 
     {
@@ -70,6 +108,7 @@ export const router = createRouter({
       name: 'login como instituição',
       component: () => import('../views/register/LogInstitution.vue')
     },
+    
 
 
     // Página de debug (será removido na versão final)
@@ -93,23 +132,31 @@ export const router = createRouter({
 })
 
 
-// router.beforeEach(async (to) => {
-//   // redireciona pra página de login
-//   const publicPages = ['/', '/tipo-de-conta', '/cadastrar/usuario', '/login/usuario']; // temporário 
-//   const authRequired = !publicPages.includes(to.path);
-//   const authStore = useAuthStore();
+router.beforeEach(async (to) => {
+  const privateCommonPages = ['/criar-projeto'];
+  const privateInstPages = ['/criar-evento', '/instituicao/:id'];
 
-//   if (authRequired && !authStore.user) {
-//       return {
-//           path: '/tipo-de-conta',
-//           query: { returnUrl: to.href }
-//       };
-//   }
-// }); 
+  const userAuthRequired = privateCommonPages.includes(to.path);
+  const instAuthRequired = privateInstPages.includes(to.path) || to.path.startsWith('/instituicao/'); 
 
+  const authStore = useAuthStore();
+  const token = authStore.getToken;
+  const accType = authStore.getAccType;
 
+  // se requirir autenticação, o tipo de conta não for comum ou o token está inválido
+  if (userAuthRequired && accType !== 'common' && (!token || !authStore.checkToken)) {
+    return {
+      path: '/tipo-de-conta',
+      query: { returnUrl: to.fullPath }
+    };
+  }
 
+  if (instAuthRequired && accType !== 'institution' && (!token || !authStore.checkToken)) {
+    return {
+      path: '/tipo-de-conta',
+      query: { returnUrl: to.fullPath }
+    };
+  }
+}); 
 
 export default router
-
-

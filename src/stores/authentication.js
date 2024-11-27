@@ -32,14 +32,28 @@ export const useAuthStore = defineStore('auth', {
         },
 
         checkToken(){
-            const timeNow = Math.floor(Date.now() / 1000)
-            return this.getUser.exp < timeNow
-            
+            if (this.isUserLogged){
+                const timeNow = Math.floor(Date.now() / 1000)
+                return this.getUser.exp < timeNow
+            }
         },
+
+        isUserLogged(){
+            if (this.token != null) {
+                return true
+            } else return false
+        }
      
     },
 
     actions: {
+        clearUserData() {
+            this.token = null;
+            this.acc_type = null;
+            localStorage.removeItem("token");
+            localStorage.removeItem("acc_type");
+        },
+
         async loginUser(email, password) {
             try{
                 const data = await api.post('/login',
@@ -58,8 +72,8 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "common"
                 localStorage.setItem("acc_type", "common")
 
-                // retorna pra home
-                await router.push('/') 
+                // manda para a página dele
+                await router.push(`/usuario/${this.getUser.id}`) 
                 location.reload()
 
 
@@ -98,7 +112,7 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "common"
                 localStorage.setItem("acc_type", "common")
 
-                await router.push('/') 
+                await router.push(`/usuario/${this.getUser.id}`) 
                 location.reload()
 
             } catch (error) {
@@ -121,7 +135,7 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "institution"
                 localStorage.setItem("acc_type", "institution")
 
-                await router.push('/') 
+                await router.push(`/instituicao/${this.getUser.id}`) 
                 location.reload()
 
             } catch (error) {
@@ -146,7 +160,7 @@ export const useAuthStore = defineStore('auth', {
                 this.acc_type = "institution"
                 localStorage.setItem("acc_type", "institution")
 
-                await router.push('/') 
+                await router.push(`/instituicao/${this.getUser.id}`) 
                 location.reload()
 
                 
@@ -159,12 +173,11 @@ export const useAuthStore = defineStore('auth', {
 
         async logout() {
             this.token = null;
+            this.acc_type = null;
             localStorage.removeItem('token');
             localStorage.removeItem('acc_type');
-            await router.push('/');
             location.reload();
         }
     }
 });
 
-// https://stackblitz.com/edit/vue-3-pinia-jwt-authentication-tutorial-and-example?file=src%2Fstores%2Fauth.store.js

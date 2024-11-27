@@ -10,15 +10,12 @@ export default{
         return{
             projects_list: this.projects_list,
             events_list: this.events_list,
-            oi: localStorage.getItem("token")
-        }
-    },
+            oi: localStorage.getItem("token"),
 
-    setup() {
-        const projectStore = useProjectStore()
-        const eventStore = useEventStore()
-        const authStore = useAuthStore()
-        return { projectStore, eventStore, authStore }
+            projectStore: useProjectStore(),
+            eventStore: useEventStore(),
+            authStore: useAuthStore()
+        }
     },
 
     created(){

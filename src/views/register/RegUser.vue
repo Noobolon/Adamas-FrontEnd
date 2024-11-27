@@ -1,4 +1,5 @@
 <script>
+import { validadePassword, validateEmail } from '@/assets/scripts/register_scripts';
 import { useAuthStore } from '@/stores/authentication';
 
 export default {
@@ -20,7 +21,23 @@ export default {
 
     methods: {
         onSubmit() {
-            this.authStore.regUser(this.name, this.nickname, this.email, this.password)
+
+            if (!validateEmail(this.email)){
+                alert("E-mai inválido!")
+                return
+            }
+
+            if (!validadePassword(this.password)){
+                alert("Senha deve ter no mínimo 6 caracteres!")
+                return
+            }
+
+            this.authStore.regUser(
+                this.name,
+                this.nickname,
+                this.email,
+                this.password
+            )
         }
     },
 
@@ -35,14 +52,14 @@ export default {
 
         <div class="forms">
             <div class="info">
-                <img src="@/assets/images/diamond.png" alt="Diamante" >
+                <img src="@/assets/images/PencilDiamond.png" alt="Diamante" >
             </div>
             
             <form @submit.prevent="onSubmit">
-                <input v-model="name" placeholder="Nome" id="name" type="text" required>
-                <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" type="text">
-                <input v-model="email" placeholder="E-mail" id="email" type="email" required>
-                <input v-model="password" placeholder="Senha" id="password" type="password" required>
+                <input v-model="name" placeholder="Nome" id="name" type="text" autocomplete="name" required>
+                <input v-model="nickname" placeholder="Apelido (opcional)" id="nickname" autocomplete="nickname" type="text">
+                <input v-model="email" placeholder="E-mail" id="email" type="email" autocomplete="email" required>
+                <input v-model="password" placeholder="Senha" id="password" type="password" autocomplete="new-password" required>
 
                 <input type="submit" value="Cadastrar-se">
 
