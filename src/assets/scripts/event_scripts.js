@@ -101,7 +101,9 @@ export async function sendProjectToApproval(token, project_ID, event_id){
     } catch (error) {
         if (error.response.data.message.startsWith("Error 1062 (23000): Duplicate entry")){
             alert("Projeto já registrado no evento!")
-        } else console.log(error)
+        } else if (error.response.data.message == "o projeto já esta inscrito") {
+            alert("O projeto já está inscrito e já foi aprovado nesse evento!")
+        }else console.log(error)
     }
 }
 
