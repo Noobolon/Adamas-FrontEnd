@@ -62,7 +62,7 @@ export default {
             <form @submit.prevent="cadastrarInst">
                 <input v-model="name" placeholder="Nome" id="name" type="text" autocomplete="off" required>
                 <input v-model="email" placeholder="E-mail" id="email" type="email" autocomplete="off" required>
-                <input v-model="cnpj" placeholder="CNPJ" id="cnpj" type="text" autocomplete="off" required>
+                <input v-model="cnpj" placeholder="CNPJ" id="cnpj" type="text" autocomplete="off" maxlength="14" required>
                 <input v-model="password" placeholder="Senha" id="password" type="password" autocomplete="off" required>
 
                 <input type="submit" value="Cadastrar">
