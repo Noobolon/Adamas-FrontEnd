@@ -108,15 +108,6 @@ export const router = createRouter({
       name: 'login como instituição',
       component: () => import('../views/register/LogInstitution.vue')
     },
-    
-
-
-    // Página de debug (será removido na versão final)
-    {
-      path: '/debug',
-      name: 'o debugas',
-      component: () => import('../views/debug.vue')
-    },
 
     // Redireciona páginas não-existentes pra home 
     { 
