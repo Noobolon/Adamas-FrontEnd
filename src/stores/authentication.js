@@ -78,8 +78,9 @@ export const useAuthStore = defineStore('auth', {
 
 
             } catch (error) {
-                console.log(error)
-            }
+                if (error.response.data.message == 'sql: no rows in result set'){
+                    alert("E-mail ou senha errados!")
+                } else console.log(error)            }
         },
 
         async regUser(username, nickname, email, password) {
@@ -139,7 +140,9 @@ export const useAuthStore = defineStore('auth', {
                 location.reload()
 
             } catch (error) {
-                console.log(error)
+                if (error.response.data.message == 'sql: no rows in result set'){
+                    alert("E-mail ou senha errados!")
+                } else console.log(error)
             }
         },
 
