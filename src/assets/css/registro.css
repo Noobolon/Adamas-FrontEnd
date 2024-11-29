@@ -1,0 +1,142 @@
+
+main{
+    min-height: 90vh;
+
+}
+h1{
+    font-size: 3rem;
+    text-align: center;
+    color: var(--TextHighlight);
+}
+
+p{
+    text-align: center;
+    font-weight: bold;
+}
+
+p > a{color:var(--ButtonColor)}
+
+div .forms{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+div .info{
+    transform: translateY(-55px);
+}
+
+div > *{
+    text-align: center;
+}
+
+div > img{
+    width: 200px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+}
+
+input[type="button"], input[type="submit"]{
+    background-color: var(--ButtonColor);
+    border: none;
+    border-radius: 15px;
+
+
+    width: max-content;
+    padding: 5% 10%;
+    
+    font-size: 2rem;
+    color: var(--Text2);
+    text-align: center;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover{
+    cursor: pointer;
+    background-color: #1f4a60;
+}
+
+input{
+    background-color: #00000000;
+    border: none;
+    border-bottom: 4px solid var(--ButtonColor);
+
+
+    caret-color: var(--TextFieldColor);
+    font-size: 2rem;
+    margin: 5% 0;
+}
+
+
+input:focus{
+    outline: none;
+}
+
+input::placeholder{
+    color: var(--TextFieldColor);
+    font-weight: bold;
+}
+
+a{
+    text-decoration: underline;
+}
+
+#back{
+    margin-top: 5%;
+    margin-left: 10%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--TextHighlight);
+    text-decoration: none;
+    width: fit-content;
+}
+
+#back:hover{
+    text-decoration: underline;
+}
+
+
+/*Responsividade das telas de registro*/
+@media screen and (max-width: 600px){
+
+    h1{
+        font-size: 2rem;
+    }
+
+    div .forms{
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+
+    div .info{
+        transform: translateY(0);
+    }
+
+    input[type="email"], input[type="password"], input[type="text"] {
+        width: 100%;
+        font-size: 1.8rem;
+    }
+    form > *{
+        font-size: 1.5rem;
+    }
+
+    input[type="submit"] {
+        font-size: 1.5rem;
+    }
+
+     p, a {
+        font-size: 1.2rem;
+    }
+    img{
+        display: none;
+    }
+    #back {
+        margin-bottom: 10%;
+    }
+}

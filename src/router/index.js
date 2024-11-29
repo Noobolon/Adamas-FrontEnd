@@ -1,29 +1,153 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/authentication.js' 
 
-import HomePage from '../views/HomePage.vue'
-import AccountType from '../views/AccountType.vue'
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomePage
+      component: () => import('../views/HomePage.vue')
+    },
+    
+    {
+      path: '/tipo-de-conta',
+      name: 'tipo de conta',
+      component: () => import('../views/register/AccountType.vue')
+    },
+
+    {
+      path: '/criar-projeto',
+      name: 'criar projeto',
+      component: () => import('../views/CreateProject.vue')
+    },
+
+    {
+      path: '/criar-evento',
+      name: 'criar evento',
+      component: () => import('../views/institution/CreateEvent.vue')
+    },
+
+    {
+      path: '/projeto/:id',
+      name: 'projeto',
+      component: () => import('../views/ProjectPage.vue')
+    },
+
+    {
+      path: '/usuario/:id',
+      name: 'usuário',
+      component: () => import('../views/UserPage.vue')
+    },
+    
+    {
+      path: '/evento/:id',
+      name: 'evento',
+      component: () => import('../views/EventPage.vue')
+    },
+
+    // Instituição
+    {
+      path: '/instituicao/:id',
+      name: 'instituição',
+      component: () => import('../views/institution/InstitutionPage.vue')
     },
     {
-      path: '/accounttype',
-      name: 'accounttype',
-      component: AccountType
+      path: '/instituicao/editar-evento/:e_id',
+      name: 'editar evento',
+      component: () => import('../views/institution/EventEditor.vue')
+    },
+    {
+      path: '/instituicao/visualizar/:e_id',
+      name: 'visualizar participantes',
+      component: () => import('../views/institution/ViewSubs.vue')
+    },
+    {
+      path: '/instituicao/aprovar-projetos/:e_id',
+      name: 'aprovar projetos',
+      component: () => import('../views/institution/ApproveProjects.vue')
+    },
+
+    // Pesquisas 
+    {
+      path: '/projetos',
+      name: 'projetos',
+      component: () => import('../views/search/Projects.vue')
+    },
+    {
+      path: '/eventos',
+      name: 'eventos',
+      component: () => import('../views/search/Events.vue')
+    },
+    {
+      path: '/usuarios',
+      name: 'usuarios',
+      component: () => import('../views/search/Users.vue')
+    },
+
+
+    // Telas de cadastro
+    {
+      path: '/cadastrar/usuario',
+      name: 'cadastrar-se como usuário comum',
+      component: () => import('../views/register/RegUser.vue')
+    },
+    {
+      path: '/cadastrar/instituicao',
+      name: 'cadastrar-se como instituição',
+      component: () => import('../views/register/RegInstitution.vue')
+    },
+    {
+      path: '/login/usuario',
+      name: 'login como usuário',
+      component: () => import('../views/register/LogUser.vue')
+    },
+    {
+      path: '/login/instituicao',
+      name: 'login como instituição',
+      component: () => import('../views/register/LogInstitution.vue')
+    },
+
+    // Redireciona páginas não-existentes pra home 
+    { 
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
-  ]
+    
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // voltar ao topo
+    return { top: 0 }
+  },
 })
 
+
+router.beforeEach(async (to) => {
+  const privateCommonPages = ['/criar-projeto'];
+  const privateInstPages = ['/criar-evento', '/instituicao/:id'];
+
+  const userAuthRequired = privateCommonPages.includes(to.path);
+  const instAuthRequired = privateInstPages.includes(to.path) || to.path.startsWith('/instituicao/'); 
+
+  const authStore = useAuthStore();
+  const token = authStore.getToken;
+  const accType = authStore.getAccType;
+
+  // se requirir autenticação, o tipo de conta não for comum ou o token está inválido
+  if (userAuthRequired && accType !== 'common' && (!token || !authStore.checkToken)) {
+    return {
+      path: '/tipo-de-conta',
+      query: { returnUrl: to.fullPath }
+    };
+  }
+
+  if (instAuthRequired && accType !== 'institution' && (!token || !authStore.checkToken)) {
+    return {
+      path: '/tipo-de-conta',
+      query: { returnUrl: to.fullPath }
+    };
+  }
+}); 
+
 export default router
-
-
-
-// route level code-splitting
-// this generates a separate chunk (About.[hash].js) for this route
-// which is lazy-loaded when the route is visited.
-  // component: () => import('../components/pages/CreateAccount.vue')

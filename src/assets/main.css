@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-@import './paleta.css';
+@import './css/paleta.css';
 
 
+:root{
+  font-size: 14px;
+}
 
 *{
   margin: 0px;
@@ -9,11 +12,27 @@
 }
 
 body{
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
   background-color: var(--BackgroundColor);
 }
 
 main{
-  padding: 7%;
+  margin: none;
+  display: flex;
+  min-height: 50vh;
+  flex-direction: column;
+}
+
+footer{
+
+  bottom: 0;
+  width: 100%;
+}
+a{
+  text-decoration: none;
 }
 
 /* Scrollbar */
@@ -32,18 +51,3 @@ main{
   background: var(--ButtonColor);
   border-radius: 20px;
 }
-
-/*Testes*/
-
-/* @media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-} */

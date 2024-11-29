@@ -1,0 +1,124 @@
+ 
+main{
+    min-height: 90vh;
+    padding: 7%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content{
+    width: 50%;
+}
+
+/* Container de pesquisas */
+.srch_container{
+    display: flex;
+    height: 50px;
+    margin-bottom: 3%;
+}
+
+.srch_container input[type=text] {
+    width: 100%;
+    caret-color: var(--TextFieldColor);
+
+    padding: 2%;
+    background-color: var(--MenuColor);
+    font-size: 1.5em;
+    border: solid 2px var(--ButtonColor);
+    border-radius: 10px;
+}
+.srch_container input[type=text]:focus{
+    outline: none;
+}
+
+
+
+/* Container de tipo de pesquisa */
+.ctgry_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 1.25em;
+    margin-bottom: 3%;
+}
+
+.ctgry_container a{
+    padding: 5px 8%;
+    border: solid 2px var(--ButtonColor);
+    border-radius: 20px;
+
+    background-color: var(--ButtonColor);
+
+    color: var(--Text2);
+}
+
+.ctgry_container a:hover {
+    background-color: var(--ButtonHoverColor);
+}
+
+
+/* Container de tags */
+.tag_container{
+    background-color: var(--MenuColor);
+    border: solid 2px var(--ButtonColor);
+    border-radius: 10px;
+    width: 30%;
+    height: fit-content;
+    padding: 0;
+}
+
+.tag_container > h2{
+    transform: rotate(360deg); /* muito necessário para o funcionamento do código */
+    margin: 2%;
+}
+
+
+/* Animações */
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+
+
+ /* IDs */
+ #selected{
+    background-color: var(--Text2);
+    color: var(--ButtonColor);
+}
+
+@media screen and (max-width: 900px){
+    .content{
+        width: 60%;
+    }
+    .ctgry_container a{
+        padding: 5px 3%;
+    }
+}
+@media screen and (max-width: 600px){
+
+    .content{
+        width: 100%;
+    }
+    .ctgry_container{
+     margin-top: 10px;
+     flex-direction: row;
+     justify-content: space-between;
+
+    }
+    .ctgry_container a{
+     padding: 1%;
+     width: 30%;
+     text-align: center;
+    }
+
+
+}

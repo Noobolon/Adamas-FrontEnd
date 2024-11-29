@@ -1,27 +1,27 @@
 <script>
-    export default {
-        name: "HomePage"
-    }
-</script>
+import LinkButton from '@/components/LinkButton.vue';
 
-<script setup>  
-import LinkButton from '../components/LinkButton.vue'
+export default {
+    name: "HomePage",
+    
+    components:{
+        LinkButton
+    },
+}
 
 </script>
 
 <template>
 
     <main>
-
-        <!-- Introdução ao site -->
         <div id="Intro">
             <header>
+                
                 <h1>Adamas</h1>
-                <h2>Plataforma de hospedagem de projetos e eventos.</h2>
-
-                <LinkButton textBtn="Entrar" link="/accounttype" />  
+                <h2>Plataforma de divulgação de projetos e eventos.</h2>
+                <LinkButton link="/tipo-de-conta" height="max-content">Entrar</LinkButton>
+                
             </header>
-             
         </div>
 
         <article>
@@ -38,34 +38,35 @@ import LinkButton from '../components/LinkButton.vue'
             <h2>Veja e avalie projetos de outras pessoas</h2>
             <img src="../assets/images/screenshots/browse.png">
         </article>
+
+        
     </main>
 
     <!-- Seção da equipe -->
     <div id="Equipe">
-        <article>
-            <h2>Equipe</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum voluptatum et aliquam eum voluptatem atque non sint! Quibusdam reprehenderit doloremque ex nam porro earum, similique consectetur fuga assumenda architecto adipisci.</p>
-        </article>
+            <article>
+                <h2>Equipe</h2>
+                <p>Nós visamos abordar a dificuldade ao organizar projetos e eventos digitalmente em instituições escolares e temos como objetivo desenvolver um site para compartilhar projetos de alunos e eventos em instituições. Atualmente, estamos com o desenvolvimento parcialmente pronto. </p>
+            </article>
+            <ul>
+                <li>
+                    <img src="https://avatars.githubusercontent.com/u/115102100?v=4" alt="Perfil">
+                    <h3>Eduardo<span>/Front-end</span></h3>
+                </li>
+                <li>
+                    <img src="https://avatars.githubusercontent.com/u/105937609?v=4" alt="Perfil">
+                    <h3>Felipe<span>/Back-end</span></h3>
+                </li>
+            </ul>
 
-        <ul>
-            <li>
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
-                <h3>Eduardo<span>/Frontiendo</span></h3>
-            </li>
-            <li>
-                <img src="/symbols/DefaultProfile.png" alt="Perfil">
-                <h3>Felipe<span>/Backiendo</span></h3>
-            </li>
-        </ul>
-    </div>
-
+        </div>
 </template>
-
-
 
 <style scoped>
 
-
+main{
+    padding: 7%;
+}
 
 /* Header */
 
@@ -83,15 +84,13 @@ header{
     width: fit-content;
 }
 
-
-
 header> h1{
     color: var(--TextHighlight);
-    font-size: 7em;
+    font-size: 7rem;
 }
 
 header> h2{
-    font-size: 3em;
+    font-size: 3rem;
     margin-bottom: 3%;
 }
 
@@ -110,14 +109,13 @@ article > img{
 
 article > h2{
     color: var(--TextHighlight);
-    font-size: 3em;
+    font-size: 3rem;
     margin: 2% 0 0 0 ;
 }
 
 article > p{
-    font-size: 2em;
+    font-size: 2rem;
 }
-
 
 
 /* Equipe */
@@ -125,6 +123,10 @@ article > p{
 div #Equipe{
     padding: 2%;
     background-color: #88DAEC;
+}
+
+#Equipe > article > p{
+    text-align: left;
 }
 
 ul{
@@ -139,11 +141,11 @@ li{
     margin-bottom: 2%;
 }
 
-li > img{width: 7.5%; margin-right: 1%;}
+li > img{width: 7.5%; margin-right: 1%; border-radius: 100%;}
 
 li > h3{
     align-content: center;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 h3 > span{
@@ -152,16 +154,73 @@ h3 > span{
 }
 
 
-
+a{
+        width: 25%;
+}
 /* Responsividade */
 
 @media screen and (max-width: 600px){
     *{
-        font-size: 10px;
+        font-size: 1rem;
+    }
+
+    a{
+        margin-top: 5vh;
+        padding: 10px;
+        font-size: 1.5rem;
     }
 
     div #Intro{
-        height: 100%;
+        text-align: center;
+        height: fit-content;
+        margin-bottom: 5%;
+    }
+
+    header{padding: 0;}
+    header > h1{
+        font-size: 3rem;
+    }
+    header > h2{
+        font-size: 1.5rem;
+    }
+
+
+    article{
+        text-align: center;
+        justify-content: center;
+        margin: 0;
+    }
+    article > img {
+        margin: 0;
+        width: 90%;
+    }
+    article > h2{
+        font-size: 1.75rem;
+    }
+    article > p{
+        font-size: 1rem;
+    }
+    
+
+    ul{padding: 0; margin: 10% 0;}
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+    li > img{
+
+        width: 50px;
+        height: 50px;
+    }
+    li > h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 800px){
+    div #Intro {
+        height: fit-content;
         margin-bottom: 5%;
     }
 }
